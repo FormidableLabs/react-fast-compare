@@ -4,6 +4,7 @@
   "description": "Fast deep equal",
   "main": "index.js",
   "scripts": {
+    "benchmark": "node benchmark",
     "eslint": "eslint *.js benchmark spec",
     "test-spec-watch": "mocha spec/*.spec.js -R spec --watch",
     "test-spec": "mocha spec/*.spec.js -R spec",
