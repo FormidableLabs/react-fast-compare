@@ -36,7 +36,6 @@
     "mocha": "^3.4.2",
     "nano-equal": "^1.0.1",
     "nyc": "^11.0.2",
-    "pre-commit": "^1.2.2",
     "react": "^16.3.1",
     "react-test-renderer": "^16.3.1",
     "shallow-equal-fuzzy": "0.0.2",

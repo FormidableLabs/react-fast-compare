@@ -27,17 +27,21 @@ class Container extends React.Component {
 }
 
 describe('advanced', () => {
-  let warnStub = sinon.stub(console, 'warn');
-  afterEach(() => {
-    warnStub.resetHistory();
+  let sandbox;
+  let warnStub;
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    warnStub = sandbox.stub(console, 'warn');
   });
-  after(() => {
-    warnStub.restore();
+
+  afterEach(() => {
+    sandbox.restore();
   });
 
   describe('React', () => {
     describe('render element (with circular references)', () => {
-      it('can be compared without warning or errors', () => {
+      it('compares without warning or errors', () => {
         const testRenderer = ReactTestRenderer.create(React.createElement(Container));
         testRenderer.update(React.createElement(Container));
         assert.strictEqual(warnStub.notCalled, true);
@@ -46,8 +50,8 @@ describe('advanced', () => {
   });
 
   describe('warnings', () => {
-    describe('generic circular references', () => {
-      it('generate a warning but do not throw an error', () => {
+    describe('circular reference', () => {
+      it('warns on circular refs but do not throw', () => {
         const circularA = {a: 1};
         circularA.self = circularA;
         const circularB = {a: 1};
