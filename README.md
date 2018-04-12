@@ -7,7 +7,7 @@ The fastest deep equal comparison for React, perfect for `shouldComponentUpdate`
 
 <img src="https://i.imgur.com/KLUWQla.png" alt="chart" width="500"/>
 
-[benchmarking details](#Benchmarking)
+[benchmarking details](#benchmarking)
 
 ## Install
 
