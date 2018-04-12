@@ -366,5 +366,5 @@ const react = [
 module.exports = {
   generic,
   react,
-  all: generic.concat(react)
+  all: [].concat(generic, react)
 };
