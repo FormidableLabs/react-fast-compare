@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/epoberezkin/fast-deep-equal.git"
+    "url": "git+https://github.com/FormidableLabs/react-fast-compare.git"
   },
   "keywords": [
     "fast",
