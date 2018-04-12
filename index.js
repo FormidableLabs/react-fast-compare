@@ -45,10 +45,12 @@ function equal(a, b) {
 
     for (i = 0; i < length; i++) {
       key = keys[i];
-      if (key === '_owner' && a[key]) {
-        // React-specific.
-        // avoid traversing circular reference for React elements with non-null _owner
-        if (a[key] !== b[key]) return false;
+      if (key === '_owner' && a.$$typeof && a._store) {
+        // React-specific: avoid traversing React elements' _owner.
+        //  _owner contains circular references
+        // and is not needed when comparing the actual elements (and not their owners)
+        // .$$typeof and ._store on just reasonable markers of a react element
+        // [no-op]
       } else {
         // all other properties should be traversed as usual
         if (!equal(a[key], b[key])) return false;
