@@ -57,24 +57,37 @@ for (const equalName in equalPackages) {
   }
 }
 
-console.log("\n--- speed tests: generic usage ---\n");
+const chartData = {};
+
+console.log('\n--- speed tests: generic usage ---\n');
 
 genericSuite
   .on('cycle', (event) => console.log(String(event.target)))
   .on('complete', function () {
     console.log('  fastest: ' + this.filter('fastest').map('name'));
+    chartData.categories = this.map(test => test.name);
+    chartData.genericTestData = this.map(test => ({
+      x: test.name,
+      y: test.hz,
+    }));
   })
   .run({async: false});
 
-console.log("\n--- speed tests: generic and react ---\n");
+console.log('\n--- speed tests: generic and react ---\n');
 
 allSuite
   .on('cycle', (event) => console.log(String(event.target)))
   .on('complete', function () {
     console.log('  fastest: ' + this.filter('fastest').map('name'));
+    chartData.reactAndGenericTestData = this.map(test => ({
+      x: test.name,
+      y: test.hz,
+    }));
   })
   .run({async: false});
 
-console.log("\n--- correctness tests: generic and react ---\n");
+console.log('\n--- correctness tests: generic and react ---\n');
 
 correctnessTests.forEach(test => test());
+
+console.log(JSON.stringify(chartData, null, 2));
