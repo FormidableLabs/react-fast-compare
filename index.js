@@ -50,7 +50,7 @@ function equal(a, b) {
         //  _owner contains circular references
         // and is not needed when comparing the actual elements (and not their owners)
         // .$$typeof and ._store on just reasonable markers of a react element
-        // [no-op]
+        continue;
       } else {
         // all other properties should be traversed as usual
         if (!equal(a[key], b[key])) return false;
