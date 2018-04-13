@@ -1,9 +1,15 @@
-# react-fast-compare
+react-fast-compare
+==================
 
-The fastest deep equal comparison for React, perfect for `shouldComponentUpdate`, also really fast at general-purpose deep comparison. This is a fork of the brilliant [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some extra handling for React. 
+The fastest deep equal comparison for React, perfect for
+`shouldComponentUpdate`, also really fast at general-purpose deep comparison.
+This is a fork of the brilliant
+[fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
+extra handling for React.
 
-[![Build Status](https://travis-ci.org/FormidableLabs/react-fast-compare.svg?branch=master)](https://travis-ci.org/FormidableLabs/react-fast-compare)
-[![npm version](https://badge.fury.io/js/react-fast-compare.svg)](http://badge.fury.io/js/react-fast-compare)
+[![Travis Status][trav_img]][trav_site]
+[![AppVeyor Status][appveyor_img]][appveyor_site]
+[![npm version][npm_img]][npm_site]
 
 <img src="https://i.imgur.com/KLUWQla.png" alt="chart" width="550"/>
 
@@ -11,12 +17,11 @@ The fastest deep equal comparison for React, perfect for `shouldComponentUpdate`
 
 ## Install
 
-```bash
-yarn add react-fast-compare
+```sh
+$ yarn add react-fast-compare
 # or
-npm install react-fast-compare
+$ npm install react-fast-compare
 ```
-
 
 ## Highlights
 
@@ -47,9 +52,14 @@ class ExpensiveRenderer extends React.Component {
 
 ## Benchmarking
 
-All tests carried out locally on a Macbook. The absolute values are much less important than the relative differences between packages.
+All tests carried out locally on a MacBook. The absolute values are much less
+important than the relative differences between packages.
 
-Benchmarking source can be found [here](https://github.com/FormidableLabs/react-fast-compare/blob/master/spec/tests.js). Each "operation" consists of running all relevant tests. The React benchmark uses both the generic tests and the react tests; these runs will be slower simply because there are more tests in each operation.
+Benchmarking source can be found
+[here](https://github.com/FormidableLabs/react-fast-compare/blob/master/node/tests.js).
+Each "operation" consists of running all relevant tests. The React benchmark
+uses both the generic tests and the react tests; these runs will be slower
+simply because there are more tests in each operation.
 
 ### Generic Data
 
@@ -62,7 +72,9 @@ shallow-equal-fuzzy x 94,141 ops/sec ±1.80% (89 runs sampled)
   fastest: react-fast-compare,fast-deep-equal
 ```
 
-`react-fast-compare` and `fast-deep-equal` should be the same speed for these tests; any difference is just noise. `react-fast-compare` won't be faster than `fast-deep-equal`, because it's based on it.
+`react-fast-compare` and `fast-deep-equal` should be the same speed for these
+tests; any difference is just noise. `react-fast-compare` won't be faster than
+`fast-deep-equal`, because it's based on it.
 
 ### React and Generic Data
 
@@ -75,16 +87,29 @@ shallow-equal-fuzzy x 454 ops/sec ±1.42% (79 runs sampled)
   fastest: react-fast-compare
 ```
 
-Three of these packages cannot handle comparing React elements (which are circular): `fast-deep-equal`, `nano-equal`, and `shallow-equal-fuzzy`.
+Three of these packages cannot handle comparing React elements (which are
+circular): `fast-deep-equal`, `nano-equal`, and `shallow-equal-fuzzy`.
 
 ### Running Benchmarks
 
-```bash
-yarn install
-yarn run benchmark
+```sh
+$ yarn install
+$ yarn run benchmark
 ```
-
 
 ## License
 
 [MIT](https://github.com/FormidableLabs/react-fast-compare/blob/readme/LICENSE)
+
+## Contributing
+
+Please see our [contributions guide](./CONTRIBUTING.md).
+
+[trav_img]: https://api.travis-ci.org/FormidableLabs/react-fast-compare.svg
+[trav_site]: https://travis-ci.org/FormidableLabs/react-fast-compare
+[cov_img]: https://img.shields.io/coveralls/FormidableLabs/react-fast-compare.svg
+[cov_site]: https://coveralls.io/r/FormidableLabs/react-fast-compare
+[npm_img]: https://badge.fury.io/js/react-fast-compare.svg
+[npm_site]: http://badge.fury.io/js/react-fast-compare
+[appveyor_img]: https://ci.appveyor.com/api/projects/status/github/formidablelabs/react-fast-compare?branch=master&svg=true
+[appveyor_site]: https://ci.appveyor.com/project/FormidableLabs/react-fast-compare
