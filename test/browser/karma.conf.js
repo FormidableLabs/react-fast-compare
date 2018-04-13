@@ -15,13 +15,16 @@ module.exports = function(config) {
       'test/node/**/*.spec.js'
     ],
     preprocessors: {
-      [path.join(CORE_JS_ROOT, 'es6/**/*.js')]: ['webpack', 'sourcemap'],
-      'test/**/*.js': ['webpack', 'sourcemap']
+      [path.join(CORE_JS_ROOT, 'es6/**/*.js')]: ['webpack'],
+      'test/**/*.js': ['webpack']
     },
     webpack: {
       mode: 'development',
+      // Normally, would follow this guide for source maps:
       // https://github.com/webpack-contrib/karma-webpack#source-maps
-      devtool: 'inline-source-map',
+      // Unfortunately, karma-webpack doesn't work with source maps w/ babel.
+      // https://github.com/webpack-contrib/karma-webpack/issues/176
+      devtool: false,
       module: {
         rules: [
           {
@@ -57,7 +60,6 @@ module.exports = function(config) {
       //'karma-coverage',
       'karma-mocha',
       'karma-mocha-reporter',
-      'karma-sourcemap-loader',
       'karma-webpack'
     ],
     coverageReporter: {
