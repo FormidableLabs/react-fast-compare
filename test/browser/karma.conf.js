@@ -1,15 +1,22 @@
 'use strict';
 
 const path = require('path');
+const CORE_JS_ROOT = path.dirname(require.resolve('core-js/package.json'));
 
 module.exports = function(config) {
   config.set({
     basePath: '../..',
     frameworks: ['mocha'],
     files: [
+      // Polyfills for IE9 in React 16.
+      require.resolve('core-js/es6/map'),
+      require.resolve('core-js/es6/set'),
+      require.resolve('core-js/es6/weak-map'),
+      // Tests aggregator.
       'test/browser/index.js'
     ],
     preprocessors: {
+      [path.join(CORE_JS_ROOT, 'es6/**/*.js')]: ['webpack'],
       'test/browser/index.js': ['webpack']
     },
     webpack: {
