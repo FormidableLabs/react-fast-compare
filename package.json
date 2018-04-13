@@ -4,6 +4,7 @@
   "description": "Fastest deep equal comparison for React. Perfect for shouldComponentUpdate. Also really fast general-purpose deep comparison",
   "main": "index.js",
   "scripts": {
+    "preversion": "npm run test",
     "benchmark": "node benchmark",
     "eslint": "eslint \"*.js\" benchmark test",
     "test-browser": "karma start test/browser/karma.conf.js",
@@ -63,7 +64,7 @@
   },
   "nyc": {
     "exclude": [
-      "**/spec/**",
+      "**/test/**",
       "node_modules"
     ],
     "reporter": [

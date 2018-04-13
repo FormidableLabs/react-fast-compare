@@ -8,6 +8,7 @@ var tests = require('./tests');
 
 describe('basics', function() {
   let sandbox;
+
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
     sandbox.stub(console, 'warn');

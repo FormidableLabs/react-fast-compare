@@ -1,6 +1,6 @@
 'use strict';
 
-const tests = require('../spec/tests');
+const tests = require('../test/node/tests');
 const Benchmark = require('benchmark');
 
 const correctnessTests = [];
