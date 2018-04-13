@@ -11,6 +11,7 @@ module.exports = function(config) {
       // Polyfills for IE9 in React 16.
       require.resolve('core-js/es6/map'),
       require.resolve('core-js/es6/set'),
+      require.resolve('core-js/es6/weak-map'),
       // Re-use node tests.
       'test/node/**/*.spec.js'
     ],
