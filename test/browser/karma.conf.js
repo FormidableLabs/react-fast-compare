@@ -15,12 +15,13 @@ module.exports = function(config) {
       'test/node/**/*.spec.js'
     ],
     preprocessors: {
-      [path.join(CORE_JS_ROOT, 'es6/**/*.js')]: ['webpack'],
-      'test/**/*.js': ['webpack']
+      [path.join(CORE_JS_ROOT, 'es6/**/*.js')]: ['webpack', 'sourcemap'],
+      'test/**/*.js': ['webpack', 'sourcemap']
     },
     webpack: {
       mode: 'development',
-      devtool: false,
+      // https://github.com/webpack-contrib/karma-webpack#source-maps
+      devtool: 'inline-source-map',
       module: {
         rules: [
           {
@@ -56,6 +57,7 @@ module.exports = function(config) {
       //'karma-coverage',
       'karma-mocha',
       'karma-mocha-reporter',
+      'karma-sourcemap-loader',
       'karma-webpack'
     ],
     coverageReporter: {
