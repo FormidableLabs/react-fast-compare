@@ -57,6 +57,8 @@ module.exports = function(config) {
     browserNoActivityTimeout: 60000,
     plugins: [
       'karma-chrome-launcher',
+      'karma-firefox-launcher',
+      'karma-safari-launcher',
       //'karma-coverage',
       'karma-mocha',
       'karma-mocha-reporter',
