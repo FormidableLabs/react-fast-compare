@@ -6,5 +6,5 @@ require('core-js/es6/set');
 require('core-js/es6/weak-map');
 
 // Re-use node tests.
-const testsContext = require.context('../node', true, /\.spec\.js$/);
+var testsContext = require.context('../node', true, /\.spec\.js$/);
 testsContext.keys().forEach(testsContext);
