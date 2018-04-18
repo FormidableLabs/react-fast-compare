@@ -5,11 +5,13 @@ The fastest deep equal comparison for React, perfect for
 `shouldComponentUpdate`, also really fast at general-purpose deep comparison.
 This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
-extra handling for React.
+extra handling for React. Under 600 bytes minified+gzipped.
 
 [![Travis Status][trav_img]][trav_site]
 [![AppVeyor Status][appveyor_img]][appveyor_site]
 [![npm version][npm_img]][npm_site]
+![size_minzip][size_minzip]
+![size_min][size_min]
 
 <img src="https://i.imgur.com/KLUWQla.png" alt="chart" width="550"/>
 
@@ -30,6 +32,7 @@ $ npm install react-fast-compare
 - handles React-specific circular references, like elements
 - checks equality Date and RegExp objects
 - should be just as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) for general use, and faster for React use
+- small: under 600 bytes minified+gzipped
 
 ## Usage
 
@@ -113,3 +116,5 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [npm_site]: http://badge.fury.io/js/react-fast-compare
 [appveyor_img]: https://ci.appveyor.com/api/projects/status/github/formidablelabs/react-fast-compare?branch=master&svg=true
 [appveyor_site]: https://ci.appveyor.com/project/FormidableLabs/react-fast-compare
+[size_min]: https://img.shields.io/bundlephobia/min/react-fast-compare.svg
+[size_minzip]: https://img.shields.io/bundlephobia/minzip/react-fast-compare.svg
