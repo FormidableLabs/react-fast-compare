@@ -5,13 +5,13 @@ The fastest deep equal comparison for React, perfect for
 `shouldComponentUpdate`, also really fast at general-purpose deep comparison.
 This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
-extra handling for React. Under 600 bytes minified+gzipped.
+extra handling for React.
 
 [![Travis Status][trav_img]][trav_site]
 [![AppVeyor Status][appveyor_img]][appveyor_site]
 [![npm version][npm_img]][npm_site]
-![size_minzip][size_minzip]
-![size_min][size_min]
+[![size_minzip][size_minzip]][size_site]
+[![size_min][size_min]][size_site]
 
 <img src="https://i.imgur.com/KLUWQla.png" alt="chart" width="550"/>
 
@@ -118,3 +118,4 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [appveyor_site]: https://ci.appveyor.com/project/FormidableLabs/react-fast-compare
 [size_min]: https://img.shields.io/bundlephobia/min/react-fast-compare.svg
 [size_minzip]: https://img.shields.io/bundlephobia/minzip/react-fast-compare.svg
+[size_site]: https://bundlephobia.com/result?p=react-fast-compare
