@@ -1,9 +1,8 @@
 react-fast-compare
 ==================
 
-The fastest deep equal comparison for React, perfect for
-`shouldComponentUpdate`, also really fast at general-purpose deep comparison.
-This is a fork of the brilliant
+The fastest deep equal comparison for React. Really fast general-purpose deep comparison.
+Great for`shouldComponentUpdate`. This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
@@ -53,7 +52,21 @@ class ExpensiveRenderer extends React.Component {
 }
 ```
 
-## Benchmarking
+## Do I Need `shouldComponentUpdate`?
+
+> What's faster than a really fast deep comparion? No deep comparison at all.
+
+—This Readme
+
+
+Deep checks in React's `shouldComponentUpdate` should not be used blindly.
+First, see if a
+[PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent) would
+work for you. If it won't (if you need deep checks), make sure you've correctly indentified the bottleneck in
+your application by
+[profiling the performance](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab). For more information about making your app faster, check out the [Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html) section of the React docs.
+
+## Benchmarking this Library
 
 All tests carried out locally on a MacBook. The absolute values are much less
 important than the relative differences between packages.
