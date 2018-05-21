@@ -1,5 +1,4 @@
-react-fast-compare
-==================
+# react-fast-compare
 
 The fastest deep equal comparison for React. Really fast general-purpose deep comparison.
 Great for`shouldComponentUpdate`. This is a fork of the brilliant
@@ -26,20 +25,20 @@ $ npm install react-fast-compare
 
 ## Highlights
 
-- ES5 compatible; works in node.js (0.10+) and browsers (IE9+)
-- deeply compares any value (besides objects with circular references)
-- handles React-specific circular references, like elements
-- checks equality Date and RegExp objects
-- should be just as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) for general use, and faster for React use
-- small: under 600 bytes minified+gzipped
+* ES5 compatible; works in node.js (0.10+) and browsers (IE9+)
+* deeply compares any value (besides objects with circular references)
+* handles React-specific circular references, like elements
+* checks equality Date and RegExp objects
+* should be just as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) for general use, and faster for React use
+* small: under 600 bytes minified+gzipped
 
 ## Usage
 
 ```jsx
-const isEqual = require('react-fast-compare');
+const isEqual = require("react-fast-compare");
 
 // general usage
-console.log(isEqual({foo: 'bar'}, {foo: 'bar'})); // true
+console.log(isEqual({ foo: "bar" }, { foo: "bar" })); // true
 
 // react usage
 class ExpensiveRenderer extends React.Component {
@@ -57,7 +56,6 @@ class ExpensiveRenderer extends React.Component {
 > What's faster than a really fast deep comparion? No deep comparison at all.
 
 —This Readme
-
 
 Deep checks in React's `shouldComponentUpdate` should not be used blindly.
 First, see if a
