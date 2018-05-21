@@ -1,9 +1,7 @@
-react-fast-compare
-==================
+# react-fast-compare
 
-The fastest deep equal comparison for React, perfect for
-`shouldComponentUpdate`, also really fast at general-purpose deep comparison.
-This is a fork of the brilliant
+The fastest deep equal comparison for React. Really fast general-purpose deep comparison.
+Great for`shouldComponentUpdate`. This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
@@ -27,20 +25,20 @@ $ npm install react-fast-compare
 
 ## Highlights
 
-- ES5 compatible; works in node.js (0.10+) and browsers (IE9+)
-- deeply compares any value (besides objects with circular references)
-- handles React-specific circular references, like elements
-- checks equality Date and RegExp objects
-- should be just as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) for general use, and faster for React use
-- small: under 600 bytes minified+gzipped
+* ES5 compatible; works in node.js (0.10+) and browsers (IE9+)
+* deeply compares any value (besides objects with circular references)
+* handles React-specific circular references, like elements
+* checks equality Date and RegExp objects
+* should be just as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) for general use, and faster for React use
+* small: under 600 bytes minified+gzipped
 
 ## Usage
 
 ```jsx
-const isEqual = require('react-fast-compare');
+const isEqual = require("react-fast-compare");
 
 // general usage
-console.log(isEqual({foo: 'bar'}, {foo: 'bar'})); // true
+console.log(isEqual({ foo: "bar" }, { foo: "bar" })); // true
 
 // react usage
 class ExpensiveRenderer extends React.Component {
@@ -53,7 +51,25 @@ class ExpensiveRenderer extends React.Component {
 }
 ```
 
-## Benchmarking
+## Do I Need `shouldComponentUpdate`?
+
+> What's faster than a really fast deep comparion? No deep comparison at all.
+
+—This Readme
+
+Deep checks in React's `shouldComponentUpdate` should not be used blindly.
+First, see if a
+[PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
+would work for you. If it won't (if you need deep checks), it's wise to make
+sure you've correctly indentified the bottleneck in your application by
+[profiling the performance](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab).
+After you've determined that you _do_ need deep equality checks and you've
+identified the minimum number of places to apply them, then this library may
+be for you! For more information about making your app faster, check out the
+[Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html)
+section of the React docs.
+
+## Benchmarking this Library
 
 All tests carried out locally on a MacBook. The absolute values are much less
 important than the relative differences between packages.
