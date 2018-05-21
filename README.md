@@ -59,10 +59,15 @@ class ExpensiveRenderer extends React.Component {
 
 Deep checks in React's `shouldComponentUpdate` should not be used blindly.
 First, see if a
-[PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent) would
-work for you. If it won't (if you need deep checks), make sure you've correctly indentified the bottleneck in
-your application by
-[profiling the performance](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab). For more information about making your app faster, check out the [Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html) section of the React docs.
+[PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
+would work for you. If it won't (if you need deep checks), it's wise to make
+sure you've correctly indentified the bottleneck in your application by
+[profiling the performance](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab).
+After you've determined that you _do_ need deep equality checks and you've
+identified the minimum number of places to apply them, then this library may
+be for you! For more information about making your app faster, check out the
+[Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html)
+section of the React docs.
 
 ## Benchmarking this Library
 
