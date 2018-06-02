@@ -23,6 +23,13 @@ function equal(a, b) {
 
   if (arrA != arrB) return false;
 
+  if (
+    typeof a === 'number' &&
+    typeof b === 'number' &&
+    isNaN(a) &&
+    isNaN(b)
+  ) return true;
+
   var dateA = a instanceof Date
     , dateB = b instanceof Date;
   if (dateA != dateB) return false;

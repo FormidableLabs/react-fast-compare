@@ -17,6 +17,12 @@ const generic = [
         equal: false
       },
       {
+        description: 'NaN should equal',
+        value1: NaN,
+        value2: NaN,
+        equal: true
+      },
+      {
         description: 'number and array are not equal',
         value1: 1,
         value2: [],
@@ -143,6 +149,12 @@ const generic = [
         equal: false
       },
       {
+        description: 'equal nested object (with NaN)',
+        value1: {a: {b: NaN}},
+        value2: {a: {b: NaN}},
+        equal: true
+      },
+      {
         description: 'empty array and empty object are not equal',
         value1: {},
         value2: [],
@@ -195,6 +207,12 @@ const generic = [
         value1: [1, 2, 3],
         value2: [1, 2],
         equal: false
+      },
+      {
+        description: 'equal arrays of NaN',
+        value1: [NaN, NaN],
+        value2: [NaN, NaN],
+        equal: true
       },
       {
         description: 'equal arrays of objects',
