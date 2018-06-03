@@ -1,5 +1,17 @@
 'use strict';
 
+function add(a, b) {
+  return a + b;
+}
+
+function add2(a, b) {
+  return a + b;
+}
+
+function minus(a, b) {
+  return a - b;
+}
+
 const generic = [
   {
     description: 'scalars',
@@ -315,6 +327,35 @@ const generic = [
         },
         equal: true
       }
+    ]
+  },
+  {
+    description: 'functions',
+    tests: [
+      {
+        description: 'equal nested lambda functions',
+        value1: function() {},
+        value2: function() {},
+        equal: true
+      },
+      {
+        description: 'equal nested lambda functions',
+        value1: {a: function() {}},
+        value2: {a: function() {}},
+        equal: true
+      },
+      {
+        description: 'equal differently named functions',
+        value1: add,
+        value2: add2,
+        equal: true
+      },
+      {
+        description: 'not equal named functions',
+        value1: add,
+        value2: minus,
+        equal: false
+      },
     ]
   }
 ];

@@ -3,6 +3,7 @@
 var isArray = Array.isArray;
 var keyList = Object.keys;
 var hasProp = Object.prototype.hasOwnProperty;
+var fnNameRegex = /^function\s?\S*\(/;
 
 function equal(a, b) {
   if (a === b) return true;
@@ -33,6 +34,16 @@ function equal(a, b) {
   if (regexpA != regexpB) return false;
   if (regexpA && regexpB) return a.toString() == b.toString();
 
+  var fnA = a instanceof Function
+    , fnB = b instanceof Function;
+  if (fnA != fnB) return false;
+  if (fnA && fnB) {
+    return (
+      a.toString().replace(fnNameRegex, '') ==
+      b.toString().replace(fnNameRegex, '')
+    );
+  }
+
   if (a instanceof Object && b instanceof Object) {
     var keys = keyList(a);
     length = keys.length;
@@ -59,6 +70,7 @@ function equal(a, b) {
 
     return true;
   }
+
 
   return false;
 }
