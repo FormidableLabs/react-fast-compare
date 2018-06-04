@@ -10,6 +10,7 @@ This package is a fork of [fast-deep-equal](https://github.com/epoberezkin/fast-
 We encourage pull requests concerning:
 
 * React features not handled in this library
+* Integrating tests from fast-deep-equal
 * Bugs in this library
 * New tests for React
 * Documentation
