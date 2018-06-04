@@ -3,6 +3,25 @@ Contributing
 
 Thanks for contributing!
 
+## Before you contribute
+
+This package is a fork of [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal). This library has added handling for React. Before contributing, _please make sure the issue relates directly to this library and not fast-deep-equals_.
+
+We encourage pull requests concerning:
+
+* React features not handled in this library
+* Integrating updates from fast-deep-equal
+* Integrating tests from fast-deep-equal
+* Bugs in this library
+* New tests for React
+* Documentation
+
+Pull requests that should be for [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal):
+
+* Equality of non-react comparisons
+* Performance of non-react comparisons
+* Tests for non-react comparisons
+
 ## Development
 
 Install the project using `yarn` (which we've standardized on for development):
