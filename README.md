@@ -11,7 +11,7 @@ extra handling for React.
 [![size_minzip][size_minzip]][size_site]
 [![size_min][size_min]][size_site]
 
-<img src="https://i.imgur.com/KLUWQla.png" alt="chart" width="550"/>
+<img src="assets/benchmarking@2.0.0" alt="chart" width="550"/>
 
 (Check out the [benchmarking details](#benchmarking).)
 
