@@ -83,12 +83,12 @@ simply because there are more tests in each operation.
 ### Generic Data
 
 ```
-react-fast-compare x 161,872 ops/sec ±1.18% (82 runs sampled)
-fast-deep-equal x 159,889 ops/sec ±1.62% (85 runs sampled)
-lodash.isEqual x 30,750 ops/sec ±2.02% (86 runs sampled)
-nano-equal x 35,608 ops/sec ±1.55% (86 runs sampled)
-shallow-equal-fuzzy x 94,141 ops/sec ±1.80% (89 runs sampled)
-  fastest: react-fast-compare,fast-deep-equal
+react-fast-compare x 207,503 ops/sec ±0.54% (92 runs sampled)
+fast-deep-equal x 195,006 ops/sec ±0.70% (91 runs sampled)
+lodash.isEqual x 43,778 ops/sec ±0.55% (91 runs sampled)
+nano-equal x 198,036 ops/sec ±0.37% (95 runs sampled)
+shallow-equal-fuzzy x 173,023 ops/sec ±0.59% (95 runs sampled)
+  fastest: react-fast-compare
 ```
 
 `react-fast-compare` and `fast-deep-equal` should be the same speed for these
@@ -98,11 +98,11 @@ tests; any difference is just noise. `react-fast-compare` won't be faster than
 ### React and Generic Data
 
 ```
-react-fast-compare x 150,667 ops/sec ±1.86% (83 runs sampled)
-fast-deep-equal x 510 ops/sec ±1.67% (77 runs sampled)
-lodash.isEqual x 25,760 ops/sec ±1.63% (83 runs sampled)
-nano-equal x 629 ops/sec ±2.43% (80 runs sampled)
-shallow-equal-fuzzy x 454 ops/sec ±1.42% (79 runs sampled)
+react-fast-compare x 187,628 ops/sec ±0.58% (93 runs sampled)
+fast-deep-equal x 477 ops/sec ±0.55% (91 runs sampled)
+lodash.isEqual x 35,100 ops/sec ±0.16% (95 runs sampled)
+nano-equal x 468 ops/sec ±0.53% (94 runs sampled)
+shallow-equal-fuzzy x 684 ops/sec ±0.43% (92 runs sampled)
   fastest: react-fast-compare
 ```
 
