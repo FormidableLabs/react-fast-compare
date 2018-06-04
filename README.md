@@ -116,6 +116,10 @@ $ yarn install
 $ yarn run benchmark
 ```
 
+## fast-deep-equal Versioning
+
+react-fast-compare@2.0.0 tracks fast-deep-equal@2.0.1
+
 ## License
 
 [MIT](https://github.com/FormidableLabs/react-fast-compare/blob/readme/LICENSE)
