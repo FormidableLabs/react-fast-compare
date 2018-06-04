@@ -13,7 +13,7 @@ extra handling for React.
 
 ![benchmark chart](assets/benchmarking.png "benchmarking chart")
 
-(Check out the [benchmarking details](#benchmarking).)
+(Check out the [benchmarking details](#benchmarking-this-library).)
 
 ## Install
 
