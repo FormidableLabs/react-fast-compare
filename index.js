@@ -5,6 +5,7 @@ var keyList = Object.keys;
 var hasProp = Object.prototype.hasOwnProperty;
 
 function equal(a, b) {
+  // fast-deep-equal index.js 2.0.1
   if (a === b) return true;
 
   if (a && b && typeof a == 'object' && typeof b == 'object') {
@@ -42,7 +43,9 @@ function equal(a, b) {
 
     for (i = length; i-- !== 0;)
       if (!hasProp.call(b, keys[i])) return false;
+    // end fast-deep-equal
 
+    // Custom handling for React
     for (i = length; i-- !== 0;) {
       key = keys[i];
       if (key === '_owner' && a.$$typeof && a._store) {
@@ -57,11 +60,13 @@ function equal(a, b) {
       }
     }
 
+    // fast-deep-equal index.js 2.0.1
     return true;
   }
 
   return a!==a && b!==b;
 }
+// end fast-deep-equal
 
 module.exports = function exportedEqual(a, b) {
   try {
