@@ -11,7 +11,7 @@ extra handling for React.
 [![size_minzip][size_minzip]][size_site]
 [![size_min][size_min]][size_site]
 
-![benchmark chart](assets/benchmarking@2.0.0.png "benchmarking version 2.0.0")
+![benchmark chart](assets/benchmarking.png "benchmarking chart")
 
 (Check out the [benchmarking details](#benchmarking).)
 
