@@ -48,7 +48,7 @@ function equal(a, b) {
     // Custom handling for React
     for (i = length; i-- !== 0;) {
       key = keys[i];
-      if (key === '_owner' && a.$$typeof && a._store) {
+      if (key === '_owner' && a.$$typeof) {
         // React-specific: avoid traversing React elements' _owner.
         //  _owner contains circular references
         // and is not needed when comparing the actual elements (and not their owners)
