@@ -35,6 +35,11 @@ function equal(a, b) {
     if (regexpA != regexpB) return false;
     if (regexpA && regexpB) return a.toString() == b.toString();
 
+	  var elementA = a instanceof Element
+		  , elementB = b instanceof Element;
+	  if (elementA != elementB) return false;
+    if (elementA && elementB) return a == b;
+
     var keys = keyList(a);
     length = keys.length;
 
