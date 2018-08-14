@@ -53,7 +53,7 @@ class ExpensiveRenderer extends React.Component {
 
 ## Do I Need `shouldComponentUpdate`?
 
-> What's faster than a really fast deep comparion? No deep comparison at all.
+> What's faster than a really fast deep comparison? No deep comparison at all.
 
 —This Readme
 
