@@ -3,7 +3,7 @@
 var isArray = Array.isArray;
 var keyList = Object.keys;
 var hasProp = Object.prototype.hasOwnProperty;
-var isNode = typeof window === 'undefined';
+var inBrowser = typeof window === 'object';
 
 function equal(a, b) {
   // fast-deep-equal index.js 2.0.1
@@ -36,11 +36,6 @@ function equal(a, b) {
     if (regexpA != regexpB) return false;
     if (regexpA && regexpB) return a.toString() == b.toString();
 
-    var elementA = !isNode && a instanceof Element
-      , elementB = !isNode && b instanceof Element;
-    if (elementA != elementB) return false;
-    if (elementA && elementB) return a == b;
-
     var keys = keyList(a);
     length = keys.length;
 
@@ -51,7 +46,12 @@ function equal(a, b) {
       if (!hasProp.call(b, keys[i])) return false;
     // end fast-deep-equal
 
-    // Custom handling for React
+    // start react-fast-compare
+    // custom handling for DOM elements
+    if (inBrowser && a instanceof Element && b instanceof Element)
+      return a === b;
+
+    // custom handling for React
     for (i = length; i-- !== 0;) {
       key = keys[i];
       if (key === '_owner' && a.$$typeof) {
@@ -65,12 +65,13 @@ function equal(a, b) {
         if (!equal(a[key], b[key])) return false;
       }
     }
+    // end react-fast-compare
 
     // fast-deep-equal index.js 2.0.1
     return true;
   }
 
-  return a!==a && b!==b;
+  return a !== a && b !== b;
 }
 // end fast-deep-equal
 
