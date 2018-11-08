@@ -3,6 +3,7 @@
 var isArray = Array.isArray;
 var keyList = Object.keys;
 var hasProp = Object.prototype.hasOwnProperty;
+var isNode = typeof window === 'undefined';
 
 function equal(a, b) {
   // fast-deep-equal index.js 2.0.1
@@ -34,6 +35,11 @@ function equal(a, b) {
       , regexpB = b instanceof RegExp;
     if (regexpA != regexpB) return false;
     if (regexpA && regexpB) return a.toString() == b.toString();
+
+    var elementA = !isNode && a instanceof Element
+      , elementB = !isNode && b instanceof Element;
+    if (elementA != elementB) return false;
+    if (elementA && elementB) return a == b;
 
     var keys = keyList(a);
     length = keys.length;
