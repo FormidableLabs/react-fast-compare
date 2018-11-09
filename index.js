@@ -3,7 +3,7 @@
 var isArray = Array.isArray;
 var keyList = Object.keys;
 var hasProp = Object.prototype.hasOwnProperty;
-var hasElementType = typeof Element === 'function';
+var hasElementType = typeof Element !== 'undefined';
 
 function equal(a, b) {
   // fast-deep-equal index.js 2.0.1
