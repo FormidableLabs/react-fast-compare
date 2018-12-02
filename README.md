@@ -118,7 +118,7 @@ $ yarn run benchmark
 
 ## fast-deep-equal Versioning
 
-react-fast-compare@2.0.0 tracks fast-deep-equal@2.0.1
+react-fast-compare@2 tracks fast-deep-equal@2.0.1
 
 ## License
 
