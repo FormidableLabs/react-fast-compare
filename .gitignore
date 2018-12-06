@@ -62,4 +62,4 @@ package-lock.json
 
 .DS_Store
 
-dist
+index.cjs.js

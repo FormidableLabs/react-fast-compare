@@ -2,12 +2,16 @@
   "name": "react-fast-compare",
   "version": "2.0.4",
   "description": "Fastest deep equal comparison for React. Perfect for shouldComponentUpdate. Also really fast general-purpose deep comparison",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "index.cjs.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.cjs.js",
+    "index.d.ts"
+  ],
   "scripts": {
-    "build:cjs": "rollup -i index.js -o dist/index.cjs.js -f cjs",
-    "build:esm": "rollup -i index.js -o dist/index.esm.js -f esm",
-    "build": "npm run build:cjs && npm run build:esm",
+    "build": "rollup -i index.js -o index.cjs.js -f cjs",
     "preversion": "npm run test && npm run build",
     "benchmark": "node benchmark",
     "eslint": "eslint \"*.js\" benchmark test",
@@ -76,10 +80,5 @@
       "lcov",
       "text-summary"
     ]
-  },
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ],
-  "types": "index.d.ts"
+  }
 }
