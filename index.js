@@ -1,5 +1,3 @@
-'use strict';
-
 var isArray = Array.isArray;
 var keyList = Object.keys;
 var hasProp = Object.prototype.hasOwnProperty;
@@ -75,7 +73,7 @@ function equal(a, b) {
 }
 // end fast-deep-equal
 
-module.exports = function exportedEqual(a, b) {
+export default function exportedEqual(a, b) {
   try {
     return equal(a, b);
   } catch (error) {
@@ -91,4 +89,4 @@ module.exports = function exportedEqual(a, b) {
     // some other error. we should definitely know about these
     throw error;
   }
-};
+}

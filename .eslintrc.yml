@@ -1,3 +1,5 @@
+parserOptions:
+  sourceType: "module"
 env:
   node: true
 extends: 'eslint:recommended'
