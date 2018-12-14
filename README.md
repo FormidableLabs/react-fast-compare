@@ -1,15 +1,16 @@
 # react-fast-compare
 
+[![Downloads][downloads_img]][npm_site]
+[![size_minzip][size_minzip]][size_site]
+[![Travis Status][trav_img]][trav_site]
+[![AppVeyor Status][appveyor_img]][appveyor_site]
+[![npm version][npm_img]][npm_site]
+
 The fastest deep equal comparison for React. Really fast general-purpose deep comparison.
 Great for`shouldComponentUpdate`. This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
-[![Travis Status][trav_img]][trav_site]
-[![AppVeyor Status][appveyor_img]][appveyor_site]
-[![npm version][npm_img]][npm_site]
-[![size_minzip][size_minzip]][size_site]
-[![size_min][size_min]][size_site]
 
 ![benchmark chart](assets/benchmarking.png "benchmarking chart")
 
@@ -139,3 +140,4 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [size_min]: https://img.shields.io/bundlephobia/min/react-fast-compare.svg
 [size_minzip]: https://img.shields.io/bundlephobia/minzip/react-fast-compare.svg
 [size_site]: https://bundlephobia.com/result?p=react-fast-compare
+[downloads_img]: https://img.shields.io/npm/dt/react-fast-compare.svg
