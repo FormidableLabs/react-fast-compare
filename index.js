@@ -48,7 +48,7 @@ function equal(a, b) {
 
     // start react-fast-compare
     // custom handling for DOM elements
-    if (hasElementType && a instanceof Element && b instanceof Element)
+    if (hasElementType && a instanceof Element)
       return a === b;
 
     // custom handling for React
