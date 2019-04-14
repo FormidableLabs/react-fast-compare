@@ -16,6 +16,10 @@ extra handling for React.
 
 (Check out the [benchmarking details](#benchmarking-this-library).)
 
+### Maintenance Status: Active
+
+Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome. 
+
 ## Install
 
 ```sh
