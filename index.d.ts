@@ -1,4 +1,5 @@
 declare module 'react-fast-compare' {
-    const equal: (a: any, b: any) => boolean;
-    export = equal;
+  const exportedEqual: (a: any, b: any) => boolean
+  export default exportedEqual
 }
+  
