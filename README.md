@@ -5,6 +5,8 @@
 [![Travis Status][trav_img]][trav_site]
 [![AppVeyor Status][appveyor_img]][appveyor_site]
 [![npm version][npm_img]][npm_site]
+[![Maintenance Status][maintenance-image]](#maintenance-status)
+
 
 The fastest deep equal comparison for React. Really fast general-purpose deep comparison.
 Great for`shouldComponentUpdate`. This is a fork of the brilliant
@@ -129,6 +131,10 @@ react-fast-compare@2 tracks fast-deep-equal@2.0.1
 
 Please see our [contributions guide](./CONTRIBUTING.md).
 
+## Maintenance Status
+
+**Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome. 
+
 [trav_img]: https://api.travis-ci.org/FormidableLabs/react-fast-compare.svg
 [trav_site]: https://travis-ci.org/FormidableLabs/react-fast-compare
 [cov_img]: https://img.shields.io/coveralls/FormidableLabs/react-fast-compare.svg
@@ -141,3 +147,4 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [size_minzip]: https://img.shields.io/bundlephobia/minzip/react-fast-compare.svg
 [size_site]: https://bundlephobia.com/result?p=react-fast-compare
 [downloads_img]: https://img.shields.io/npm/dt/react-fast-compare.svg
+[maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg
