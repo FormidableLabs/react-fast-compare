@@ -4,16 +4,18 @@
   "description": "Fastest deep equal comparison for React. Perfect for shouldComponentUpdate. Also really fast general-purpose deep comparison",
   "main": "index.js",
   "scripts": {
-    "preversion": "npm run test",
+    "preversion": "yarn test",
     "benchmark": "node benchmark",
     "eslint": "eslint \"*.js\" benchmark test",
     "test-browser": "karma start test/browser/karma.conf.js",
     "test-browser-ie": "karma start test/browser/karma.conf.ie.js",
     "test-node": "mocha \"test/node/*.spec.js\"",
-    "test-node-cov": "nyc npm run test-node",
+    "test-node-cov": "nyc yarn test-node",
     "test-ts": "tsc --target ES5 --noImplicitAny index.d.ts",
     "test": "builder concurrent --buffer eslint test-ts test-node-cov test-browser",
-    "test-ie": "builder concurrent --buffer eslint test-ts test-node-cov test-browser-ie"
+    "test-ie": "builder concurrent --buffer eslint test-ts test-node-cov test-browser-ie",
+    "compress": "terser --compress --mangle=\"toplevel:true\" -- index.js",
+    "size-min-gz": "yarn -s compress | gzip -9 | wc -c"
   },
   "repository": {
     "type": "git",
@@ -60,6 +62,7 @@
     "react-test-renderer": "^16.3.1",
     "shallow-equal-fuzzy": "0.0.2",
     "sinon": "^7.5.0",
+    "terser": "^4.4.3",
     "typescript": "^3.7.3",
     "webpack": "^4.5.0"
   },

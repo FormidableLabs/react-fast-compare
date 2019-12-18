@@ -94,6 +94,21 @@ $ yarn run test-ts
 $ yarn run eslint
 ```
 
+### Size
+
+You can check how we do with minification + compression with:
+
+```sh
+# Show minified output
+$ yarn -s compress
+
+# Display minified + gzip'ed size in bytes.
+$ yarn size-min-gz
+     686
+```
+
+**Note**: If the min+gz size increases, please note it in the README. If it is a significant increase, please flag to your reviewers and have a discussion about whether or not the size addition is justified.
+
 ## Before submitting a PR...
 
 Before you go ahead and submit a PR, make sure that you have done the following:
