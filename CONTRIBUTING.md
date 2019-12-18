@@ -104,7 +104,7 @@ $ yarn -s compress
 
 # Display minified + gzip'ed size in bytes.
 $ yarn size-min-gz
-     686
+     687
 ```
 
 **Note**: If the min+gz size increases, please note it in the README. If it is a significant increase, please flag to your reviewers and have a discussion about whether or not the size addition is justified.
