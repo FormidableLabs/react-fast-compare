@@ -40,7 +40,7 @@
     "benchmark": "^2.1.4",
     "builder": "^5.0.0",
     "core-js": "^3.5.0",
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.9",
     "eslint": "^4.0.0",
     "fast-deep-equal": "2.0.1",
     "karma": "^4.4.1",
@@ -54,12 +54,12 @@
     "lodash": "^4.17.10",
     "mocha": "^6.2.2",
     "nano-equal": "^2.0.2",
-    "nyc": "^11.0.2",
+    "nyc": "^14.1.1",
     "react": "^16.3.1",
     "react-test-renderer": "^16.3.1",
     "shallow-equal-fuzzy": "0.0.2",
     "sinon": "^4.5.0",
-    "typescript": "^2.6.1",
+    "typescript": "^3.7.3",
     "webpack": "^4.5.0"
   },
   "nyc": {
