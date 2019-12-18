@@ -2323,6 +2323,10 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
+fast-deep-equal-git@epoberezkin/fast-deep-equal#v3.1.1:
+  version "3.1.1"
+  resolved "https://codeload.github.com/epoberezkin/fast-deep-equal/tar.gz/32f8e288c2ed5b7f71aa47d5f9b980da5c9951aa"
+
 fast-deep-equal@2.0.1, fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"

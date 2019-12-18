@@ -43,6 +43,7 @@
     "coveralls": "^3.0.9",
     "eslint": "^6.7.2",
     "fast-deep-equal": "2.0.1",
+    "fast-deep-equal-git": "epoberezkin/fast-deep-equal#v3.1.1",
     "karma": "^4.4.1",
     "karma-chrome-launcher": "^3.1.0",
     "karma-firefox-launcher": "^1.1.0",
