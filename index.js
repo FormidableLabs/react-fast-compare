@@ -8,15 +8,23 @@ var hasWeakSet = typeof WeakSet === 'function';
 var hasArrayBuffer = typeof ArrayBuffer === 'function';
 
 // Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
+function createTrackingEqual() {
+  if (!hasWeakSet)  return baseEqual;
+  var refs = new WeakSet();
 
-function baseEqual(a, b, refs) {
-  // State: create a tracking equals function if we have support.
-  refs = refs || (!hasWeakSet ? null : new WeakSet());
-  var equal = !hasWeakSet ? baseEqual : function trackingEqual(a, b) {
-    if (a && typeof a === 'object') refs.add(a);
-    if (b && typeof b === 'object') refs.add(b);
-    return baseEqual(a, b, refs);
+  return function trackingEqual(a, b, equal, aParent, bParent) {
+    if (aParent && typeof aParent === 'object') refs.add(aParent);
+    if (bParent && typeof bParent === 'object') refs.add(bParent);
+    return baseEqual(a, b, trackingEqual);
   };
+}
+
+// NOTE: Global modifications.
+// 1. For circular ref tracking, search on `equal(<1>, <2>)` recursive calls
+//    and update with `equal(<1>, <2>, equal, a, b)`.
+function baseEqual(a, b, equal /*, aParent, bParent */) {
+  // State: create a tracking equals function if we have support.
+  equal = equal || createTrackingEqual();
 
   // START: fast-deep-equal es6/index.js 3.1.1
   if (a === b) return true;
@@ -29,7 +37,7 @@ function baseEqual(a, b, refs) {
       length = a.length;
       if (length != b.length) return false;
       for (i = length; i-- !== 0;)
-        if (!equal(a[i], b[i])) return false;
+        if (!equal(a[i], b[i], equal, a, b)) return false;
       return true;
     }
 
@@ -61,7 +69,7 @@ function baseEqual(a, b, refs) {
         if (!b.has(i.value[0])) return false;
       it = a.entries();
       for (i = it.next(); !i.done; i = it.next())
-        if (!equal(i.value[1], b.get(i.value[0]))) return false;
+        if (!equal(i.value[1], b.get(i.value[0]), equal, a, b)) return false;
       return true;
     }
 
@@ -110,7 +118,7 @@ function baseEqual(a, b, refs) {
       }
 
       // all other properties should be traversed as usual
-      if (!equal(a[key], b[key])) return false;
+      if (!equal(a[key], b[key], equal, a, b)) return false;
     }
     // END: react-fast-compare
 
