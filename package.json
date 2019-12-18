@@ -34,9 +34,9 @@
   },
   "homepage": "https://github.com/FormidableLabs/react-fast-compare",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "babel-loader": "^8.0.6",
     "benchmark": "^2.1.4",
     "builder": "^4.0.0",
     "core-js": "^2.5.5",

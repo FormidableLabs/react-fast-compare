@@ -27,7 +27,7 @@ module.exports = function(config) {
             include: path.resolve(__dirname, '..'),
             loader: 'babel-loader',
             options: {
-              presets: ['babel-preset-env']
+              presets: ['@babel/preset-env']
             }
           }
         ]
