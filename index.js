@@ -15,6 +15,12 @@ function createTrackingEqual() {
   return function trackingEqual(a, b, equal, aParent, bParent) {
     if (aParent && typeof aParent === 'object') refs.add(aParent);
     if (bParent && typeof bParent === 'object') refs.add(bParent);
+
+    if (refs.has(a) || refs.has(b)) {
+      console.warn('Warning: react-fast-compare does not handle circular references.');
+      return false;
+    }
+
     return baseEqual(a, b, trackingEqual);
   };
 }
