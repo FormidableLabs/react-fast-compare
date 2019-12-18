@@ -1,14 +1,23 @@
 'use strict';
-/* global Map:readonly, Set:readonly, ArrayBuffer:readonly */
+/* global Map:readonly, Set:readonly, ArrayBuffer:readonly, WeakSet:readonly */
 
 var hasElementType = typeof Element !== 'undefined';
 var hasMap = typeof Map === 'function';
 var hasSet = typeof Set === 'function';
+var hasWeakSet = typeof WeakSet === 'function';
 var hasArrayBuffer = typeof ArrayBuffer === 'function';
 
 // Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
 
-function equal(a, b) {
+function baseEqual(a, b, refs) {
+  // State: create a tracking equals function if we have support.
+  refs = refs || (!hasWeakSet ? null : new WeakSet());
+  var equal = !hasWeakSet ? baseEqual : function trackingEqual(a, b) {
+    if (a && typeof a === 'object') refs.add(a);
+    if (b && typeof b === 'object') refs.add(b);
+    return baseEqual(a, b, refs);
+  };
+
   // START: fast-deep-equal es6/index.js 3.1.1
   if (a === b) return true;
 
@@ -115,7 +124,7 @@ function equal(a, b) {
 
 module.exports = function exportedEqual(a, b) {
   try {
-    return equal(a, b);
+    return baseEqual(a, b);
   } catch (error) {
     // TODO(es6): Change to different message / detection?
     // TODO(es6): Benchmark old RFC vs. new for circular objects.
