@@ -10,8 +10,8 @@ This package is a fork of [fast-deep-equal](https://github.com/epoberezkin/fast-
 We encourage pull requests concerning:
 
 * React features not handled in this library
-* Integrating updates from fast-deep-equal
-* Integrating tests from fast-deep-equal
+* Integrating updates from `fast-deep-equal`. This unfortunately, now requires more manual work to use the comment blocks in `index.js` to figure out what to paste and where.
+* Integrating tests from `fast-deep-equal`. This usually entails upgrading the `git`-based dependencies of `fast-deep-equal-git` and `npm`-published package of `fast-deep-equal` in `package.json:devDependencies`.
 * Bugs in this library
 * New tests for React
 * Documentation
