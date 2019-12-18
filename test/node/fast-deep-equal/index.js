@@ -1,4 +1,4 @@
-// this is from fast-deep-equal spec/test.js
+// fast-deep-equal spec/tests.js
 'use strict';
 
 module.exports = [
@@ -138,9 +138,9 @@ module.exports = [
         equal: false
       },
       {
-        description: 'not equal objects (different properties)',
+        description: 'not equal objects (different property values)',
         value1: {a: 1, b: '2', c: 3},
-        value2: {a: 1, b: '2', d: 3},
+        value2: {a: 1, b: '2', c: 4},
         equal: false
       },
       {
@@ -213,6 +213,18 @@ module.exports = [
         description: 'undefined and empty object are not equal',
         value1: undefined,
         value2: {},
+        equal: false
+      },
+      {
+        description: 'objects with different `toString` functions returning same values are equal',
+        value1: {toString: ()=>'Hello world!'},
+        value2: {toString: ()=>'Hello world!'},
+        equal: true
+      },
+      {
+        description: 'objects with `toString` functions returning different values are not equal',
+        value1: {toString: ()=>'Hello world!'},
+        value2: {toString: ()=>'Hi!'},
         equal: false
       }
     ]

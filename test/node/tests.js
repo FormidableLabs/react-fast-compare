@@ -1,5 +1,5 @@
 'use strict';
-var generic = require('./fast-deep-equal-tests.js');
+var generic = require('./fast-deep-equal/index.js');
 
 const reactElementA = {
   '$$typeof': 'react.element',
