@@ -1,14 +1,15 @@
 'use strict';
+/* global Map:readonly, Set:readonly, ArrayBuffer:readonly */
 
 var hasElementType = typeof Element !== 'undefined';
 var hasMap = typeof Map === 'function';
 var hasSet = typeof Set === 'function';
 var hasArrayBuffer = typeof ArrayBuffer === 'function';
 
-// TODO: Add in Map, Set
-// TODO: Add in Map, Set tests
+// Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
+
 function equal(a, b) {
-  // START: fast-deep-equal index.js 3.1.1
+  // START: fast-deep-equal es6/index.js 3.1.1
   if (a === b) return true;
 
   if (a && b && typeof a == 'object' && typeof b == 'object') {
@@ -23,26 +24,46 @@ function equal(a, b) {
       return true;
     }
 
-    // START: fast-deep-equal es6/index.js 3.1.1
-    // NOTE: Modifications:
+    // START: Modifications:
     // 1. Extra `has<Type> &&` helpers in initial condition allow es6 code
     //    to co-exist with es5.
-    // 2. Replace `for of` with es5 compliant iteration. TODO_THIS
+    // 2. Replace `for of` with es5 compliant iteration using `for`.
+    //    Basically, take:
+    //
+    //    ```js
+    //    for (i of a.entries())
+    //      if (!b.has(i[0])) return false;
+    //    ```
+    //
+    //    ... and convert to:
+    //
+    //    ```js
+    //    it = a.entries();
+    //    for (i = it.next(); !i.done; i = it.next())
+    //      if (!b.has(i.value[0])) return false;
+    //    ```
+    //
+    //    **Note**: `i` access switches to `i.value`.
+    var it;
     if (hasMap && (a instanceof Map) && (b instanceof Map)) {
       if (a.size !== b.size) return false;
-      for (i of a.entries())
-        if (!b.has(i[0])) return false;
-      for (i of a.entries())
-        if (!equal(i[1], b.get(i[0]))) return false;
+      it = a.entries();
+      for (i = it.next(); !i.done; i = it.next())
+        if (!b.has(i.value[0])) return false;
+      it = a.entries();
+      for (i = it.next(); !i.done; i = it.next())
+        if (!equal(i.value[1], b.get(i.value[0]))) return false;
       return true;
     }
 
     if (hasSet && (a instanceof Set) && (b instanceof Set)) {
       if (a.size !== b.size) return false;
-      for (i of a.entries())
-        if (!b.has(i[0])) return false;
+      it = a.entries();
+      for (i = it.next(); !i.done; i = it.next())
+        if (!b.has(i.value[0])) return false;
       return true;
     }
+    // END: Modifications
 
     if (hasArrayBuffer && ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
       length = a.length;
@@ -62,7 +83,7 @@ function equal(a, b) {
 
     for (i = length; i-- !== 0;)
       if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
-    // END: fast-deep-equal 3.1.1
+    // END: fast-deep-equal
 
     // START: react-fast-compare
     // custom handling for DOM elements
@@ -84,7 +105,7 @@ function equal(a, b) {
     }
     // END: react-fast-compare
 
-    // START: fast-deep-equal index.js 3.1.1
+    // START: fast-deep-equal
     return true;
   }
 

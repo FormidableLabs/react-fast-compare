@@ -1,4 +1,5 @@
 'use strict';
+/* global BigInt:readonly, BigUint64Array:readonly */
 
 class MyMap extends Map {}
 class MySet extends Set {}
