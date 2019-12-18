@@ -41,7 +41,7 @@
     "builder": "^5.0.0",
     "core-js": "^3.5.0",
     "coveralls": "^3.0.9",
-    "eslint": "^4.0.0",
+    "eslint": "^6.7.2",
     "fast-deep-equal": "2.0.1",
     "karma": "^4.4.1",
     "karma-chrome-launcher": "^3.1.0",
@@ -58,7 +58,7 @@
     "react": "^16.3.1",
     "react-test-renderer": "^16.3.1",
     "shallow-equal-fuzzy": "0.0.2",
-    "sinon": "^4.5.0",
+    "sinon": "^7.5.0",
     "typescript": "^3.7.3",
     "webpack": "^4.5.0"
   },

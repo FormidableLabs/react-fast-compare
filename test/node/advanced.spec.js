@@ -35,7 +35,7 @@ describe('advanced', () => {
   let childRenderSpy;
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     warnStub = sandbox.stub(console, 'warn');
     childRenderSpy = sandbox.spy(ChildWithShouldComponentUpdate.prototype, 'render');
   });

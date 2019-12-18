@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: Benchmark is broken
+// TODO: Separate out generic vs. react vs. es6.
 const tests = require('../test/node/tests');
 const Benchmark = require('benchmark');
 
