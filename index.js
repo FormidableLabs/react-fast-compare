@@ -56,17 +56,6 @@ function equal(a, b) {
       return true;
     }
 
-    // TODO(RYAN): There's an underlying bug in Set ".has()" which won't work
-    // for complex things like `Set` in a `Set` because `<Set>.has()` uses
-    // strict equality.
-    //
-    // Potentially need some super-slow thing like:
-    //
-    // ```js
-    // for (aVal of a.entries()):
-    //   for (bVal of b.entries()):
-    //     if (!equal(aVal.value[1], bVal.value[1])) return false;
-    // ```
     if (hasSet && (a instanceof Set) && (b instanceof Set)) {
       if (a.size !== b.size) return false;
       it = a.entries();
