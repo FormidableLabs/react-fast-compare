@@ -118,9 +118,9 @@ $ yarn run test
 $ yarn run benchmark
 ```
 
-Everything must be correct / pass checks. You should also check the benchmark
-stats and make sure that we don't have any significant performance regressions
-(check out `master` for a baseline comparison on _your_ machine).
+1. Everything must be correct / pass checks.
+2. You should also check the benchmark stats and make sure that we don't have any significant performance regressions (check out `master` for a baseline comparison on _your_ machine).
+    - Please **do** update the README benchmark numbers for changes in your PR so that we have much easier discussion points _and_ our users get up-to-date information.
 
 ## Releasing a new version to NPM
 

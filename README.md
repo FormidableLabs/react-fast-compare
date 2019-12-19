@@ -86,11 +86,11 @@ simply because there are more tests in each operation.
 ### Generic Data
 
 ```
-react-fast-compare x 207,503 ops/sec ±0.54% (92 runs sampled)
-fast-deep-equal x 195,006 ops/sec ±0.70% (91 runs sampled)
-lodash.isEqual x 43,778 ops/sec ±0.55% (91 runs sampled)
-nano-equal x 198,036 ops/sec ±0.37% (95 runs sampled)
-shallow-equal-fuzzy x 173,023 ops/sec ±0.59% (95 runs sampled)
+react-fast-compare x 157,863 ops/sec ±0.54% (94 runs sampled)
+fast-deep-equal x 149,877 ops/sec ±0.76% (93 runs sampled)
+lodash.isEqual x 33,298 ops/sec ±0.70% (93 runs sampled)
+nano-equal x 144,836 ops/sec ±0.51% (94 runs sampled)
+shallow-equal-fuzzy x 110,192 ops/sec ±0.57% (95 runs sampled)
   fastest: react-fast-compare
 ```
 
@@ -101,16 +101,14 @@ tests; any difference is just noise. `react-fast-compare` won't be faster than
 ### React and Generic Data
 
 ```
-react-fast-compare x 187,628 ops/sec ±0.58% (93 runs sampled)
-fast-deep-equal x 477 ops/sec ±0.55% (91 runs sampled)
-lodash.isEqual x 35,100 ops/sec ±0.16% (95 runs sampled)
-nano-equal x 468 ops/sec ±0.53% (94 runs sampled)
-shallow-equal-fuzzy x 684 ops/sec ±0.43% (92 runs sampled)
-  fastest: react-fast-compare
+react-fast-compare x 64,102 ops/sec ±0.36% (94 runs sampled)
+fast-deep-equal x 63,844 ops/sec ±0.43% (94 runs sampled)
+lodash.isEqual x 6,243 ops/sec ±0.72% (90 runs sampled)
+  fastest: react-fast-compare,fast-deep-equal
 ```
 
-Three of these packages cannot handle comparing React elements (which are
-circular): `fast-deep-equal`, `nano-equal`, and `shallow-equal-fuzzy`.
+Two of these packages cannot handle comparing React elements (which are
+circular): `nano-equal` and `shallow-equal-fuzzy`.
 
 ### Running Benchmarks
 
@@ -121,7 +119,12 @@ $ yarn run benchmark
 
 ## fast-deep-equal Versioning
 
-react-fast-compare@2 tracks fast-deep-equal@2.0.1
+react-fast-compare@3 tracks fast-deep-equal@3.1.1
+
+Now that `fast-deep-equal` has separate es5, es6, and es6 + React entry points, the main differences with this library are:
+
+* `try/catch` guardrails for stack overflows from undetected circular references.
+* A single unified entry point for **all** uses. No matter what your target application is, `import equal fro 'react-fast-compare'` just works.
 
 ## License
 

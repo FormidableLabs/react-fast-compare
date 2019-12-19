@@ -2,10 +2,13 @@
 
 ## UNRELEASED
 
+**Features:**
 - Update library to include ES.next support for `Map`, `Set`, `ArrayBuffer`. [#36](https://github.com/FormidableLabs/react-fast-compare/pull/36).
+
+**Breaking changes:**
 - Update to `fast-deep-equal@3.1.1` with modified support for ES.next data types.
 
-*Infrastructure*
+**Infrastructure:**
 
 - Upgrade lots of `devDependenices`
 - Use `fast-deep-equal` tests directly in our correctness tests.

@@ -17,7 +17,8 @@ const equalPackages = {
 
 const advancedPkgs = new Set([
   'react-fast-compare',
-  'fast-deep-equal'
+  'fast-deep-equal',
+  'lodash.isEqual'
 ]);
 
 for (const equalName in equalPackages) {
@@ -93,6 +94,9 @@ advancedSuite
   })
   .run({async: false});
 
+// **Note**: `lodash.isEqual` gets different results for Sets, Maps
+// because it **is** correct and `fast-deep-equal` is not.
+// See: https://github.com/FormidableLabs/react-fast-compare/issues/50
 console.log('\n--- correctness tests: generic and react ---\n');
 
 correctnessTests.forEach(test => test());
