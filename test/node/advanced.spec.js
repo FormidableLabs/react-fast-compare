@@ -79,7 +79,7 @@ describe('advanced', () => {
       it('never warns', () => {
         tests.generic.forEach( (suite) => {
           suite.tests.forEach( (test) => {
-            assert.strictEqual(equal(test.value1, test.value2), test.equal);
+            assert.strictEqual(equal(test.value1, test.value2), test.equal, test.description);
           });
         });
         assert.strictEqual(warnStub.callCount, 0,
