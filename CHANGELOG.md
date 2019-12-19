@@ -12,6 +12,7 @@
 - Upgrade lots of `devDependenices`
 - Use `fast-deep-equal` tests directly in our correctness tests.
 - Update CI to modern Node.js versions.
+- Update Appveyor to use straight IE11 (not emulated IE9) because mocha no longer runs in IE9.
 
 ## 2.0.4 (2018-11-09)
 
