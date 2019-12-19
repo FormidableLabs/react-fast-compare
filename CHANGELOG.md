@@ -9,7 +9,6 @@
 - Update to `fast-deep-equal@3.1.1` with modified support for ES.next data types.
 
 **Infrastructure:**
-
 - Upgrade lots of `devDependenices`
 - Use `fast-deep-equal` tests directly in our correctness tests.
 - Update CI to modern Node.js versions.
