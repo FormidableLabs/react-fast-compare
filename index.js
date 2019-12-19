@@ -128,8 +128,6 @@ module.exports = function exportedEqual(a, b) {
   try {
     return equal(a, b);
   } catch (error) {
-    // TODO(es6): Change to different message / detection?
-    // TODO(es6): Benchmark old RFC vs. new for circular objects.
     if (((error.message || '').match(/stack|recursion/i)) || (error.number === -2146828260)) {
       // warn on circular references, don't crash
       // browsers give this different errors name and messages:
