@@ -82,7 +82,8 @@ describe('advanced', () => {
             assert.strictEqual(equal(test.value1, test.value2), test.equal);
           });
         });
-        assert.strictEqual(warnStub.callCount, 0);
+        assert.strictEqual(warnStub.callCount, 0,
+          `console.warn called ${warnStub.callCount} with arguments: ${JSON.stringify(warnStub.args)}`);
       });
     });
   });
