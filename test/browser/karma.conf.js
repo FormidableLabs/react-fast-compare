@@ -26,9 +26,12 @@ module.exports = function(config) {
             enforce: 'pre',
             include: [
               path.resolve(__dirname, '..'),
-              // Transpile the `fast-deep-equal` es6 tests for all browsers.
-              // (The node tests work off real Set/Map/class objects.)
-              require.resolve('fast-deep-equal-git/spec/es6tests.js')
+              // Transpile the `fast-deep-equal` tests for all browsers.
+              // (The node tests work off real code with ES.next stuff).
+              path.join(
+                path.dirname(require.resolve('fast-deep-equal-git/package.json')),
+                'spec'
+              )
             ],
             loader: 'babel-loader',
             options: {
