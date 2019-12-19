@@ -65,7 +65,7 @@ $ yarn run test-node --watch
 
 The same tests are then imported and built with `webpack` to a test bundle that
 can be run in arbitrary browsers. So far in CI, we execute the tests in headless
-Chrome on Linux in Travis and IE9-emulated IE11 in Appveyor.
+Chrome on Linux in Travis and IE11 in Appveyor.
 
 To run the browser tests on your machine (note: you must already have the
 browser you're running installed):
@@ -76,7 +76,7 @@ $ yarn run test-browser
 # Example: real Chrome + Firefox + Safari
 $ yarn run test-browser --browsers Chrome,Firefox,Safari
 
-# IE9 emulation (on Windows)
+# IE11 (on Windows)
 $ yarn run test-browser-ie
 ```
 
