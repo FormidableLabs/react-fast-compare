@@ -25,11 +25,15 @@ function equal(a, b) {
     if (a instanceof Date) {
       if (!(b instanceof Date)) return false;
       return a.getTime() == b.getTime();
+    } else if (b instanceof Date) {
+      return false;
     }
 
     if (a instanceof RegExp) {
       if (!(b instanceof RegExp)) return false;
       return a.toString() == b.toString();
+    } else if (b instanceof RegExp) {
+      return false;
     }
 
     var keys = keyList(a);
