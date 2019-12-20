@@ -18,6 +18,8 @@ function equal(a, b) {
       i = a.length;
       while (i--) if (!equal(a[i], b[i])) return false;
       return true;
+    } else if (isArray(b)) {
+      return false;
     }
 
     if (a instanceof Date) {
