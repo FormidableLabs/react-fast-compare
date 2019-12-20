@@ -16,7 +16,7 @@ function equal(a, b) {
       if (!isArray(b)) return false;
       if (a.length !== b.length) return false;
       i = a.length;
-      while (i--) if (!equal2(a[i], b[i])) return false;
+      while (i--) if (!equal(a[i], b[i])) return false;
       return true;
     }
 
@@ -54,7 +54,7 @@ function equal(a, b) {
       if (keys[i] === '_owner' && a.$$typeof) continue;
 
       // all other properties should be traversed as usual
-      if (!equal2(a[keys[i]], b[keys[i]])) return false;
+      if (!equal(a[keys[i]], b[keys[i]])) return false;
     }
     // end react-fast-compare
 
