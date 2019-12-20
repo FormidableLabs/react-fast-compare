@@ -12,30 +12,24 @@ function equal(a, b) {
   if (a && b && typeof a == 'object' && typeof b == 'object') {
     if (isArray(a)) {
       if (!isArray(b) || a.length !== b.length) return false;
-      var i = a.length;
+      let i = a.length;
       while (i--) if (!equal(a[i], b[i])) return false;
       return true;
     }
 
     if (isArray(b)) return false;
 
-    if (a instanceof Date) {
-      return b instanceof Date && a.getTime() == b.getTime();
-    }
-
+    if (a instanceof Date) return b instanceof Date && a.getTime() == b.getTime();
     if (b instanceof Date) return false;
 
-    if (a instanceof RegExp) {
-      return b instanceof RegExp && a.toString() == b.toString();
-    }
-
+    if (a instanceof RegExp) return b instanceof RegExp && a.toString() == b.toString();
     if (b instanceof RegExp) return false;
 
     var keys = keyList(a);
 
     if (keys.length !== keyList(b).length) return false;
 
-    var i = keys.length;
+    let i = keys.length;
 
     while (i--) if (!hasProp.call(b, keys[i])) return false;
     // end fast-deep-equal
