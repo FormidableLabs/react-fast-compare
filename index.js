@@ -10,9 +10,10 @@ function equal(a, b) {
   if (a === b) return true;
 
   if (a && b && typeof a == 'object' && typeof b == 'object') {
+    var i;
     if (isArray(a)) {
       if (!isArray(b) || a.length !== b.length) return false;
-      let i = a.length;
+      i = a.length;
       while (i--) if (!equal(a[i], b[i])) return false;
       return true;
     }
@@ -29,7 +30,7 @@ function equal(a, b) {
 
     if (keys.length !== keyList(b).length) return false;
 
-    let i = keys.length;
+    i = keys.length;
 
     while (i--) if (!hasProp.call(b, keys[i])) return false;
     // end fast-deep-equal
