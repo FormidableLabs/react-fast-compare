@@ -135,8 +135,8 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 
 **Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome. 
 
-[trav_img]: https://api.travis-ci.org/FormidableLabs/react-fast-compare.svg
-[trav_site]: https://travis-ci.org/FormidableLabs/react-fast-compare
+[trav_img]: https://api.travis-ci.com/FormidableLabs/react-fast-compare.svg
+[trav_site]: https://travis-ci.com/FormidableLabs/react-fast-compare
 [cov_img]: https://img.shields.io/coveralls/FormidableLabs/react-fast-compare.svg
 [cov_site]: https://coveralls.io/r/FormidableLabs/react-fast-compare
 [npm_img]: https://badge.fury.io/js/react-fast-compare.svg
