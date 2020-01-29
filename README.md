@@ -122,7 +122,7 @@ react-fast-compare@3 tracks fast-deep-equal@3.1.1
 Now that `fast-deep-equal` has separate es5, es6, and es6 + React entry points, the main differences with this library are:
 
 - `try/catch` guardrails for stack overflows from undetected circular references.
-- A single unified entry point for **all** uses. No matter what your target application is, `import equal fro 'react-fast-compare'` just works.
+- A single unified entry point for **all** uses. No matter what your target application is, `import equal from 'react-fast-compare'` just works.
 
 ## License
 
