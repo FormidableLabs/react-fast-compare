@@ -1,5 +1,6 @@
 'use strict';
-var generic = require('./fast-deep-equal-tests.js');
+var generic = require('fast-deep-equal-git/spec/tests.js');
+var es6 = require('fast-deep-equal-git/spec/es6tests.js');
 
 const reactElementA = {
   '$$typeof': 'react.element',
@@ -65,6 +66,7 @@ const react = [
 
 module.exports = {
   generic,
+  es6,
   react,
-  all: [...generic, ...react],
+  all: [...generic, ...es6, ...react],
 };

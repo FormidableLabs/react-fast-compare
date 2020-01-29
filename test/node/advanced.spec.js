@@ -35,7 +35,7 @@ describe('advanced', () => {
   let childRenderSpy;
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     warnStub = sandbox.stub(console, 'warn');
     childRenderSpy = sandbox.spy(ChildWithShouldComponentUpdate.prototype, 'render');
   });
@@ -79,10 +79,11 @@ describe('advanced', () => {
       it('never warns', () => {
         tests.generic.forEach( (suite) => {
           suite.tests.forEach( (test) => {
-            assert.strictEqual(equal(test.value1, test.value2), test.equal);
+            assert.strictEqual(equal(test.value1, test.value2), test.equal, test.description);
           });
         });
-        assert.strictEqual(warnStub.callCount, 0);
+        assert.strictEqual(warnStub.callCount, 0,
+          `console.warn called ${warnStub.callCount} with arguments: ${JSON.stringify(warnStub.args)}`);
       });
     });
   });

@@ -24,10 +24,18 @@ module.exports = function(config) {
           {
             test: /\.js$/,
             enforce: 'pre',
-            include: path.resolve(__dirname, '..'),
+            include: [
+              path.resolve(__dirname, '..'),
+              // Transpile the `fast-deep-equal` tests for all browsers.
+              // (The node tests work off real code with ES.next stuff).
+              path.join(
+                path.dirname(require.resolve('fast-deep-equal-git/package.json')),
+                'spec'
+              )
+            ],
             loader: 'babel-loader',
             options: {
-              presets: ['babel-preset-env']
+              presets: ['@babel/preset-env']
             }
           }
         ]

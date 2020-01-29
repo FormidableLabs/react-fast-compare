@@ -5,15 +5,21 @@ const Benchmark = require('benchmark');
 
 const correctnessTests = [];
 const genericSuite = new Benchmark.Suite;
-const allSuite = new Benchmark.Suite;
+const advancedSuite = new Benchmark.Suite;
 
 const equalPackages = {
   'react-fast-compare': require('../index'),
-  'fast-deep-equal': require('fast-deep-equal'),
+  'fast-deep-equal': require('fast-deep-equal/es6/react'),
   'lodash.isEqual': require('lodash').isEqual,
   'nano-equal': require('nano-equal'),
   'shallow-equal-fuzzy': require('shallow-equal-fuzzy')
 };
+
+const advancedPkgs = new Set([
+  'react-fast-compare',
+  'fast-deep-equal',
+  'lodash.isEqual'
+]);
 
 for (const equalName in equalPackages) {
   const equalFunc = equalPackages[equalName];
@@ -30,29 +36,31 @@ for (const equalName in equalPackages) {
     }
   });
 
-  allSuite.add(equalName, function() {
-    for (const testSuite of tests.all) {
-      for (const test of testSuite.tests) {
-        try {
-          equalFunc(test.value1, test.value2);
-        } catch (error) {
-          // swallow errors during benchmarking. they are reported in the test section
+  if (advancedPkgs.has(equalName)) {
+    advancedSuite.add(equalName, function() {
+      for (const testSuite of tests.all) {
+        for (const test of testSuite.tests) {
+          try {
+            equalFunc(test.value1, test.value2);
+          } catch (error) {
+            // swallow errors during benchmarking. they are reported in the test section
+          }
         }
       }
-    }
-  });
+    });
 
-  correctnessTests.push(() => console.log(equalName));
-  for (const testSuite of tests.all) {
-    for (const test of testSuite.tests) {
-      correctnessTests.push(() => {
-        try {
-          if (equalFunc(test.value1, test.value2) !== test.equal)
-            console.error('- different result:', equalName, testSuite.description, test.description);
-        } catch(error) {
-          console.error('- error:', testSuite.description, test.description, error.message);
-        }
-      });
+    correctnessTests.push(() => console.log(equalName));
+    for (const testSuite of tests.all) {
+      for (const test of testSuite.tests) {
+        correctnessTests.push(() => {
+          try {
+            if (equalFunc(test.value1, test.value2) !== test.equal)
+              console.error('- different result:', equalName, testSuite.description, test.description);
+          } catch(error) {
+            console.error('- error:', testSuite.description, test.description, error.message);
+          }
+        });
+      }
     }
   }
 }
@@ -75,7 +83,7 @@ genericSuite
 
 console.log('\n--- speed tests: generic and react ---\n');
 
-allSuite
+advancedSuite
   .on('cycle', (event) => console.log(String(event.target)))
   .on('complete', function () {
     console.log('  fastest: ' + this.filter('fastest').map('name'));
@@ -86,6 +94,9 @@ allSuite
   })
   .run({async: false});
 
+// **Note**: `lodash.isEqual` gets different results for Sets, Maps
+// because it **is** correct and `fast-deep-equal` is not.
+// See: https://github.com/FormidableLabs/react-fast-compare/issues/50
 console.log('\n--- correctness tests: generic and react ---\n');
 
 correctnessTests.forEach(test => test());

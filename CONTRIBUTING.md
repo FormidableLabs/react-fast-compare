@@ -10,8 +10,8 @@ This package is a fork of [fast-deep-equal](https://github.com/epoberezkin/fast-
 We encourage pull requests concerning:
 
 * React features not handled in this library
-* Integrating updates from fast-deep-equal
-* Integrating tests from fast-deep-equal
+* Integrating updates from `fast-deep-equal`. This unfortunately, now requires more manual work to use the comment blocks in `index.js` to figure out what to paste and where.
+* Integrating tests from `fast-deep-equal`. This usually entails upgrading the `git`-based dependencies of `fast-deep-equal-git` and `npm`-published package of `fast-deep-equal` in `package.json:devDependencies`.
 * Bugs in this library
 * New tests for React
 * Documentation
@@ -65,7 +65,7 @@ $ yarn run test-node --watch
 
 The same tests are then imported and built with `webpack` to a test bundle that
 can be run in arbitrary browsers. So far in CI, we execute the tests in headless
-Chrome on Linux in Travis and IE9-emulated IE11 in Appveyor.
+Chrome on Linux in Travis and IE11 in Appveyor.
 
 To run the browser tests on your machine (note: you must already have the
 browser you're running installed):
@@ -76,7 +76,7 @@ $ yarn run test-browser
 # Example: real Chrome + Firefox + Safari
 $ yarn run test-browser --browsers Chrome,Firefox,Safari
 
-# IE9 emulation (on Windows)
+# IE11 (on Windows)
 $ yarn run test-browser-ie
 ```
 
@@ -94,6 +94,21 @@ $ yarn run test-ts
 $ yarn run eslint
 ```
 
+### Size
+
+You can check how we do with minification + compression with:
+
+```sh
+# Show minified output
+$ yarn -s compress
+
+# Display minified + gzip'ed size in bytes.
+$ yarn size-min-gz
+     687
+```
+
+**Note**: If the min+gz size increases, please note it in the README. If it is a significant increase, please flag to your reviewers and have a discussion about whether or not the size addition is justified.
+
 ## Before submitting a PR...
 
 Before you go ahead and submit a PR, make sure that you have done the following:
@@ -103,9 +118,9 @@ $ yarn run test
 $ yarn run benchmark
 ```
 
-Everything must be correct / pass checks. You should also check the benchmark
-stats and make sure that we don't have any significant performance regressions
-(check out `master` for a baseline comparison on _your_ machine).
+1. Everything must be correct / pass checks.
+2. You should also check the benchmark stats and make sure that we don't have any significant performance regressions (check out `master` for a baseline comparison on _your_ machine).
+    - Please **do** update the README benchmark numbers for changes in your PR so that we have much easier discussion points _and_ our users get up-to-date information.
 
 ## Releasing a new version to NPM
 

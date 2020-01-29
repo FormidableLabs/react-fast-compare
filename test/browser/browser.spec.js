@@ -37,7 +37,7 @@ describe('browser', function () {
   let sandbox;
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     sandbox.stub(console, 'warn');
   });
 
@@ -48,7 +48,7 @@ describe('browser', function () {
   suites.forEach(function (suite) {
     describe(suite.description, function () {
       suite.tests.forEach(function (test) {
-        it(test.description, function () {
+        (test.skip ? it.skip : it)(test.description, function () {
           assert.strictEqual(equal(test.value1, test.value2), test.equal);
         });
       });
