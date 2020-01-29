@@ -66,10 +66,10 @@ class AnotherExpensiveComponent extends React.Component {
 —This Readme
 
 Deep checks in `React.memo` or a `shouldComponentUpdate` should not be used blindly.
-First, see if a the default
+First, see if the default
 [React.memo](https://reactjs.org/docs/react-api.html#reactmemo) or
 [PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
-would work for you. If it won't (if you need deep checks), it's wise to make
+will work for you. If it won't (if you need deep checks), it's wise to make
 sure you've correctly indentified the bottleneck in your application by
 [profiling the performance](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab).
 After you've determined that you _do_ need deep equality checks and you've
