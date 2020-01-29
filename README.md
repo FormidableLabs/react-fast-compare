@@ -7,12 +7,10 @@
 [![npm version][npm_img]][npm_site]
 [![Maintenance Status][maintenance-image]](#maintenance-status)
 
-
 The fastest deep equal comparison for React. Really fast general-purpose deep comparison.
 Great for`shouldComponentUpdate`. This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
-
 
 ![benchmark chart](assets/benchmarking.png "benchmarking chart")
 
@@ -28,12 +26,12 @@ $ npm install react-fast-compare
 
 ## Highlights
 
-* ES5 compatible; works in node.js (0.10+) and browsers (IE9+)
-* deeply compares any value (besides objects with circular references)
-* handles React-specific circular references, like elements
-* checks equality Date and RegExp objects
-* should as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) via a single unified library, and with added guardrails for circular references.
-* small: under 700 bytes minified+gzipped
+- ES5 compatible; works in node.js (0.10+) and browsers (IE9+)
+- deeply compares any value (besides objects with circular references)
+- handles React-specific circular references, like elements
+- checks equality Date and RegExp objects
+- should as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) via a single unified library, and with added guardrails for circular references.
+- small: under 700 bytes minified+gzipped
 
 ## Usage
 
@@ -123,8 +121,8 @@ react-fast-compare@3 tracks fast-deep-equal@3.1.1
 
 Now that `fast-deep-equal` has separate es5, es6, and es6 + React entry points, the main differences with this library are:
 
-* `try/catch` guardrails for stack overflows from undetected circular references.
-* A single unified entry point for **all** uses. No matter what your target application is, `import equal fro 'react-fast-compare'` just works.
+- `try/catch` guardrails for stack overflows from undetected circular references.
+- A single unified entry point for **all** uses. No matter what your target application is, `import equal fro 'react-fast-compare'` just works.
 
 ## License
 
