@@ -105,8 +105,8 @@ lodash.isEqual x 6,243 ops/sec ±0.72% (90 runs sampled)
   fastest: react-fast-compare,fast-deep-equal
 ```
 
-Two of these packages cannot handle comparing React elements (which are
-circular): `nano-equal` and `shallow-equal-fuzzy`.
+Two of these packages cannot handle comparing React elements, because they
+contain circular reference: `nano-equal` and `shallow-equal-fuzzy`.
 
 ### Running Benchmarks
 
