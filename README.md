@@ -8,7 +8,7 @@
 [![Maintenance Status][maintenance-image]](#maintenance-status)
 
 The fastest deep equal comparison for React. Really fast general-purpose deep comparison.
-Great for`shouldComponentUpdate`. This is a fork of the brilliant
+Great for `shouldComponentUpdate`. This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
