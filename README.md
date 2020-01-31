@@ -115,14 +115,14 @@ $ yarn install
 $ yarn run benchmark
 ```
 
-## fast-deep-equal Versioning
+## Differences between this library and `fast-deep-equal`
 
-react-fast-compare@3 tracks fast-deep-equal@3.1.1
+`react-fast-compare` is based on `fast-deep-equal`, with some additions:
 
-Now that `fast-deep-equal` has separate es5, es6, and es6 + React entry points, the main differences with this library are:
+- `react-fast-compare` has `try`/`catch` guardrails for stack overflows from undetected (non-React) circular references.
+- `react-fast-compare` has a _single_ unified entry point for all uses. No matter what your target application is, `import equal from 'react-fast-compare'` just works. `fast-deep-equal` has multiple entry points for different use cases.
 
-- `try/catch` guardrails for stack overflows from undetected circular references.
-- A single unified entry point for **all** uses. No matter what your target application is, `import equal from 'react-fast-compare'` just works.
+This version of `react-fast-compare` tracks `fast-deep-equal@3.1.1`.
 
 ## License
 
