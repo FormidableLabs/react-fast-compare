@@ -1,4 +1,3 @@
-'use strict';
 /* global Map:readonly, Set:readonly, ArrayBuffer:readonly */
 
 var hasElementType = typeof Element !== 'undefined';
