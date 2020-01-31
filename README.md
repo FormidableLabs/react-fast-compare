@@ -78,14 +78,16 @@ be for you!
 
 ## Benchmarking this Library
 
-All tests carried out locally on a MacBook. The absolute values are much less
-important than the relative differences between packages.
+The absolute values are much less important than the relative differences
+between packages.
 
 Benchmarking source can be found
 [here](https://github.com/FormidableLabs/react-fast-compare/blob/master/benchmark/index.js).
 Each "operation" consists of running all relevant tests. The React benchmark
 uses both the generic tests and the react tests; these runs will be slower
 simply because there are more tests in each operation.
+
+The results below are from a local test on a laptop.
 
 ### Generic Data
 
