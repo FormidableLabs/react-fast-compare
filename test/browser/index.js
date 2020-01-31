@@ -4,6 +4,7 @@
 require('core-js/features/map');
 require('core-js/features/set');
 require('core-js/features/weak-map');
+require('core-js/features/weak-set');
 require('core-js/features/symbol');
 require('core-js/features/regexp/flags');
 

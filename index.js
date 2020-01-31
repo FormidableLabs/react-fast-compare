@@ -1,9 +1,11 @@
 'use strict';
-/* global Map:readonly, Set:readonly, ArrayBuffer:readonly */
+/* global Map:readonly, WeakMap:readonly, Set:readonly, WeakSet:readonly, ArrayBuffer:readonly */
 
 var hasElementType = typeof Element !== 'undefined';
 var hasMap = typeof Map === 'function';
+var hasWeakMap = typeof WeakMap === 'function';
 var hasSet = typeof Set === 'function';
+var hasWeakSet = typeof WeakSet === 'function';
 var hasArrayBuffer = typeof ArrayBuffer === 'function';
 
 // Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
@@ -45,7 +47,8 @@ function equal(a, b) {
     //
     //    **Note**: `i` access switches to `i.value`.
     var it;
-    if (hasMap && (a instanceof Map) && (b instanceof Map)) {
+    if ((hasMap && (a instanceof Map) && (b instanceof Map)) ||
+      (hasWeakMap && (a instanceof WeakMap) && (b instanceof WeakMap))) {
       if (a.size !== b.size) return false;
       it = a.entries();
       for (i = it.next(); !i.done; i = it.next())
@@ -56,14 +59,14 @@ function equal(a, b) {
       return true;
     }
 
-    if (hasSet && (a instanceof Set) && (b instanceof Set)) {
+    if (hasSet && (a instanceof Set) && (b instanceof Set) ||
+    (hasWeakSet && (a instanceof WeakSet) && (b instanceof WeakSet))) {
       if (a.size !== b.size) return false;
       it = a.entries();
       for (i = it.next(); !i.done; i = it.next())
         if (!b.has(i.value[0])) return false;
       return true;
     }
-    // END: Modifications
 
     if (hasArrayBuffer && ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
       length = a.length;
@@ -72,6 +75,7 @@ function equal(a, b) {
         if (a[i] !== b[i]) return false;
       return true;
     }
+    // END: Modifications
 
     if (a.constructor === RegExp) return a.source === b.source && a.flags === b.flags;
     if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
