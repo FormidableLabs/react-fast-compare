@@ -1,14 +1,19 @@
 # Changelog
 
-## UNRELEASED
+## 3.0.0 (2020-01-31)
 
 **Features:**
-- Update library to include ES.next support for `Map`, `Set`, `ArrayBuffer`. [#36](https://github.com/FormidableLabs/react-fast-compare/pull/36).
+
+- [#36](https://github.com/FormidableLabs/react-fast-compare/pull/36). Update to `fast-deep-equal@3.1.1` with modified support for ES.next data types: `Map`, `Set`, `ArrayBuffer`.
 
 **Breaking changes:**
-- Update to `fast-deep-equal@3.1.1` with modified support for ES.next data types.
+
+- instances of different classes are now considered unequal
+- support for ES6 Map and Set instances
+- support for ES6 typed arrays
 
 **Infrastructure:**
+
 - Upgrade lots of `devDependenices`
 - Use `fast-deep-equal` tests directly in our correctness tests.
 - Update CI to modern Node.js versions.
@@ -38,6 +43,7 @@
 - [#21](https://github.com/FormidableLabs/react-fast-compare/pull/21). Upgrade to `fast-deep-equal@2.0.1`. Thanks @samwhale!
 
 **Breaking changes:**
+
 - `null` and `Object` comparison
 - new behavior: functions are no longer treated as equal
 - new behavior: handle `NaN`
