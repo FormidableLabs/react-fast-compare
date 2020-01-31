@@ -39,7 +39,7 @@ function equal(a, b) {
     //
     //    ```js
     //    it = a.entries();
-    //    for (i = it.next(); !i.done; i = it.next())
+    //    while (!(i = it.next()).done)
     //      if (!b.has(i.value[0])) return false;
     //    ```
     //
