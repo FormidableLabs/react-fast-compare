@@ -4,6 +4,7 @@
 
 **Features:**
 - Update library to include ES.next support for `Map`, `Set`, `ArrayBuffer`. [#36](https://github.com/FormidableLabs/react-fast-compare/pull/36).
+- Minor refactoring to reduce min+gz size to `651` bytes. [#57](https://github.com/FormidableLabs/react-fast-compare/pull/57).
 
 **Breaking changes:**
 - Update to `fast-deep-equal@3.1.1` with modified support for ES.next data types.
