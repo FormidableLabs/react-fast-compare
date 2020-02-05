@@ -156,4 +156,4 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [size_minzip]: https://img.shields.io/bundlephobia/minzip/react-fast-compare.svg
 [size_site]: https://bundlephobia.com/result?p=react-fast-compare
 [downloads_img]: https://img.shields.io/npm/dt/react-fast-compare.svg
-[maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg
+[maintenance-image]: https://img.shields.io/badge/maintenance-active-flatgreen.svg
