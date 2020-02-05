@@ -60,4 +60,7 @@ package-lock.json
 # dotenv environment variables file
 .env
 
+# editors
+.vscode/
+
 .DS_Store
