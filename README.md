@@ -7,8 +7,10 @@
 [![npm version][npm_img]][npm_site]
 [![Maintenance Status][maintenance-image]](#maintenance-status)
 
-The fastest deep equal comparison for React. Really fast general-purpose deep comparison.
-Great for `shouldComponentUpdate`. This is a fork of the brilliant
+The fastest deep equal comparison for React. Very quick general-purpose deep
+comparison, too. Great for `React.memo` and `shouldComponentUpdate`.
+
+This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
@@ -41,8 +43,13 @@ const isEqual = require("react-fast-compare");
 // general usage
 console.log(isEqual({ foo: "bar" }, { foo: "bar" })); // true
 
-// react usage
-class ExpensiveRenderer extends React.Component {
+// React.memo
+// only re-render ExpensiveComponent when the props have deeply changed
+const DeepMemoComponent = React.memo(ExpensiveComponent, isEqual);
+
+// React.Component shouldComponentUpdate
+// only re-render AnotherExpensiveComponent when the props have deeply changed
+class AnotherExpensiveComponent extends React.Component {
   shouldComponentUpdate(nextProps) {
     return !isEqual(this.props, nextProps);
   }
@@ -52,34 +59,35 @@ class ExpensiveRenderer extends React.Component {
 }
 ```
 
-## Do I Need `shouldComponentUpdate`?
+## Do I Need `React.memo` (or `shouldComponentUpdate`)?
 
 > What's faster than a really fast deep comparison? No deep comparison at all.
 
 —This Readme
 
-Deep checks in React's `shouldComponentUpdate` should not be used blindly.
-First, see if a
+Deep checks in `React.memo` or a `shouldComponentUpdate` should not be used blindly.
+First, see if the default
+[React.memo](https://reactjs.org/docs/react-api.html#reactmemo) or
 [PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
-would work for you. If it won't (if you need deep checks), it's wise to make
+will work for you. If it won't (if you need deep checks), it's wise to make
 sure you've correctly indentified the bottleneck in your application by
 [profiling the performance](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab).
 After you've determined that you _do_ need deep equality checks and you've
 identified the minimum number of places to apply them, then this library may
-be for you! For more information about making your app faster, check out the
-[Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html)
-section of the React docs.
+be for you!
 
 ## Benchmarking this Library
 
-All tests carried out locally on a MacBook. The absolute values are much less
-important than the relative differences between packages.
+The absolute values are much less important than the relative differences
+between packages.
 
 Benchmarking source can be found
 [here](https://github.com/FormidableLabs/react-fast-compare/blob/master/benchmark/index.js).
 Each "operation" consists of running all relevant tests. The React benchmark
 uses both the generic tests and the react tests; these runs will be slower
 simply because there are more tests in each operation.
+
+The results below are from a local test on a laptop.
 
 ### Generic Data
 
@@ -115,14 +123,14 @@ $ yarn install
 $ yarn run benchmark
 ```
 
-## fast-deep-equal Versioning
+## Differences between this library and `fast-deep-equal`
 
-react-fast-compare@3 tracks fast-deep-equal@3.1.1
+`react-fast-compare` is based on `fast-deep-equal`, with some additions:
 
-Now that `fast-deep-equal` has separate es5, es6, and es6 + React entry points, the main differences with this library are:
+- `react-fast-compare` has `try`/`catch` guardrails for stack overflows from undetected (non-React) circular references.
+- `react-fast-compare` has a _single_ unified entry point for all uses. No matter what your target application is, `import equal from 'react-fast-compare'` just works. `fast-deep-equal` has multiple entry points for different use cases.
 
-- `try/catch` guardrails for stack overflows from undetected circular references.
-- A single unified entry point for **all** uses. No matter what your target application is, `import equal from 'react-fast-compare'` just works.
+This version of `react-fast-compare` tracks `fast-deep-equal@3.1.1`.
 
 ## License
 
