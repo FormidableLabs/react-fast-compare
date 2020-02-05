@@ -121,7 +121,7 @@ module.exports = function exportedEqual(a, b) {
       // chrome/safari: "RangeError", "Maximum call stack size exceeded"
       // firefox: "InternalError", too much recursion"
       // edge: "Error", "Out of stack space"
-      console.warn('react-fast-compare doesn\'t handle circular references');
+      console.warn('react-fast-compare cannot handle circular refs');
       return false;
     }
     // some other error. we should definitely know about these
