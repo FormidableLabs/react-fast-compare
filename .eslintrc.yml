@@ -19,7 +19,7 @@ rules:
   no-eq-null: 2
   no-fallthrough: 2
   no-return-assign: 2
-  strict: [ 2, global ]
+  strict: 0
   no-use-before-define: [ 2, nofunc ]
   callback-return: 2
   no-path-concat: 2

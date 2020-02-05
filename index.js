@@ -1,4 +1,3 @@
-'use strict';
 /* global Map:readonly, Set:readonly, ArrayBuffer:readonly */
 
 var hasElementType = typeof Element !== 'undefined';
@@ -39,7 +38,7 @@ function equal(a, b) {
     //
     //    ```js
     //    it = a.entries();
-    //    for (i = it.next(); !i.done; i = it.next())
+    //    while (!(i = it.next()).done)
     //      if (!b.has(i.value[0])) return false;
     //    ```
     //
@@ -48,10 +47,10 @@ function equal(a, b) {
     if (hasMap && (a instanceof Map) && (b instanceof Map)) {
       if (a.size !== b.size) return false;
       it = a.entries();
-      for (i = it.next(); !i.done; i = it.next())
+      while (!(i = it.next()).done)
         if (!b.has(i.value[0])) return false;
       it = a.entries();
-      for (i = it.next(); !i.done; i = it.next())
+      while (!(i = it.next()).done)
         if (!equal(i.value[1], b.get(i.value[0]))) return false;
       return true;
     }
@@ -59,7 +58,7 @@ function equal(a, b) {
     if (hasSet && (a instanceof Set) && (b instanceof Set)) {
       if (a.size !== b.size) return false;
       it = a.entries();
-      for (i = it.next(); !i.done; i = it.next())
+      while (!(i = it.next()).done)
         if (!b.has(i.value[0])) return false;
       return true;
     }
@@ -91,8 +90,7 @@ function equal(a, b) {
 
     // custom handling for React
     for (i = length; i-- !== 0;) {
-      var key = keys[i];
-      if (key === '_owner' && a.$$typeof) {
+      if (keys[i] === '_owner' && a.$$typeof) {
         // React-specific: avoid traversing React elements' _owner.
         //  _owner contains circular references
         // and is not needed when comparing the actual elements (and not their owners)
@@ -101,7 +99,7 @@ function equal(a, b) {
       }
 
       // all other properties should be traversed as usual
-      if (!equal(a[key], b[key])) return false;
+      if (!equal(a[keys[i]], b[keys[i]])) return false;
     }
     // END: react-fast-compare
 
@@ -117,13 +115,13 @@ module.exports = function exportedEqual(a, b) {
   try {
     return equal(a, b);
   } catch (error) {
-    if (((error.message || '').match(/stack|recursion/i)) || (error.number === -2146828260)) {
+    if (((error.message || '').match(/stack|recursion/i))) {
       // warn on circular references, don't crash
       // browsers give this different errors name and messages:
       // chrome/safari: "RangeError", "Maximum call stack size exceeded"
       // firefox: "InternalError", too much recursion"
       // edge: "Error", "Out of stack space"
-      console.warn('Warning: react-fast-compare does not handle circular references.', error.name, error.message);
+      console.warn('react-fast-compare cannot handle circular refs');
       return false;
     }
     // some other error. we should definitely know about these
