@@ -132,6 +132,14 @@ $ yarn run benchmark
 
 This version of `react-fast-compare` tracks `fast-deep-equal@3.1.1`.
 
+## Bundle Size
+
+There are a variety of ways to calculate bundle size for JavaScript code.
+You can see our size test code in the `compress` script in
+[`package.json`](https://github.com/FormidableLabs/react-fast-compare/blob/master/package.json).
+[Bundlephobia's calculation](https://bundlephobia.com/result?p=react-fast-compare) is slightly higher,
+as they [do not mangle during minification](https://github.com/pastelsky/package-build-stats/blob/v6.1.1/src/getDependencySizeTree.js#L139).
+
 ## License
 
 [MIT](https://github.com/FormidableLabs/react-fast-compare/blob/readme/LICENSE)
