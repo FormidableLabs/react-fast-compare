@@ -111,7 +111,7 @@ function equal(a, b) {
 }
 // end fast-deep-equal
 
-module.exports = function exportedEqual(a, b) {
+module.exports = function isEqual(a, b) {
   try {
     return equal(a, b);
   } catch (error) {
