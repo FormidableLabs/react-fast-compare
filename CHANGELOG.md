@@ -1,10 +1,15 @@
 # Changelog
 
-## 3.0.0 (2020-01-31)
+## 3.0.1 (2020-02-05)
+
+- [#60](https://github.com/FormidableLabs/react-fast-compare/pull/60). Update documentation on bundle size.
+
+## 3.0.0 (2020-01-05)
 
 **Features:**
 - [#36](https://github.com/FormidableLabs/react-fast-compare/pull/36). Update to `fast-deep-equal@3.1.1` with modified support for ES.next data types: `Map`, `Set`, `ArrayBuffer`.
 - [#57](https://github.com/FormidableLabs/react-fast-compare/pull/57). Minor refactoring to reduce min+gz size.
+- [#59](https://github.com/FormidableLabs/react-fast-compare/pull/59). Rename exported to `isEqual` for TypeScript users.
 
 **Breaking changes:**
 
