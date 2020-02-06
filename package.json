@@ -1,7 +1,7 @@
 {
   "name": "react-fast-compare",
   "version": "3.0.0-beta.1",
-  "description": "Fastest deep equal comparison for React. Perfect for shouldComponentUpdate. Also really fast general-purpose deep comparison",
+  "description": "Fastest deep equal comparison for React. Great for React.memo & shouldComponentUpdate. Also really fast general-purpose deep comparison.",
   "main": "index.js",
   "scripts": {
     "preversion": "yarn test",
