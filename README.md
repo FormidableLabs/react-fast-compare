@@ -161,5 +161,5 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [appveyor_img]: https://ci.appveyor.com/api/projects/status/github/formidablelabs/react-fast-compare?branch=master&svg=true
 [appveyor_site]: https://ci.appveyor.com/project/FormidableLabs/react-fast-compare
 [bundle_img]: https://img.shields.io/badge/minzipped%20size-622%20B-flatgreen.svg
-[downloads_img]: https://img.shields.io/npm/dt/react-fast-compare.svg
+[downloads_img]: https://img.shields.io/npm/dm/react-fast-compare.svg
 [maintenance_img]: https://img.shields.io/badge/maintenance-active-flatgreen.svg
