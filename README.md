@@ -1,11 +1,11 @@
 # react-fast-compare
 
 [![Downloads][downloads_img]][npm_site]
-[![size_minzip][size_minzip]][size_site]
+[![Bundle Size][bundle_img]](#bundle-size)
 [![Travis Status][trav_img]][trav_site]
 [![AppVeyor Status][appveyor_img]][appveyor_site]
 [![npm version][npm_img]][npm_site]
-[![Maintenance Status][maintenance-image]](#maintenance-status)
+[![Maintenance Status][maintenance_img]](#maintenance-status)
 
 The fastest deep equal comparison for React. Very quick general-purpose deep
 comparison, too. Great for `React.memo` and `shouldComponentUpdate`.
@@ -132,6 +132,14 @@ $ yarn run benchmark
 
 This version of `react-fast-compare` tracks `fast-deep-equal@3.1.1`.
 
+## Bundle Size
+
+There are a variety of ways to calculate bundle size for JavaScript code.
+You can see our size test code in the `compress` script in
+[`package.json`](https://github.com/FormidableLabs/react-fast-compare/blob/master/package.json).
+[Bundlephobia's calculation](https://bundlephobia.com/result?p=react-fast-compare) is slightly higher,
+as they [do not mangle during minification](https://github.com/pastelsky/package-build-stats/blob/v6.1.1/src/getDependencySizeTree.js#L139).
+
 ## License
 
 [MIT](https://github.com/FormidableLabs/react-fast-compare/blob/readme/LICENSE)
@@ -152,8 +160,6 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [npm_site]: http://badge.fury.io/js/react-fast-compare
 [appveyor_img]: https://ci.appveyor.com/api/projects/status/github/formidablelabs/react-fast-compare?branch=master&svg=true
 [appveyor_site]: https://ci.appveyor.com/project/FormidableLabs/react-fast-compare
-[size_min]: https://img.shields.io/bundlephobia/min/react-fast-compare.svg
-[size_minzip]: https://img.shields.io/bundlephobia/minzip/react-fast-compare.svg
-[size_site]: https://bundlephobia.com/result?p=react-fast-compare
-[downloads_img]: https://img.shields.io/npm/dt/react-fast-compare.svg
-[maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg
+[bundle_img]: https://img.shields.io/badge/minzipped%20size-622%20B-flatgreen.svg
+[downloads_img]: https://img.shields.io/npm/dm/react-fast-compare.svg
+[maintenance_img]: https://img.shields.io/badge/maintenance-active-flatgreen.svg
