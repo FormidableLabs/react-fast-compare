@@ -9,7 +9,7 @@ https://github.com/FormidableLabs/react-fast-compare/blob/master/CONTRIBUTING.md
 
 Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context.
 
-## Checklist: (Feel free to delete this section upon completion)
+## Checklist:
 
 - [ ] All tests are passing
 - [ ] Benchmark performance has not significantly decreased

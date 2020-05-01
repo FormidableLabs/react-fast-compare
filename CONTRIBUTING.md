@@ -135,7 +135,7 @@ please flag to your reviewers and have a discussion about whether or not the siz
    * Following the steps outlined in [size](#size):
      `yarn -s compress && yarn size-min-gz`
    * Grabbing that output and replacing the current size in the bundle_img: (`https://img.shields.io/badge/minzipped%20size-<NEW_SIZE>%20B-flatgreen.svg`)
-
+     For example, if the new size is `650`, the new bundle_img will be `https://img.shields.io/badge/minzipped%20size-650%20B-flatgreen.svg`
 
 ## Releasing a new version to NPM
 
