@@ -130,8 +130,8 @@ please flag to your reviewers and have a discussion about whether or not the siz
 
 2. Confirm we don't have any significant performance regressions (check out `master` for a baseline comparison on _your_ machine).
 
-3. Confirm you aren't impacting our benchmark stats.
-   If you _do_ affect the benchmark stats, please update the benchmark badge in the Readme by
+3. Confirm you aren't impacting our bundle size.
+   If you _do_ affect the bundle size, please update the bundle badge in the Readme by
    * Following the steps outlined in [size](#size):
      `yarn -s compress && yarn size-min-gz`
    * Grabbing that output and replacing the current size in the bundle_img: (`https://img.shields.io/badge/minzipped%20size-<NEW_SIZE>%20B-flatgreen.svg`)

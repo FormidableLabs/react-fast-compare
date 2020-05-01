@@ -12,5 +12,6 @@ Please include a summary of the change and which issue is fixed. Please also inc
 ## Checklist: (Feel free to delete this section upon completion)
 
 - [ ] All tests are passing
+- [ ] Benchmark performance has not significantly decreased
 - [ ] Bundle size has not been significantly impacted
 - [ ] The bundle size badge has been updated to reflect the new size
