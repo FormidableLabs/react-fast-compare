@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.2 (2020-05-01)
+
+- [#71](https://github.com/FormidableLabs/react-fast-compare/pull/71). Extend the `hasArrayBuffer` check to support older IE 11 versions.
+
 ## 3.0.1 (2020-02-05)
 
 - [#60](https://github.com/FormidableLabs/react-fast-compare/pull/60). Update documentation on bundle size.
