@@ -3,7 +3,7 @@
 var hasElementType = typeof Element !== 'undefined';
 var hasMap = typeof Map === 'function';
 var hasSet = typeof Set === 'function';
-var hasArrayBuffer = typeof ArrayBuffer === 'function';
+var hasArrayBuffer = typeof ArrayBuffer === 'function' && !!ArrayBuffer.isView;
 
 // Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
 
