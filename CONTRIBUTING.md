@@ -5,21 +5,15 @@ Thanks for contributing!
 ## Before you contribute
 
 This package is a fork of [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal). This library has added handling for React.
-Before contributing, _please make sure the issue relates directly to this library and not fast-deep-equal's_.
+Before contributing, _please make sure the issue relates directly to this library and not fast-deep-equal_.
 
 We encourage pull requests concerning:
 
 * React features not handled in this library
-* Integrating updates from `fast-deep-equal`
-
-  This, unfortunately, now requires more manual work. Use the comment blocks in `index.js`
+* Integrating updates from `fast-deep-equal` － This, unfortunately, now requires more manual work. Use the comment blocks in `index.js`
   to figure out what to paste and where.
-
-* Integrating tests from `fast-deep-equal`
-
-  This usually entails upgrading the `git`-based dependencies of `fast-deep-equal-git` and
+* Integrating tests from `fast-deep-equal` － This usually entails upgrading the `git`-based dependencies of `fast-deep-equal-git` and
   `npm`-published package of `fast-deep-equal` in `package.json:devDependencies`.
-
 * Bugs in this library
 * New tests for React
 * Documentation
@@ -38,7 +32,7 @@ Install the project using `yarn` (which we've standardized on for development):
 $ yarn install
 ```
 
-**TL; DR:** -- Everything you normally need to run is aggregated into:
+**TL; DR:** － Everything you normally need to run is aggregated into:
 
 ```sh
 $ yarn run test
