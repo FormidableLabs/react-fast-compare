@@ -14,7 +14,7 @@ This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
-![benchmark chart](assets/benchmarking.png "benchmarking chart")
+![benchmark chart](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/assets/benchmarking.png "benchmarking chart")
 
 (Check out the [benchmarking details](#benchmarking-this-library).)
 
