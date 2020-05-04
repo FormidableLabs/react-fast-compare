@@ -1,17 +1,19 @@
-Contributing
-============
+# Contributing
 
 Thanks for contributing!
 
 ## Before you contribute
 
-This package is a fork of [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal). This library has added handling for React. Before contributing, _please make sure the issue relates directly to this library and not fast-deep-equals_.
+This package is a fork of [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal). This library has added handling for React.
+Before contributing, _please make sure the issue relates directly to this library and not fast-deep-equal_.
 
 We encourage pull requests concerning:
 
 * React features not handled in this library
-* Integrating updates from `fast-deep-equal`. This unfortunately, now requires more manual work to use the comment blocks in `index.js` to figure out what to paste and where.
-* Integrating tests from `fast-deep-equal`. This usually entails upgrading the `git`-based dependencies of `fast-deep-equal-git` and `npm`-published package of `fast-deep-equal` in `package.json:devDependencies`.
+* Integrating updates from `fast-deep-equal` － This, unfortunately, now requires more manual work. Use the comment blocks in `index.js`
+  to figure out what to paste and where.
+* Integrating tests from `fast-deep-equal` － This usually entails upgrading the `git`-based dependencies of `fast-deep-equal-git` and
+  `npm`-published package of `fast-deep-equal` in `package.json:devDependencies`.
 * Bugs in this library
 * New tests for React
 * Documentation
@@ -30,7 +32,7 @@ Install the project using `yarn` (which we've standardized on for development):
 $ yarn install
 ```
 
-`tl;dr` -- Everything you normally need to run is aggregated into:
+**TL; DR:** － Everything you normally need to run is aggregated into:
 
 ```sh
 $ yarn run test
@@ -106,24 +108,32 @@ $ yarn -s compress
 $ yarn size-min-gz
 ```
 
-**Note**: If the min+gz size increases, please note it in the README. If it is a significant increase, please flag to your reviewers and have a discussion about whether or not the size addition is justified.
+**Note**: If the min+gz size increases, please note it in the README. If it is a significant increase,
+please flag to your reviewers and have a discussion about whether or not the size addition is justified.
 
 ## Before submitting a PR...
 
-Before you go ahead and submit a PR, make sure that you have done the following:
+... please make sure that you have done the following:
 
-```sh
-$ yarn run test
-$ yarn run benchmark
-```
+1. Confirm that all checks are passing:
 
-1. Everything must be correct / pass checks.
-2. You should also check the benchmark stats and make sure that we don't have any significant performance regressions (check out `master` for a baseline comparison on _your_ machine).
-    - Please **do** update the README benchmark numbers for changes in your PR so that we have much easier discussion points _and_ our users get up-to-date information.
+   ```sh
+   $ yarn run test
+   $ yarn run benchmark
+   ```
+
+2. Confirm we don't have any significant performance regressions (check out `master` for a baseline comparison on _your_ machine).
+
+3. Confirm you aren't impacting our bundle size.
+   If you _do_ affect the bundle size, please update the bundle badge in the Readme by
+   * Following the steps outlined in [size](#size):
+     `yarn -s compress && yarn size-min-gz`
+   * Grabbing that output and replacing the current size in the bundle_img: (`https://img.shields.io/badge/minzipped%20size-<NEW_SIZE>%20B-flatgreen.svg`)
+     For example, if the new size is `650`, the new bundle_img will be `https://img.shields.io/badge/minzipped%20size-650%20B-flatgreen.svg`
 
 ## Releasing a new version to NPM
 
-_Only for project administrators_.
+_Only for project administrators_
 
 1. Run `npm version patch` (or `minor|major|VERSION`) to run tests and lint,
    build published directories, then update `package.json` + add a git tag.
