@@ -88,13 +88,17 @@ function equal(a, b) {
     // custom handling for DOM elements
     if (hasElementType && a instanceof Element) return false;
 
-    // custom handling for React
+    // custom handling for React/Preact
     for (i = length; i-- !== 0;) {
-      if (keys[i] === '_owner' && a.$$typeof) {
-        // React-specific: avoid traversing React elements' _owner.
-        //  _owner contains circular references
-        // and is not needed when comparing the actual elements (and not their owners)
-        // .$$typeof and ._store on just reasonable markers of a react element
+      if ((keys[i] === '_owner' || keys[i] === '__v' || keys[i] === '__o') && a.$$typeof) {
+        // React-specific: avoid traversing React elements' _owner
+        // Preact-specific: avoid traversing Preact elements' __v and __o
+        //    __v = $_original / $_vnode
+        //    __o = $_owner
+        // These properties contain circular references and are not needed when
+        // comparing the actual elements (and not their owners)
+        // .$$typeof and ._store on just reasonable markers of elements
+
         continue;
       }
 
