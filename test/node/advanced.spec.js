@@ -7,7 +7,7 @@ const sinon = require('sinon');
 const React = require('react');
 const ReactTestRenderer = require('react-test-renderer');
 
-const Preact = require('preact');
+const Preact = require('preact/compat');
 const PreactTestRenderer = require('@testing-library/preact');
 
 const equal = require('../..');

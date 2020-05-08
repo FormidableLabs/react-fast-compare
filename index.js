@@ -90,7 +90,7 @@ function equal(a, b) {
 
     // custom handling for React/Preact
     for (i = length; i-- !== 0;) {
-      if ((keys[i] === '_owner' && a.$$typeof) || keys[i] === '__v' || keys[i] === '__o') {
+      if ((keys[i] === '_owner' || keys[i] === '__v' || keys[i] === '__o') && a.$$typeof) {
         // React-specific: avoid traversing React elements' _owner
         // Preact-specific: avoid traversing Preact elements' __v and __o
         //    __v = $_original / $_vnode
