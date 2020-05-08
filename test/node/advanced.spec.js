@@ -58,14 +58,10 @@ class PreactContainer extends Preact.Component {
 describe('advanced', () => {
   let sandbox;
   let warnStub;
-  let reactChildRenderSpy;
-  let preactChildRenderSpy;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
     warnStub = sandbox.stub(console, 'warn');
-    reactChildRenderSpy = sandbox.spy(ReactChild.prototype, 'render');
-    preactChildRenderSpy = sandbox.spy(PreactChild.prototype, 'render');
   });
 
   afterEach(() => {
@@ -73,6 +69,12 @@ describe('advanced', () => {
   });
 
   describe('React', () => {
+    let reactChildRenderSpy;
+
+    beforeEach(() => {
+      reactChildRenderSpy = sandbox.spy(ReactChild.prototype, 'render');
+    });
+
     describe('element (with circular references)', () => {
       it('compares without warning or errors', () => {
         const reactApp = ReactTestRenderer.create(
@@ -100,39 +102,38 @@ describe('advanced', () => {
 
   describe('Preact', () => {
     let cleanupJsDom;
+    let preactChildRenderSpy;
 
-    before(() => {
+    beforeEach(() => {
       cleanupJsDom = jsdom();
+      preactChildRenderSpy = sandbox.spy(PreactChild.prototype, 'render');
     });
 
-    after(() => {
+    afterEach(() => {
       PreactTestRenderer.cleanup();
-      cleanupJsDom();
+      if (cleanupJsDom) cleanupJsDom();
     });
 
     describe('element (with circular references)', () => {
       it('compares without warning or errors', () => {
-        PreactTestRenderer.render(
+        const { rerender } = PreactTestRenderer.render(
           Preact.createElement(PreactContainer)
         );
-        PreactTestRenderer.render(
-          Preact.createElement(PreactContainer)
-        );
+        rerender(Preact.createElement(PreactContainer));
         assert.strictEqual(warnStub.callCount, 0);
       });
       it('elements of same type and props are equal', () => {
-        const { container } = PreactTestRenderer.render(
+        const { rerender } = PreactTestRenderer.render(
           Preact.createElement(PreactContainer)
         );
-        Preact.render(PreactContainer, container);
+        rerender(Preact.createElement(PreactContainer));
         assert.strictEqual(preactChildRenderSpy.callCount, 1);
       });
       it('elements of same type with different props are not equal', () => {
-        const { container } = PreactTestRenderer.render(
+        const { rerender } = PreactTestRenderer.render(
           Preact.createElement(PreactContainer)
         );
-        Preact.render(PreactContainer, container);
-        // { title: 'New' }
+        rerender(Preact.createElement(PreactContainer, { title: 'New' }));
         assert.strictEqual(preactChildRenderSpy.callCount, 2);
       });
     });
