@@ -4,6 +4,7 @@
 [![Bundle Size][bundle_img]](#bundle-size)
 [![Travis Status][trav_img]][trav_site]
 [![AppVeyor Status][appveyor_img]][appveyor_site]
+[![Coverage Status][cov_img]][cov_site]
 [![npm version][npm_img]][npm_site]
 [![Maintenance Status][maintenance_img]](#maintenance-status)
 
@@ -154,12 +155,12 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 
 [trav_img]: https://api.travis-ci.com/FormidableLabs/react-fast-compare.svg
 [trav_site]: https://travis-ci.com/FormidableLabs/react-fast-compare
-[cov_img]: https://img.shields.io/coveralls/FormidableLabs/react-fast-compare.svg
-[cov_site]: https://coveralls.io/r/FormidableLabs/react-fast-compare
+[cov_img]: https://codecov.io/gh/FormidableLabs/react-fast-compare/branch/master/graph/badge.svg
+[cov_site]: https://codecov.io/gh/FormidableLabs/react-fast-compare
 [npm_img]: https://badge.fury.io/js/react-fast-compare.svg
 [npm_site]: http://badge.fury.io/js/react-fast-compare
 [appveyor_img]: https://ci.appveyor.com/api/projects/status/github/formidablelabs/react-fast-compare?branch=master&svg=true
 [appveyor_site]: https://ci.appveyor.com/project/FormidableLabs/react-fast-compare
-[bundle_img]: https://img.shields.io/badge/minzipped%20size-627%20B-flatgreen.svg
+[bundle_img]: https://img.shields.io/badge/minzipped%20size-639%20B-flatgreen.svg
 [downloads_img]: https://img.shields.io/npm/dm/react-fast-compare.svg
 [maintenance_img]: https://img.shields.io/badge/maintenance-active-flatgreen.svg

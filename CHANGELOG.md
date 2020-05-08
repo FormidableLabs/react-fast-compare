@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased － 3.1.0 (2020-05-08)
+
+- [#76](https://github.com/FormidableLabs/react-fast-compare/pull/76). Add support for preact/compat.
+- [#75](https://github.com/FormidableLabs/react-fast-compare/pull/75). Drop test support for Node 8.
+- [#62](https://github.com/FormidableLabs/react-fast-compare/pull/62). Fix TypeScript types by declaring a function instead of a module.
+
 ## 3.0.2 (2020-05-01)
 
 - [#71](https://github.com/FormidableLabs/react-fast-compare/pull/71). Extend the `hasArrayBuffer` check to support older IE 11 versions.
