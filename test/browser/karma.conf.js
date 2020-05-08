@@ -2,6 +2,38 @@
 
 const path = require('path');
 
+// **Debugging Help**
+// We normally dislike commented out code, but as Karma doesn't easily produce
+// a bundle, debugging bundle errors is a pain, particularly on ie11.
+// To help with this, uncomment this plugin to write out all Karma webpack
+// assets like `test/browser/index.js` to disk as `~/Desktops/test-browser-index.js`
+// and then inspect the failing lines you need.
+//
+// Add the plugin into config for `webpack` below with:
+// ```
+// plugins: [
+//   new WriteAssetPlugin()
+// ]
+// ```
+//
+// const fs = require('fs').promises;
+// const os = require('os');
+//
+// class WriteAssetPlugin {
+//   apply(compiler) {
+//     compiler.hooks.emit.tapPromise("WriteAssetPlugin", this.writeAsset.bind(this));
+//   }
+//
+//   async writeAsset(compiler) {
+//     const { assets } = compiler;
+//
+//    await Promise.all(Object.entries(assets).map(async ([file, src]) => {
+//      const outFile = path.join(os.homedir(), "Desktop", file.split(path.sep).join("-"));
+//      await fs.writeFile(outFile, src.source());
+//    }));
+//   }
+// }
+
 module.exports = function(config) {
   config.set({
     basePath: '../..',
@@ -31,7 +63,9 @@ module.exports = function(config) {
               path.join(
                 path.dirname(require.resolve('fast-deep-equal-git/package.json')),
                 'spec'
-              )
+              ),
+              // Transpile all of testing-library's preact stuff.
+              path.dirname(require.resolve('@testing-library/preact/package.json'))
             ],
             loader: 'babel-loader',
             options: {

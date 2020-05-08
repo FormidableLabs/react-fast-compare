@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- [#75](https://github.com/FormidableLabs/react-fast-compare/pull/75). Drop support for Node 8.
+
 ## 3.0.2 (2020-05-01)
 
 - [#71](https://github.com/FormidableLabs/react-fast-compare/pull/71). Extend the `hasArrayBuffer` check to support older IE 11 versions.
