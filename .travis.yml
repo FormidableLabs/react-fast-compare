@@ -29,7 +29,7 @@ script:
   - yarn run test
 
 after_script:
-  - coveralls < coverage/lcov.info
+  - yarn codecov
 
 cache:
   yarn: true
