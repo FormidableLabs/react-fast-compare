@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased － 3.1.0 (2020-05-08)
+## 3.1.0 (2020-05-08)
 
 - [#76](https://github.com/FormidableLabs/react-fast-compare/pull/76). Add support for preact/compat.
 - [#75](https://github.com/FormidableLabs/react-fast-compare/pull/75). Drop test support for Node 8.
