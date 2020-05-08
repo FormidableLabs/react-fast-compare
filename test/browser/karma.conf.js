@@ -31,7 +31,9 @@ module.exports = function(config) {
               path.join(
                 path.dirname(require.resolve('fast-deep-equal-git/package.json')),
                 'spec'
-              )
+              ),
+              // Contains arrow functions, so transpile dependency too.
+              require.resolve('@testing-library/preact/dist/index.js')
             ],
             loader: 'babel-loader',
             options: {
