@@ -84,10 +84,16 @@ $ yarn run test-browser-ie
 
 ### Types
 
-We validate our TypeScript `index.d.ts` with:
+We validate our TypeScript `index.d.ts` with two steps:
 
 ```sh
+# Runs the TypeScript compiler over our types
+$ yarn run test-tsc
+
+# Runs our types through a sample TypeScript file
 $ yarn run test-ts
+# Compiled output is put into a co-located index.js
+# Treat the output like a snapshot, commit any changes
 ```
 
 ### Style
@@ -135,7 +141,13 @@ please flag to your reviewers and have a discussion about whether or not the siz
 
 _Only for project administrators_
 
-1. Run `npm version patch` (or `minor|major|VERSION`) to run tests and lint,
-   build published directories, then update `package.json` + add a git tag.
-2. Run `npm publish` and publish to NPM if all is well.
-3. Run `git push && git push --tags`
+```sh
+# (1) Run tests, lint, build published dir, update package.json
+$ npm version [patch|minor|major|<version>]
+
+# (2) If all is well, publish the new version to the npm registry
+$ npm publish
+
+# (3) Then, update github with the associated tag
+$ git push --tags
+```
