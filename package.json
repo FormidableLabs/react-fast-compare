@@ -10,7 +10,7 @@
     "test-browser": "karma start test/browser/karma.conf.js",
     "test-browser-ie": "karma start test/browser/karma.conf.ie.js",
     "test-node": "mocha \"test/node/*.spec.js\"",
-    "test-node-cov": "nyc yarn test-node",
+    "test-node-cov": "nyc mocha \"test/node/*.spec.js\"",
     "test-ts": "tsc --target ES5 --noImplicitAny index.d.ts",
     "test": "builder concurrent --buffer eslint test-ts test-node-cov test-browser",
     "test-ie": "builder concurrent --buffer eslint test-ts test-node-cov test-browser-ie",
