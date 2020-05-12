@@ -149,5 +149,5 @@ $ npm version [patch|minor|major|<version>]
 $ npm publish
 
 # (3) Then, update github with the associated tag
-$ git push --tags
+$ git push && git push --tags
 ```
