@@ -1,43 +1,45 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const equal = require("../..");
 
-type DeepObject = {
-  any: any;
+const testArr = [
+  { text: "green", id: "23"},
+  { text: "sunshine", id: "1"}, 
+  { text: "mountain", id: "11"}, 
+  { text: "air", id: "8"}, 
+  { text: "plants", id: "9"}
+] as ITodo[];
+
+type ITodo = {
+  text: string;
+  id: string;
 };
 
-type State = {
-  any: {
-    any: any;
-  };
+type IProps = {
+  todo: ITodo;
 };
 
-// State
-const selector = (state: State) => {
-  a: {
-    b: [1, 2, 3];
-  }
-};
-
-class TestComponent extends React.Component {
-  constructor() {
-    super();
-    this.useSelector = this.useSelector;
+class TestChild extends React.Component<IProps> {
+  constructor(props) {
+    super(...props);
   }
 
   shouldComponentUpdate(nextProps) {
     return !equal(this.props, nextProps);
   }
 
-  useSelector<TState, TSelected>(
-    selector: (state: TState) => TSelected,
-    equalityFn?: (left: TSelected, right: TSelected) => boolean
-  ): TSelected;
-  
-  this.useSelector(selector); // typed correctly as DeepObject
-  this.useSelector(selector, equal); // typed as any
+  todo = useSelector((state) => state.todos[props.id]);
 
   render() {
-    // ...
+    return <div>{todo}</div>;
   }
-};
+}
+
+class TestContainer extends React.Component<> {
+  render() {
+    return (
+      {testArr.map(item => <TestChild todo={item} />)}
+    );
+  }
+}
