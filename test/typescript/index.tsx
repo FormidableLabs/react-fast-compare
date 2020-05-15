@@ -21,25 +21,20 @@ type IProps = {
 };
 
 class TestChild extends React.Component<IProps> {
-  constructor(props) {
-    super(...props);
-  }
-
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps: IProps) {
     return !equal(this.props, nextProps);
   }
 
-  todo = useSelector((state) => state.todos[props.id]);
-
   render() {
+    const todo = useSelector((state) => state.todos[props.id]);
     return <div>{todo}</div>;
   }
 }
 
-class TestContainer extends React.Component<> {
+class TestContainer extends React.Component {
   render() {
     return (
-      {testArr.map(item => <TestChild todo={item} />)}
+      testArr.map(item => <TestChild todo={item} />)
     );
   }
 }
