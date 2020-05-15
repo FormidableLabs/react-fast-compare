@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "jsx": "react",
+    "target": "ES6",
+    "esModuleInterop": true
   }
 }
