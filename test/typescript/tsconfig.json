@@ -3,6 +3,9 @@
     "composite": true,
     "jsx": "react",
     "target": "ES6",
-    "esModuleInterop": true
+    "allowSyntheticDefaultImports": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }

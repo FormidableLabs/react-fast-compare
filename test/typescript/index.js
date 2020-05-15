@@ -12,8 +12,11 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
-var react_1 = require("react");
+var react_1 = __importDefault(require("react"));
 var react_redux_1 = require("react-redux");
 var equal = require("../..");
 var testArr = [
@@ -21,29 +24,22 @@ var testArr = [
     { text: "sunshine", id: "1" },
     { text: "mountain", id: "11" },
     { text: "air", id: "8" },
-    { text: "plants", id: "9" }
+    { text: "plants", id: "9" },
 ];
-var TestChild = /** @class */ (function (_super) {
-    __extends(TestChild, _super);
-    function TestChild() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    TestChild.prototype.shouldComponentUpdate = function (nextProps) {
-        return !equal(this.props, nextProps);
-    };
-    TestChild.prototype.render = function () {
-        var todo = react_redux_1.useSelector(function (state) { return state.todos[props.id]; });
-        return <div>{todo}</div>;
-    };
-    return TestChild;
-}(react_1["default"].Component));
+var TestChild = function (props) {
+    // shouldComponentUpdate(nextProps: IProps) {
+    //   return !equal(this.props, nextProps);
+    // }
+    var todo = react_redux_1.useSelector(function (state) { return state.todos[props.id]; });
+    return react_1["default"].createElement("div", null, todo);
+};
 var TestContainer = /** @class */ (function (_super) {
     __extends(TestContainer, _super);
     function TestContainer() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     TestContainer.prototype.render = function () {
-        return (testArr.map(function (item) { return <TestChild todo={item}/>; }));
+        return testArr.map(function (item) { return react_1["default"].createElement(TestChild, { key: item.id, todo: item }); });
     };
     return TestContainer;
 }(react_1["default"].Component));
