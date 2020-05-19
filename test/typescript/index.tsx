@@ -1,14 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+// import { useSelector } from 'react-redux';
 
-const equal = require("../..");
+const equal = require('../..');
 
 const testArr = [
-  { text: "green", id: "23" },
-  { text: "sunshine", id: "1" },
-  { text: "mountain", id: "11" },
-  { text: "air", id: "8" },
-  { text: "plants", id: "9" },
+  { text: 'green', id: '23' },
+  { text: 'sunshine', id: '1' },
+  { text: 'mountain', id: '11' },
+  { text: 'air', id: '8' },
+  { text: 'plants', id: '9' },
 ] as ITodo[];
 
 type ITodo = {
@@ -29,7 +29,7 @@ class TestChild extends React.Component<IProps> {
     const todo = this.props.todo;
     return <div>{todo.text}</div>;
   }
-};
+}
 
 class TestContainer extends React.Component {
   render() {

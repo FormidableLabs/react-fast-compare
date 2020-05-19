@@ -1,6 +1,9 @@
 env:
   node: true
 extends: 'eslint:recommended'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  sourceType: module
 rules:
   indent: [ 2, 2, { SwitchCase: 1 } ]
   no-trailing-spaces: 2
