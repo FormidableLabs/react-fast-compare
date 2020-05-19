@@ -20,14 +20,16 @@ type IProps = {
   todo: ITodo;
 };
 
-const TestChild = (props: IProps) => {
-  // shouldComponentUpdate(nextProps: IProps) {
-  //   return !equal(this.props, nextProps);
-  // }
+class TestChild extends React.Component<IProps> {
+  shouldComponentUpdate(nextProps: IProps) {
+    return !equal(this.props, nextProps);
+  }
 
-  const todo = useSelector((state) => state.todos[props.id]);
-  return <div>{todo}</div>;
-}
+  render() {
+    const todo = this.props.todo;
+    return <div>{todo.text}</div>;
+  }
+};
 
 class TestContainer extends React.Component {
   render() {
