@@ -1,8 +1,7 @@
 // This file exists to test our types against sample user code
 // This is compiled using `tsc` in our `test-ts-usage` script
 import React from 'react';
-
-const equal = require('../..');
+import equal from '../../index.js';
 
 type ITodo = {
   text: string;
