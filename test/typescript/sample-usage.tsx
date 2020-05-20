@@ -1,20 +1,19 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
 
 const equal = require('../..');
-
-const testArr = [
-  { text: 'green', id: '23' },
-  { text: 'sunshine', id: '1' },
-  { text: 'mountain', id: '11' },
-  { text: 'air', id: '8' },
-  { text: 'plants', id: '9' },
-] as ITodo[];
 
 type ITodo = {
   text: string;
   id: string;
 };
+
+const testArr: ITodo[] = [
+  { text: 'green', id: '23' },
+  { text: 'sunshine', id: '1' },
+  { text: 'mountain', id: '11' },
+  { text: 'air', id: '8' },
+  { text: 'plants', id: '9' },
+];
 
 type IProps = {
   todo: ITodo;
