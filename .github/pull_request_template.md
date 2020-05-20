@@ -12,6 +12,7 @@ Please include a summary of the change and which issue is fixed. Please also inc
 ## Checklist:
 
 - [ ] All tests are passing
+- [ ] Type definitions, if updated, pass both `test-ts-defs` and `test-ts-usage`
 - [ ] Benchmark performance has not significantly decreased
 - [ ] Bundle size has not been significantly impacted
 - [ ] The bundle size badge has been updated to reflect the new size

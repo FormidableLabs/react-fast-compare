@@ -88,12 +88,10 @@ We validate our TypeScript `index.d.ts` with two steps:
 
 ```sh
 # Runs the TypeScript compiler over our types
-$ yarn run test-tsc
+$ yarn run test-ts-defs
 
 # Runs our types through a sample TypeScript file
-$ yarn run test-ts
-# Compiled output is put into a co-located index.js
-# Treat the output like a snapshot, commit any changes
+$ yarn run test-ts-usage
 ```
 
 ### Style
