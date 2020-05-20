@@ -12,7 +12,7 @@
     "test-browser-ie": "karma start test/browser/karma.conf.ie.js",
     "test-node": "mocha \"test/node/*.spec.js\"",
     "test-node-cov": "nyc mocha \"test/node/*.spec.js\"",
-    "test-ts-usage": "tsc --esModuleInterop --jsx react test/typescript/sample-usage.tsx",
+    "test-ts-usage": "tsc --esModuleInterop --jsx react --noEmit  test/typescript/sample-usage.tsx",
     "test-ts-defs": "tsc --target ES5 index.d.ts",
     "test": "builder concurrent --buffer eslint test-ts-usage test-ts-defs test-node-cov test-browser",
     "test-ie": "builder concurrent --buffer eslint test-ts-usage test-ts-defs test-node-cov test-browser-ie",
