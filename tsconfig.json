@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "references": [{ "path": "test/typescript" }],
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}

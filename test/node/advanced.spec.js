@@ -1,5 +1,8 @@
 'use strict';
 
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-children-prop */
+
 const assert = require('assert');
 const jsdom = require('jsdom-global');
 const sinon = require('sinon');
@@ -13,7 +16,10 @@ const PreactTestRenderer = require('@testing-library/preact');
 const equal = require('../..');
 const tests = require('./tests');
 
-const TIMEOUT = '5000';
+// `jsdom-global` does a lazy require under the hood to `jsdom` which is
+// super expensive. We deliberately call + cleanup to take the require hit
+// early and seed the require cache so subsequent calls are fast.
+jsdom()();
 
 class ReactChild extends React.Component {
   shouldComponentUpdate(nextProps) {
@@ -60,9 +66,6 @@ class PreactContainer extends Preact.Component {
 describe('advanced', () => {
   let sandbox;
   let warnStub;
-
-  // eslint-disable-next-line no-invalid-this
-  beforeEach(function () { this.timeout(TIMEOUT); });
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
