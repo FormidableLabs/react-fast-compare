@@ -1,5 +1,8 @@
 'use strict';
 
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-children-prop */
+
 const assert = require('assert');
 const jsdom = require('jsdom-global');
 const sinon = require('sinon');
