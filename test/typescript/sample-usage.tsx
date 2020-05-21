@@ -36,3 +36,5 @@ class TestContainer extends React.Component {
     return testArr.map((item) => <TestChild key={item.id} todo={item} />);
   }
 }
+
+export default TestContainer;

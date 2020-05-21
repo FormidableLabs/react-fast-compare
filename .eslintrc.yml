@@ -1,9 +1,12 @@
 env:
   node: true
-extends: 'eslint:recommended'
+extends: [ 'eslint:recommended', 'plugin:react/recommended' ]
 parser: '@typescript-eslint/parser'
 parserOptions:
   sourceType: module
+settings:
+  react:
+    version: detect
 rules:
   indent: [ 2, 2, { SwitchCase: 1 } ]
   no-trailing-spaces: 2
