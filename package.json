@@ -15,8 +15,8 @@
     "test-node-cov": "nyc mocha \"test/node/*.spec.js\"",
     "test-ts-usage": "tsc --esModuleInterop --jsx react --noEmit test/typescript/sample-usage.tsx",
     "test-ts-defs": "tsc --target ES5 index.d.ts",
-    "test": "builder concurrent --buffer eslint test-ts-usage test-ts-defs test-node-cov test-browser test-ie",
-    "test-ie": "builder concurrent --buffer eslint test-ts-usage test-ts-defs test-node-cov test-browser-ie",
+    "test": "builder concurrent --buffer eslint test-ts-usage test-ts-defs test-node-cov test-browser",
+    "test-ie": "builder concurrent --buffer eslint tslint test-ts-usage test-ts-defs test-node-cov test-browser-ie",
     "compress": "terser --compress --mangle=\"toplevel:true\" -- index.js",
     "size-min-gz": "yarn -s compress | gzip -9 | wc -c"
   },
