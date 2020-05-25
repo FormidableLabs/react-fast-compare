@@ -2,7 +2,6 @@
 // This is compiled using `tsc` in our `test-ts-usage` script
 import React from 'react';
 import equal from '../../index.js';
-import { useSelector } from 'react-redux';
 
 type ITodo = {
   text: string;
@@ -30,29 +29,13 @@ class TestChild extends React.Component<IChildProps> {
 
   render() {
     const todo = this.props.todo;
-
     return <div>{todo.text}</div>;
   }
 }
 
-type IContainerState = { completed: ITodo[] };
-
-class TestContainer extends React.Component<{}, IContainerState> {
+class TestContainer extends React.Component {
   render() {
-    const numberOfOverlappingItems: number = useSelector(
-      (state) => this.state.completed.length
-    );
-
-    return (
-      <div>
-        Overlap: {numberOfOverlappingItems}
-        <div>
-          {testArr.map((item) => (
-            <TestChild key={item.id} todo={item} />
-          ))}
-        </div>
-      </div>
-    );
+    return testArr.map((item) => <TestChild key={item.id} todo={item} />);
   }
 }
 
