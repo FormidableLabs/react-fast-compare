@@ -14,16 +14,14 @@ const testArr: ITodo[] = [
   { text: 'mountain', id: '11' },
   { text: 'air', id: '8' },
   { text: 'plants', id: '9' },
-  { text: 'air', id: '8' },
-  { text: 'air', id: '8' },
 ];
 
-type IChildProps = {
+type IProps = {
   todo: ITodo;
 };
 
-class TestChild extends React.Component<IChildProps> {
-  shouldComponentUpdate(nextProps: IChildProps) {
+class TestChild extends React.Component<IProps> {
+  shouldComponentUpdate(nextProps: IProps) {
     return !equal(this.props, nextProps);
   }
 

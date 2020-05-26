@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // useSelector
-import { Provider } from 'react-redux';
+import { Provider, useSelector, DefaultRootState } from 'react-redux';
 import { createStore } from 'redux';
 
 import equal from '../../index.js';
@@ -23,22 +23,9 @@ const testArr: IItem[] = [
   { text: 'air', id: '8' },
 ];
 
-type IChildProps = {
-  item: IItem;
-};
-
-class TestChild extends React.Component<IChildProps> {
-  shouldComponentUpdate(nextProps: IChildProps) {
-    return !equal(this.props, nextProps);
-  }
-
-  render() {
-    const { text: word } = this.props.item;
-    return <div>{word}</div>;
-  }
+interface IContainerState extends DefaultRootState {
+  overlap: IItem[];
 }
-
-type IContainerState = { overlap: IItem[] };
 
 const overlap = (state = [], action) => {
   switch (action.type) {
@@ -53,15 +40,14 @@ const store = createStore(overlap, ['mountain']);
 
 class TestContainer extends React.Component<{}, IContainerState> {
   render() {
-    // to interact with the store
-    // store.dispatch({ type: 'TYPE', text: 'some-text' })
+    useSelector(this.state, equal);
 
     return (
       <div>
         Testing react-redux
         <div>
           {testArr.map((item) => (
-            <TestChild key={item.id} item={item} />
+            <p key={item.id}>{item.text}</p>
           ))}
         </div>
       </div>
