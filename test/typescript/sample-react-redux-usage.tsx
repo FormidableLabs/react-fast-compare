@@ -28,7 +28,7 @@ const lengthSelector = (state: IState): number => state.items.length;
 
 const store = createStore(reducer, initialState);
 
-function TestContainer() {
+function Test() {
   const length = useSelector(lengthSelector, equal);
   return (
     <div>
@@ -40,7 +40,7 @@ function TestContainer() {
 
 ReactDOM.render(
   <Provider store={store}>
-    <TestContainer />
+    <Test />
   </Provider>,
   document.getElementById('root')
 );
