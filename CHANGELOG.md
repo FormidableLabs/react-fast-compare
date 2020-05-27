@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- [#80](https://github.com/FormidableLabs/react-fast-compare/pull/80). Update types to use generic `any`s.
+- [#77](https://github.com/FormidableLabs/react-fast-compare/pull/77). Add tests for our TypeScript type definitions.
+
 ## 3.1.0 (2020-05-08)
 
 - [#76](https://github.com/FormidableLabs/react-fast-compare/pull/76). Add support for preact/compat.
@@ -17,6 +22,7 @@
 ## 3.0.0 (2020-01-05)
 
 **Features:**
+
 - [#36](https://github.com/FormidableLabs/react-fast-compare/pull/36). Update to `fast-deep-equal@3.1.1` with modified support for ES.next data types: `Map`, `Set`, `ArrayBuffer`.
 - [#57](https://github.com/FormidableLabs/react-fast-compare/pull/57). Minor refactoring to reduce min+gz size.
 - [#59](https://github.com/FormidableLabs/react-fast-compare/pull/59). Rename exported to `isEqual` for TypeScript users.
