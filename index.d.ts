@@ -1,3 +1,2 @@
-declare function isEqual(a: any, b: any): boolean;
-declare namespace isEqual {}
+declare function isEqual<A = any, B = any>(a: A, b: B): boolean;
 export = isEqual;
