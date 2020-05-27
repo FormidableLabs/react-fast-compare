@@ -17,7 +17,7 @@ type IAction = {
 };
 
 const initialState: IState = {
-  items: ['green', 'sunshine', 'mountain', 'air', 'plants'],
+  items: [],
 };
 
 const reducer = (state: IState, action: IAction) => {
@@ -28,16 +28,14 @@ const lengthSelector = (state: IState): number => state.items.length;
 
 const store = createStore(reducer, initialState);
 
-class TestContainer extends React.Component {
-  render() {
-    const length = useSelector(lengthSelector, equal);
-    return (
-      <div>
-        Testing react-redux useSelector. There are
-        {length.toExponential()} items.
-      </div>
-    );
-  }
+function TestContainer() {
+  const length = useSelector(lengthSelector, equal);
+  return (
+    <div>
+      Testing react-redux useSelector. There are
+      {length.toExponential()} items.
+    </div>
+  );
 }
 
 ReactDOM.render(
