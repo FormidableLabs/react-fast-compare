@@ -2,54 +2,39 @@
 // This is compiled using `tsc` in our `test-ts-usage` script
 import React from 'react';
 import ReactDOM from 'react-dom';
-// useSelector
-import { Provider, useSelector, DefaultRootState } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { createStore } from 'redux';
 
 import equal from '../../index.js';
 
-type IItem = {
-  text: string;
-  id: string;
+type IState = {
+  items: string[];
 };
 
-const testArr: IItem[] = [
-  { text: 'green', id: '23' },
-  { text: 'sunshine', id: '1' },
-  { text: 'mountain', id: '11' },
-  { text: 'air', id: '8' },
-  { text: 'plants', id: '9' },
-  { text: 'air', id: '8' },
-  { text: 'air', id: '8' },
-];
-
-interface IContainerState extends DefaultRootState {
-  overlap: IItem[];
-}
-
-const overlap = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      return state.concat([action.text]);
-    default:
-      return state;
-  }
+type IAction = {
+  type: string;
+  payload: any;
 };
 
-const store = createStore(overlap, ['mountain']);
+const initialState: IState = {
+  items: ['green', 'sunshine', 'mountain', 'air', 'plants'],
+};
 
-class TestContainer extends React.Component<{}, IContainerState> {
+const reducer = (state: IState, action: IAction) => {
+  return state;
+};
+
+const lengthSelector = (state: IState): number => state.items.length;
+
+const store = createStore(reducer, initialState);
+
+class TestContainer extends React.Component {
   render() {
-    useSelector(this.state, equal);
-
+    const length = useSelector(lengthSelector, equal);
     return (
       <div>
-        Testing react-redux
-        <div>
-          {testArr.map((item) => (
-            <p key={item.id}>{item.text}</p>
-          ))}
-        </div>
+        Testing react-redux useSelector. There are
+        {length.toExponential()} items.
       </div>
     );
   }
