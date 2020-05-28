@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.2.0 (2020-05-28)
 
 - [#80](https://github.com/FormidableLabs/react-fast-compare/pull/80). Update types to use generic `any`s.
 - [#77](https://github.com/FormidableLabs/react-fast-compare/pull/77). Add tests for our TypeScript type definitions.
