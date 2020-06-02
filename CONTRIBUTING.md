@@ -9,20 +9,20 @@ Before contributing, _please make sure the issue relates directly to this librar
 
 We encourage pull requests concerning:
 
-- React features not handled in this library
-- Integrating updates from `fast-deep-equal` － This, unfortunately, now requires more manual work. Use the comment blocks in `index.js`
+* React features not handled in this library
+* Integrating updates from `fast-deep-equal` － This, unfortunately, now requires more manual work. Use the comment blocks in `index.js`
   to figure out what to paste and where.
-- Integrating tests from `fast-deep-equal` － This usually entails upgrading the `git`-based dependencies of `fast-deep-equal-git` and
+* Integrating tests from `fast-deep-equal` － This usually entails upgrading the `git`-based dependencies of `fast-deep-equal-git` and
   `npm`-published package of `fast-deep-equal` in `package.json:devDependencies`.
-- Bugs in this library
-- New tests for React
-- Documentation
+* Bugs in this library
+* New tests for React
+* Documentation
 
 Pull requests that should be for [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal):
 
-- Equality of non-react comparisons
-- Performance of non-react comparisons
-- Tests for non-react comparisons
+* Equality of non-react comparisons
+* Performance of non-react comparisons
+* Tests for non-react comparisons
 
 ## Development
 
@@ -130,11 +130,11 @@ please flag to your reviewers and have a discussion about whether or not the siz
 
 3. Confirm you aren't impacting our bundle size.
    If you _do_ affect the bundle size, please update the bundle badge in the Readme by
-   - Following the steps outlined in [size](#size):
+   * Following the steps outlined in [size](#size):
      `yarn -s compress && yarn size-min-gz`
-   - Grabbing that output and replacing the current size in the bundle_img: (`https://img.shields.io/badge/minzipped%20size-<NEW_SIZE>%20B-flatgreen.svg`)
+   * Grabbing that output and replacing the current size in the bundle_img: (`https://img.shields.io/badge/minzipped%20size-<NEW_SIZE>%20B-flatgreen.svg`)
      For example, if the new size is `650`, the new bundle_img will be `https://img.shields.io/badge/minzipped%20size-650%20B-flatgreen.svg`
-   - _Org members:_ Update the README's benchmark comparison png using this [internal Google Sheet template](https://docs.google.com/spreadsheets/d/1GuqpO0wgPjQ9usx6sR3t0Y_HTmAdRqjXkSjs3SBsmTc/edit?usp=sharing_eip&ts=5ed1642f).
+   * _Org members:_ Update the README's benchmark comparison png using this [internal Google Sheet template](https://docs.google.com/spreadsheets/d/1GuqpO0wgPjQ9usx6sR3t0Y_HTmAdRqjXkSjs3SBsmTc/edit?usp=sharing_eip&ts=5ed1642f).
 
 ## Releasing a new version to NPM
 
