@@ -1,34 +1,23 @@
 env:
+  es6: true
   node: true
-extends: [ 'eslint:recommended', 'plugin:react/recommended' ]
-parser: '@typescript-eslint/parser'
-parserOptions:
-  sourceType: module
-settings:
-  react:
-    version: detect
 rules:
-  indent: [ 2, 2, { SwitchCase: 1 } ]
-  no-trailing-spaces: 2
-  quotes: [ 2, single, avoid-escape ]
-  linebreak-style: [ 2, unix ]
-  semi: [ 2, always ]
-  valid-jsdoc: [ 2, { requireReturn: false } ]
-  no-invalid-this: 2
-  no-unused-vars: [ 2, { args: none } ]
-  no-console: [ 2, { allow: [ warn, error ] } ]
   block-scoped-var: 2
-  curly: [ 2, multi-or-nest, consistent ]
-  dot-location: [ 2, property ]
+  callback-return: 2
+  curly: [2, multi-or-nest, consistent]
+  dot-location: [2, property]
   dot-notation: 2
+  indent: [2, 2, { SwitchCase: 1 }]
+  linebreak-style: [2, unix]
   no-else-return: 2
   no-eq-null: 2
   no-fallthrough: 2
-  no-return-assign: 2
-  strict: 0
-  no-use-before-define: [ 2, nofunc ]
-  callback-return: 2
   no-path-concat: 2
-globals:
-  document: false
-  Element: false
+  no-return-assign: 2
+  no-trailing-spaces: 2
+  no-unused-vars: [2, { args: none }]
+  no-use-before-define: [2, nofunc]
+  quotes: [2, single, avoid-escape]
+  semi: [2, always]
+  strict: 0
+  valid-jsdoc: [2, { requireReturn: false }]
