@@ -10,8 +10,8 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          # - macos-latest
-          # - windows-latest
+          - macos-latest
+          - windows-latest
         node_version:
           - 12
           - 14
@@ -28,3 +28,8 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn test
+      - name: Test IE
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          yarn install --frozen-lockfile
+          yarn test-ie
