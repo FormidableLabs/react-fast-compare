@@ -33,28 +33,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node_version }}
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
       - name: Test
         if: ${{ matrix.os != 'windows-latest' }}
-        run: |
-          yarn install --frozen-lockfile
-          yarn test
+        run: yarn test
       - name: Test IE
         if: ${{ matrix.os == 'windows-latest' }}
-        run: |
-          yarn install --frozen-lockfile
-          yarn test-ie
-
-  codecov:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      - name: Test
-        run: |
-          yarn install --frozen-lockfile
-          yarn test
-          yarn codecov
+        run: yarn test-ie
