@@ -34,6 +34,7 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - name: Test
+        if: ${{ matrix.os != 'windows-latest' }}
         run: |
           yarn install --frozen-lockfile
           yarn test
