@@ -152,8 +152,8 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 
 **Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
 
-[actions_img]: https://github.com/FormidableLabs/react-fast-compare/actions/workflows/main.yml/badge.svg
-[actions_site]: https://github.com/formidablelabs/react-fast-compare/actions/workflows/main.yml
+[actions_img]: https://github.com/FormidableLabs/react-fast-compare/actions/workflows/ci.yml/badge.svg
+[actions_site]: https://github.com/formidablelabs/react-fast-compare/actions/workflows/ci.yml
 [cov_img]: https://codecov.io/gh/FormidableLabs/react-fast-compare/branch/master/graph/badge.svg
 [cov_site]: https://codecov.io/gh/FormidableLabs/react-fast-compare
 [npm_img]: https://badge.fury.io/js/react-fast-compare.svg
