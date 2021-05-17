@@ -1,0 +1,30 @@
+---
+name: Pull Request
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          # - macos-latest
+          # - windows-latest
+        node_version:
+          - 12
+          - 14
+          - 16
+    name: Node ${{ matrix.node_version }} on ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: Test
+        run: |
+          yarn install --frozen-lockfile
+          yarn test
