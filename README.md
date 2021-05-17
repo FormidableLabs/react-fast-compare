@@ -2,8 +2,7 @@
 
 [![Downloads][downloads_img]][npm_site]
 [![Bundle Size][bundle_img]](#bundle-size)
-[![Travis Status][trav_img]][trav_site]
-[![AppVeyor Status][appveyor_img]][appveyor_site]
+[![GH Actions Status][actions_img]][actions_site]
 [![Coverage Status][cov_img]][cov_site]
 [![npm version][npm_img]][npm_site]
 [![Maintenance Status][maintenance_img]](#maintenance-status)
@@ -15,7 +14,7 @@ This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
-![benchmark chart](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/assets/benchmarking.png "benchmarking chart")
+![benchmark chart](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/assets/benchmarking.png 'benchmarking chart')
 
 (Check out the [benchmarking details](#benchmarking-this-library).)
 
@@ -39,10 +38,10 @@ $ npm install react-fast-compare
 ## Usage
 
 ```jsx
-const isEqual = require("react-fast-compare");
+const isEqual = require('react-fast-compare');
 
 // general usage
-console.log(isEqual({ foo: "bar" }, { foo: "bar" })); // true
+console.log(isEqual({ foo: 'bar' }, { foo: 'bar' })); // true
 
 // React.memo
 // only re-render ExpensiveComponent when the props have deeply changed
@@ -153,8 +152,8 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 
 **Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
 
-[trav_img]: https://api.travis-ci.com/FormidableLabs/react-fast-compare.svg
-[trav_site]: https://travis-ci.com/FormidableLabs/react-fast-compare
+[actions_img]: https://github.com/FormidableLabs/react-fast-compare/actions/workflows/main.yml/badge.svg
+[actions_site]: https://github.com/formidablelabs/react-fast-compare/actions/workflows/main.yml
 [cov_img]: https://codecov.io/gh/FormidableLabs/react-fast-compare/branch/master/graph/badge.svg
 [cov_site]: https://codecov.io/gh/FormidableLabs/react-fast-compare
 [npm_img]: https://badge.fury.io/js/react-fast-compare.svg
