@@ -14,7 +14,7 @@ This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
-![benchmark chart](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/assets/benchmarking.png 'benchmarking chart')
+![benchmark chart](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/assets/benchmarking.png "benchmarking chart")
 
 (Check out the [benchmarking details](#benchmarking-this-library).)
 
@@ -38,10 +38,10 @@ $ npm install react-fast-compare
 ## Usage
 
 ```jsx
-const isEqual = require('react-fast-compare');
+const isEqual = require("react-fast-compare");
 
 // general usage
-console.log(isEqual({ foo: 'bar' }, { foo: 'bar' })); // true
+console.log(isEqual({ foo: "bar" }, { foo: "bar" })); // true
 
 // React.memo
 // only re-render ExpensiveComponent when the props have deeply changed
