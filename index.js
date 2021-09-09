@@ -47,11 +47,10 @@ function equal(a, b) {
     if (hasMap && (a instanceof Map) && (b instanceof Map)) {
       if (a.size !== b.size) return false;
       it = a.entries();
-      while (!(i = it.next()).done)
+      while (!(i = it.next()).done) {
         if (!b.has(i.value[0])) return false;
-      it = a.entries();
-      while (!(i = it.next()).done)
         if (!equal(i.value[1], b.get(i.value[0]))) return false;
+      }
       return true;
     }
 
