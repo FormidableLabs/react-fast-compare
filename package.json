@@ -59,7 +59,7 @@
     "fast-deep-equal-git": "epoberezkin/fast-deep-equal#v3.1.1",
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",
-    "karma": "^4.4.1",
+    "karma": "^6.3.14",
     "karma-chrome-launcher": "^3.1.0",
     "karma-firefox-launcher": "^1.1.0",
     "karma-ie-launcher": "^1.0.0",
