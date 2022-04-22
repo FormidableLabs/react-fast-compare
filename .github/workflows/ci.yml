@@ -36,8 +36,5 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Test
         run: yarn test
-      - name: Test IE
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: yarn test-browser-ie
       - name: Codecov
         run: yarn codecov

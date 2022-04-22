@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 
 // **Debugging Help**
 // We normally dislike commented out code, but as Karma doesn't easily produce
@@ -73,7 +74,13 @@ module.exports = function(config) {
             }
           }
         ]
-      }
+      },
+      plugins: [
+        new webpack.ProvidePlugin({
+          assert: 'assert',
+          process: 'process'
+        })
+      ]
     },
     exclude: [],
     port: 8080,
