@@ -18,8 +18,7 @@ function equal(a, b) {
     if (Array.isArray(a)) {
       length = a.length;
       if (length != b.length) return false;
-      for (i = length; i-- !== 0;)
-        if (!equal(a[i], b[i])) return false;
+      for (i = length; i-- !== 0; ) if (!equal(a[i], b[i])) return false;
       return true;
     }
 
@@ -44,22 +43,19 @@ function equal(a, b) {
     //
     //    **Note**: `i` access switches to `i.value`.
     var it;
-    if (hasMap && (a instanceof Map) && (b instanceof Map)) {
+    if (hasMap && a instanceof Map && b instanceof Map) {
       if (a.size !== b.size) return false;
       it = a.entries();
-      while (!(i = it.next()).done)
-        if (!b.has(i.value[0])) return false;
+      while (!(i = it.next()).done) if (!b.has(i.value[0])) return false;
       it = a.entries();
-      while (!(i = it.next()).done)
-        if (!equal(i.value[1], b.get(i.value[0]))) return false;
+      while (!(i = it.next()).done) if (!equal(i.value[1], b.get(i.value[0]))) return false;
       return true;
     }
 
-    if (hasSet && (a instanceof Set) && (b instanceof Set)) {
+    if (hasSet && a instanceof Set && b instanceof Set) {
       if (a.size !== b.size) return false;
       it = a.entries();
-      while (!(i = it.next()).done)
-        if (!b.has(i.value[0])) return false;
+      while (!(i = it.next()).done) if (!b.has(i.value[0])) return false;
       return true;
     }
     // END: Modifications
@@ -67,8 +63,7 @@ function equal(a, b) {
     if (hasArrayBuffer && ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
       length = a.length;
       if (length != b.length) return false;
-      for (i = length; i-- !== 0;)
-        if (a[i] !== b[i]) return false;
+      for (i = length; i-- !== 0; ) if (a[i] !== b[i]) return false;
       return true;
     }
 
@@ -80,8 +75,7 @@ function equal(a, b) {
     length = keys.length;
     if (length !== Object.keys(b).length) return false;
 
-    for (i = length; i-- !== 0;)
-      if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
+    for (i = length; i-- !== 0; ) if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
     // END: fast-deep-equal
 
     // START: react-fast-compare
@@ -89,7 +83,7 @@ function equal(a, b) {
     if (hasElementType && a instanceof Element) return false;
 
     // custom handling for React/Preact
-    for (i = length; i-- !== 0;) {
+    for (i = length; i-- !== 0; ) {
       if ((keys[i] === '_owner' || keys[i] === '__v' || keys[i] === '__o') && a.$$typeof) {
         // React-specific: avoid traversing React elements' _owner
         // Preact-specific: avoid traversing Preact elements' __v and __o
@@ -111,6 +105,8 @@ function equal(a, b) {
     return true;
   }
 
+  if (typeof a === 'function' && typeof b === 'function') return a.toString() === b.toString();
+
   return a !== a && b !== b;
 }
 // end fast-deep-equal
@@ -119,7 +115,7 @@ module.exports = function isEqual(a, b) {
   try {
     return equal(a, b);
   } catch (error) {
-    if (((error.message || '').match(/stack|recursion/i))) {
+    if ((error.message || '').match(/stack|recursion/i)) {
       // warn on circular references, don't crash
       // browsers give this different errors name and messages:
       // chrome/safari: "RangeError", "Maximum call stack size exceeded"
