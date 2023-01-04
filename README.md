@@ -1,4 +1,4 @@
-[![React Fast Compare — Formidable, We build the modern web](./react-fast-compare-Hero.png)](https://formidable.com/open-source/)
+[![React Fast Compare — Formidable, We build the modern web](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/react-fast-compare-Hero.png)](https://formidable.com/open-source/)
 
 [![Downloads][downloads_img]][npm_site]
 [![Bundle Size][bundle_img]](#bundle-size)
