@@ -1,9 +1,9 @@
 'use strict';
 
-let assert = require('assert');
-let sinon = require('sinon');
+const assert = require('assert');
+const sinon = require('sinon');
 
-let equal = require('../..');
+const equal = require('../..');
 
 const element1 = document.createElement('div');
 const element2 = document.createElement('div');

@@ -1,10 +1,10 @@
 'use strict';
 
-let assert = require('assert');
-let sinon = require('sinon');
+const assert = require('assert');
+const sinon = require('sinon');
 
-let equal = require('../..');
-let tests = require('./tests');
+const equal = require('../..');
+const tests = require('./tests');
 
 describe('basics', function() {
   let sandbox;
