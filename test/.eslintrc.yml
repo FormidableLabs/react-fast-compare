@@ -10,3 +10,5 @@ settings:
 globals:
   document: false
   Element: false
+rules:
+  no-var: 2
