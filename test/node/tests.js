@@ -87,8 +87,16 @@ const custom = [
         value2: { a: 1 },
         equal: false
       },
+      // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects
       {
-        description: 'Object.create(null) equal to vanilla deep objects',
+        description: 'Object.create(null) equal to vanilla null prototype deep objects',
+        value1: Object.assign(Object.create(null), { a: 1, b: { c: true } }),
+        value2: { __proto__: null, a: 1, b: { c: true } },
+        equal: true
+      },
+      // Object.create(null) has a different `constructor` than a vanilla, non-null object.
+      {
+        description: 'Object.create(null) unequal to vanilla deep objects',
         value1: Object.assign(Object.create(null), { a: 1, b: { c: true } }),
         value2: { a: 1, b: { c: true } },
         equal: false
