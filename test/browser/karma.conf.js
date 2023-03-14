@@ -64,9 +64,7 @@ module.exports = function(config) {
               path.join(
                 path.dirname(require.resolve('fast-deep-equal-git/package.json')),
                 'spec'
-              ),
-              // Transpile all of testing-library's preact stuff.
-              path.dirname(require.resolve('@testing-library/preact/package.json'))
+              )
             ],
             loader: 'babel-loader',
             options: {
