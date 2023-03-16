@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 3.2.1 (2023-03-16)
 
 **Bugfixes:**
 
