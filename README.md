@@ -33,7 +33,7 @@ $ npm install react-fast-compare
 - handles React-specific circular references, like elements
 - checks equality Date and RegExp objects
 - should as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) via a single unified library, and with added guardrails for circular references.
-- small: under 650 bytes minified+gzipped
+- small: under 660 bytes minified+gzipped
 
 ## Usage
 
@@ -160,6 +160,6 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [npm_site]: http://badge.fury.io/js/react-fast-compare
 [appveyor_img]: https://ci.appveyor.com/api/projects/status/github/formidablelabs/react-fast-compare?branch=master&svg=true
 [appveyor_site]: https://ci.appveyor.com/project/FormidableLabs/react-fast-compare
-[bundle_img]: https://img.shields.io/badge/minzipped%20size-639%20B-flatgreen.svg
+[bundle_img]: https://img.shields.io/badge/minzipped%20size-656%20B-flatgreen.svg
 [downloads_img]: https://img.shields.io/npm/dm/react-fast-compare.svg
 [maintenance_img]: https://img.shields.io/badge/maintenance-active-flatgreen.svg

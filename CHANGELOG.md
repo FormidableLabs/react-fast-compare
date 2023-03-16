@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+**Bugfixes:**
+
+- Fix Object with null prototype errors [#64](https://github.com/FormidableLabs/react-fast-compare/issues/64).
+
 ## 3.2.0 (2020-05-28)
 
 - [#80](https://github.com/FormidableLabs/react-fast-compare/pull/80). Update types to use generic `any`s.
