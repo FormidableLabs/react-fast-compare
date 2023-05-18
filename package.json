@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FormidableLabs/react-fast-compare.git"
+    "url": "https://github.com/FormidableLabs/react-fast-compare"
   },
   "keywords": [
     "fast",
@@ -39,6 +39,8 @@
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
+    "@changesets/cli": "^2.26.1",
+    "@svitejs/changesets-changelog-github-compact": "^0.1.1",
     "@testing-library/dom": "^9.0.1",
     "@testing-library/preact": "^3.2.3",
     "@types/node": "^18.15.0",
