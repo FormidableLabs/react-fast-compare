@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.2
+
+### Patch Changes
+
+- Adding GitHub release workflow ([#126](https://github.com/FormidableLabs/react-fast-compare/pull/126))
+
 ## 3.2.1 (2023-03-16)
 
 **Bugfixes:**
