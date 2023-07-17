@@ -1,2 +1,2 @@
-declare function isEqual<A = any, B = any>(a: A, b: B): a is B;
+declare function isEqual<B = any>(a: any, b: B): a is B;
 export = isEqual;
