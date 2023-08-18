@@ -16,7 +16,8 @@
     "test-ts-defs": "tsc --target ES5 index.d.ts",
     "test": "builder concurrent --buffer eslint tslint test-ts-usage test-ts-defs test-node-cov test-browser",
     "compress": "terser --compress --mangle=\"toplevel:true\" -- index.js",
-    "size-min-gz": "yarn -s compress | gzip -9 | wc -c"
+    "size-min-gz": "yarn -s compress | gzip -9 | wc -c",
+    "changeset": "changeset"
   },
   "repository": {
     "type": "git",
