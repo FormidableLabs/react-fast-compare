@@ -32,7 +32,7 @@ $ npm install react-fast-compare
 - deeply compares any value (besides objects with circular references)
 - handles React-specific circular references, like elements
 - checks equality Date and RegExp objects
-- should as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) via a single unified library, and with added guardrails for circular references.
+- should be as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) via a single unified library, and with added guardrails for circular references.
 - small: under 660 bytes minified+gzipped
 
 ## Usage
