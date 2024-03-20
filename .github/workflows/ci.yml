@@ -17,8 +17,6 @@ jobs:
           - ubuntu-latest
           - windows-latest
         node_version:
-          - 14
-          - 16
           - 18
     name: Node ${{ matrix.node_version }} on ${{ matrix.os }}
     steps:
@@ -27,10 +25,11 @@ jobs:
         run: |
           git config --global core.autocrlf false
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
+          cache: "yarn"
           node-version: ${{ matrix.node_version }}
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
