@@ -1,0 +1,14 @@
+# pnpm settings (pnpm 11+ reads them only from this file). This repo is a
+# single package, so there's no `packages` list.
+
+# Install only versions published at least 7 days ago, transitive deps
+# included. Setting it explicitly makes it strict: resolution fails instead of
+# falling back to a newer version. It also checks the existing lockfile.
+# `minimumReleaseAgeExclude` is for urgent security fixes only (see
+# CONTRIBUTING).
+minimumReleaseAge: 10080
+
+# Dependencies allowed to run install scripts (pnpm 11+ requires a decision).
+allowBuilds:
+  # postinstall only prints a funding message.
+  core-js: false

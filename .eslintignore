@@ -1,1 +1,3 @@
 test/typescript/index.js
+# Vendored from fast-deep-equal, kept unchanged.
+test/fixtures/fast-deep-equal/

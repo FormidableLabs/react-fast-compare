@@ -57,14 +57,9 @@ module.exports = function(config) {
           {
             test: /\.js$/,
             enforce: 'pre',
+            // Includes the vendored `fast-deep-equal` tests in `test/fixtures`.
             include: [
-              path.resolve(__dirname, '..'),
-              // Transpile the `fast-deep-equal` tests for all browsers.
-              // (The node tests work off real code with ES.next stuff).
-              path.join(
-                path.dirname(require.resolve('fast-deep-equal-git/package.json')),
-                'spec'
-              )
+              path.resolve(__dirname, '..')
             ],
             loader: 'babel-loader',
             options: {

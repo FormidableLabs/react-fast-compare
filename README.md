@@ -21,8 +21,6 @@ extra handling for React.
 ## Install
 
 ```sh
-$ yarn add react-fast-compare
-# or
 $ npm install react-fast-compare
 ```
 
@@ -119,8 +117,8 @@ contain circular reference: `nano-equal` and `shallow-equal-fuzzy`.
 ### Running Benchmarks
 
 ```sh
-$ yarn install
-$ yarn run benchmark
+$ pnpm install
+$ pnpm run benchmark
 ```
 
 ## Differences between this library and `fast-deep-equal`

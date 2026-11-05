@@ -5,7 +5,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "preversion": "yarn test",
+    "preversion": "pnpm test",
     "benchmark": "node benchmark",
     "eslint": "eslint \"*.js\" benchmark test",
     "tslint": "eslint test/typescript/*.tsx",
@@ -16,7 +16,7 @@
     "test-ts-defs": "tsc --target ES5 index.d.ts",
     "test": "builder concurrent --buffer eslint tslint test-ts-usage test-ts-defs test-node-cov test-browser",
     "compress": "terser --compress --mangle=\"toplevel:true\" -- index.js",
-    "size-min-gz": "yarn -s compress | gzip -9 | wc -c",
+    "size-min-gz": "pnpm -s compress | gzip -9 | wc -c",
     "changeset": "changeset"
   },
   "repository": {
@@ -37,6 +37,7 @@
     "url": "https://github.com/FormidableLabs/react-fast-compare/issues"
   },
   "homepage": "https://github.com/FormidableLabs/react-fast-compare",
+  "packageManager": "pnpm@12.16.0",
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
@@ -58,7 +59,6 @@
     "eslint": "^8.35.0",
     "eslint-plugin-react": "^7.32.2",
     "fast-deep-equal": "3.1.3",
-    "fast-deep-equal-git": "epoberezkin/fast-deep-equal#v3.1.3",
     "jsdom": "^21.1.0",
     "jsdom-global": "^3.0.2",
     "karma": "^6.4.1",
