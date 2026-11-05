@@ -68,7 +68,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-webpack": "^5.0.0",
     "lodash": "^4.17.10",
-    "mocha": "^10.2.0",
+    "mocha": "^11.8.0",
     "nano-equal": "^2.0.2",
     "nyc": "^15.1.0",
     "preact": "^10.13.1",
