@@ -86,8 +86,8 @@ $ pnpm run test-node --watch
 #### Browsers
 
 The same tests are then imported and built with `webpack` to a test bundle that
-can be run in arbitrary browsers. So far in CI, we execute the tests in headless
-Chrome on Linux in Travis and IE11 in Appveyor.
+can be run in arbitrary browsers. CI runs them in headless Chrome on Linux and
+Windows (GitHub Actions).
 
 To run the browser tests on your machine (note: you must already have the
 browser you're running installed):
@@ -97,9 +97,6 @@ browser you're running installed):
 $ pnpm run test-browser
 # Example: real Chrome + Firefox + Safari
 $ pnpm run test-browser --browsers Chrome,Firefox,Safari
-
-# IE11 (on Windows)
-$ pnpm run test-browser-ie
 ```
 
 ### Types

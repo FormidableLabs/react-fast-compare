@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 // **Debugging Help**
 // We normally dislike commented out code, but as Karma doesn't easily produce
-// a bundle, debugging bundle errors is a pain, particularly on ie11.
+// a bundle, debugging bundle errors is a pain.
 // To help with this, uncomment this plugin to write out all Karma webpack
 // assets like `test/browser/index.js` to disk as `~/Desktops/test-browser-index.js`
 // and then inspect the failing lines you need.
@@ -80,12 +80,12 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     colors: true,
     autoWatch: false,
-    // Run a customized instance of headless chrome for dev + Travis CI.
+    // Run a customized instance of headless chrome for dev + CI.
     browsers: ['ChromeHeadlessCustom'],
     customLaunchers: {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
-        // --no-sandbox for https://github.com/travis-ci/docs-travis-ci-com/pull/1671/files
+        // --no-sandbox: Chrome's sandbox can't start in some CI containers.
         flags: ['--no-sandbox']
       }
     },
