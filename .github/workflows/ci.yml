@@ -1,39 +1,41 @@
----
 name: CI
 
 on:
   push:
     branches:
       - master
+      - chore/2026-uplift*
   pull_request:
     types: [opened, synchronize, reopened]
 
+# Reset permissions and grant them per job.
+permissions: {}
+
 jobs:
   test:
+    name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read # to check out repo (actions/checkout)
     strategy:
       matrix:
         os:
           - ubuntu-latest
           - windows-latest
-        node_version:
-          - 18
-    name: Node ${{ matrix.node_version }} on ${{ matrix.os }}
     steps:
       - name: Use LF EOL
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
           git config --global core.autocrlf false
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
         with:
-          cache: "yarn"
-          node-version: ${{ matrix.node_version }}
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
       - name: Test
-        run: yarn test
-      - name: Codecov
-        run: yarn codecov
+        run: pnpm test
