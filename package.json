@@ -54,7 +54,6 @@
     "babel-loader": "^9.1.2",
     "benchmark": "^2.1.4",
     "builder": "^5.0.0",
-    "codecov": "^3.8.3",
     "core-js": "^3.29.0",
     "eslint": "^8.35.0",
     "eslint-plugin-react": "^7.32.2",

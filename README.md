@@ -3,7 +3,6 @@
 [![Downloads][downloads_img]][npm_site]
 [![Bundle Size][bundle_img]](#bundle-size)
 [![GH Actions Status][actions_img]][actions_site]
-[![Coverage Status][cov_img]][cov_site]
 [![npm version][npm_img]][npm_site]
 [![Maintenance Status][maintenance_img]](#maintenance-status)
 
@@ -152,8 +151,6 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 
 [actions_img]: https://github.com/FormidableLabs/react-fast-compare/actions/workflows/ci.yml/badge.svg
 [actions_site]: https://github.com/formidablelabs/react-fast-compare/actions/workflows/ci.yml
-[cov_img]: https://codecov.io/gh/FormidableLabs/react-fast-compare/branch/master/graph/badge.svg
-[cov_site]: https://codecov.io/gh/FormidableLabs/react-fast-compare
 [npm_img]: https://badge.fury.io/js/react-fast-compare.svg
 [npm_site]: http://badge.fury.io/js/react-fast-compare
 [appveyor_img]: https://ci.appveyor.com/api/projects/status/github/formidablelabs/react-fast-compare?branch=master&svg=true

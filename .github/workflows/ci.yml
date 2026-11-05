@@ -39,5 +39,3 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Test
         run: pnpm test
-      - name: Codecov
-        run: pnpm codecov

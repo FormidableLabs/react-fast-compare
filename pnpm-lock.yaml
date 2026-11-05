@@ -211,9 +211,6 @@ importers:
       builder:
         specifier: ^5.0.0
         version: 5.0.0
-      codecov:
-        specifier: ^3.8.3
-        version: 3.8.3(supports-color@8.1.1)
       core-js:
         specifier: ^3.29.0
         version: 3.29.0
@@ -1028,10 +1025,6 @@ packages:
     peerDependencies:
       preact: '>=10 || ^10.0.0-alpha.0 || ^10.0.0-beta.0'
 
-  '@tootallnate/once@1.1.2':
-    resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
-    engines: {node: '>= 6'}
-
   '@tootallnate/once@2.0.0':
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
@@ -1289,11 +1282,6 @@ packages:
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
-  argv@0.0.2:
-    resolution: {integrity: sha512-dEamhpPEwRUBpLNHeuCm/v+g0anFByHahxodVO/BbAarHVBBg2MccCwf9K+o1Pof+2btdnkJelYVUWjW/VrATw==}
-    engines: {node: '>=0.6.10'}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-
   aria-query@5.1.3:
     resolution: {integrity: sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==}
 
@@ -1476,12 +1464,6 @@ packages:
   clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
-
-  codecov@3.8.3:
-    resolution: {integrity: sha512-Y8Hw+V3HgR7V71xWH2vQ9lyS358CbGCldWlJFR0JirqoGtOoas3R3/OclRTvgUYFK29mmJICDPauVKmpqbwhOA==}
-    engines: {node: '>=4.0'}
-    deprecated: https://about.codecov.io/blog/codecov-uploader-deprecation-plan/
-    hasBin: true
 
   color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -1859,9 +1841,6 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
-  fast-url-parser@1.1.3:
-    resolution: {integrity: sha512-5jOCVXADYNuRkKFzNJ0dCCewsZiYo0dz8QNYljkOpFC6r2U4OBmKtvm/Tsuh4w1YYdDqDb31a8TVhBJ2OJKdqQ==}
-
   fastq@1.15.0:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
 
@@ -2078,10 +2057,6 @@ packages:
     resolution: {integrity: sha512-Kpk9Sm7NmI+RHhnj6OIWDI1d6fIoFAtFt9RLaTMRlg/8w49juAStsrBgp0Dp4OdxdVbRIeKhtCUvoi/RuAhO4g==}
     engines: {node: '>= 0.6'}
 
-  http-proxy-agent@4.0.1:
-    resolution: {integrity: sha512-k0zdNgqWTGA6aeIRVpvfVob4fL52dTfaehylg0Y4UvSySvOq/Y+BOyPrgpUrA7HylqvU8vIZGsRuXmspskV0Tg==}
-    engines: {node: '>= 6'}
-
   http-proxy-agent@5.0.0:
     resolution: {integrity: sha512-n2hY8YdoRE1i7r6M0w9DIw5GgZN0G25P8zLCRQ8rjXtTU3vsNFBI/vWK/UIeE6g5MUUz6avwAPXmL6Fy9D/90w==}
     engines: {node: '>= 6'}
@@ -2104,9 +2079,6 @@ packages:
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
-
-  ignore-walk@3.0.4:
-    resolution: {integrity: sha512-PY6Ii8o1jMRA1z4F2hRkH/xN59ox43DavKvD3oDpfurRlOJyAHpifIwpbdv1n4jt4ov0jSpw3kQ4GhJnpBL6WQ==}
 
   ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
@@ -2841,9 +2813,6 @@ packages:
   psl@1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
 
-  punycode@1.4.1:
-    resolution: {integrity: sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==}
-
   punycode@2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
@@ -3163,9 +3132,6 @@ packages:
     resolution: {integrity: sha512-iCGQj+0l0HOdZ2AEeBADlsRC+vsnDsZsbdSiH1yNSjcfKM7fdpCMfqAL/dwF5BLiw/XhRft/Wax6zQbhq2BcjQ==}
     engines: {node: '>= 0.4'}
 
-  stream-events@1.0.5:
-    resolution: {integrity: sha512-E1GUzBSgvct8Jsb3v2X15pjzN1tYebtbLaMg+eBOUOAxgbLoSbT2NS91ckc5lJD1KfLjId+jXJRgo0qnV5Nerg==}
-
   stream-transform@2.1.3:
     resolution: {integrity: sha512-9GHUiM5hMiCi6Y03jD2ARC1ettBXkQBoQAe7nJsPknnI0ow10aXjTnew8QtYQmLjzn974BnmWEAJgCY6ZP1DeQ==}
 
@@ -3210,9 +3176,6 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  stubs@3.0.0:
-    resolution: {integrity: sha512-PdHt7hHUJKxvTCgbKX9C1V/ftOcjJQgz8BZwNfV5c4B6dcGqlpelTbJ999jBGZ2jYiPAwcX5dP6oBwVlBlUbxw==}
-
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
@@ -3235,10 +3198,6 @@ packages:
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
-
-  teeny-request@7.1.1:
-    resolution: {integrity: sha512-iwY6rkW5DDGq8hE2YgNQlKbptYpY5Nn2xecjQiNjOXWbKzPGUfmeUBCSQbbr306d7Z7U2N0TPl+/SwYRfua1Dg==}
-    engines: {node: '>=10'}
 
   term-size@2.2.1:
     resolution: {integrity: sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==}
@@ -3418,9 +3377,6 @@ packages:
 
   url-parse@1.5.10:
     resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
-
-  urlgrey@1.0.0:
-    resolution: {integrity: sha512-hJfIzMPJmI9IlLkby8QrsCykQ+SXDeO2W5Q9QTW3QpqZVTx4a/K7p8/5q+/isD8vsbVaFgql/gvAoQCRQ2Cb5w==}
 
   use-sync-external-store@1.0.0:
     resolution: {integrity: sha512-AFVsxg5GkFg8GDcxnl+Z0lMAz9rE8DGJCc28qnBuQF7lac57B5smLcT37aXpXIIPz75rW4g3eXHPjhHwdGskOw==}
@@ -4652,8 +4608,6 @@ snapshots:
       '@testing-library/dom': 8.20.0
       preact: 10.13.1
 
-  '@tootallnate/once@1.1.2': {}
-
   '@tootallnate/once@2.0.0': {}
 
   '@types/aria-query@5.0.1': {}
@@ -4935,8 +4889,6 @@ snapshots:
 
   argparse@2.0.1: {}
 
-  argv@0.0.2: {}
-
   aria-query@5.1.3:
     dependencies:
       deep-equal: 2.2.0
@@ -5166,17 +5118,6 @@ snapshots:
       wrap-ansi: 7.0.0
 
   clone@1.0.4: {}
-
-  codecov@3.8.3(supports-color@8.1.1):
-    dependencies:
-      argv: 0.0.2
-      ignore-walk: 3.0.4
-      js-yaml: 3.14.1
-      teeny-request: 7.1.1(supports-color@8.1.1)
-      urlgrey: 1.0.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
 
   color-convert@1.9.3:
     dependencies:
@@ -5636,10 +5577,6 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
-  fast-url-parser@1.1.3:
-    dependencies:
-      punycode: 1.4.1
-
   fastq@1.15.0:
     dependencies:
       reusify: 1.0.4
@@ -5872,14 +5809,6 @@ snapshots:
       statuses: 1.5.0
       toidentifier: 1.0.1
 
-  http-proxy-agent@4.0.1(supports-color@8.1.1):
-    dependencies:
-      '@tootallnate/once': 1.1.2
-      agent-base: 6.0.0(supports-color@8.1.1)
-      debug: 4.3.4(supports-color@8.1.1)
-    transitivePeerDependencies:
-      - supports-color
-
   http-proxy-agent@5.0.0(supports-color@8.1.1):
     dependencies:
       '@tootallnate/once': 2.0.0
@@ -5912,10 +5841,6 @@ snapshots:
   iconv-lite@0.6.3:
     dependencies:
       safer-buffer: 2.1.2
-
-  ignore-walk@3.0.4:
-    dependencies:
-      minimatch: 3.1.2
 
   ignore@5.2.4: {}
 
@@ -6720,8 +6645,6 @@ snapshots:
 
   psl@1.9.0: {}
 
-  punycode@1.4.1: {}
-
   punycode@2.3.0: {}
 
   qjobs@1.2.0: {}
@@ -7058,10 +6981,6 @@ snapshots:
     dependencies:
       internal-slot: 1.0.5
 
-  stream-events@1.0.5:
-    dependencies:
-      stubs: 3.0.0
-
   stream-transform@2.1.3:
     dependencies:
       mixme: 0.5.9
@@ -7121,8 +7040,6 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  stubs@3.0.0: {}
-
   supports-color@5.5.0:
     dependencies:
       has-flag: 3.0.0
@@ -7140,17 +7057,6 @@ snapshots:
   symbol-tree@3.2.4: {}
 
   tapable@2.2.1: {}
-
-  teeny-request@7.1.1(supports-color@8.1.1):
-    dependencies:
-      http-proxy-agent: 4.0.1(supports-color@8.1.1)
-      https-proxy-agent: 5.0.1(supports-color@8.1.1)
-      node-fetch: 2.6.11
-      stream-events: 1.0.5
-      uuid: 8.3.2
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
 
   term-size@2.2.1: {}
 
@@ -7305,10 +7211,6 @@ snapshots:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
-
-  urlgrey@1.0.0:
-    dependencies:
-      fast-url-parser: 1.1.3
 
   use-sync-external-store@1.0.0(react@18.2.0):
     dependencies:
