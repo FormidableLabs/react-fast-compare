@@ -153,46 +153,69 @@ please flag to your reviewers and have a discussion about whether or not the siz
      For example, if the new size is `650`, the new bundle_img will be `https://img.shields.io/badge/minzipped%20size-650%20B-flatgreen.svg`
    - _Org members:_ Update the README's benchmark comparison png using this [internal Google Sheet template](https://docs.google.com/spreadsheets/d/1GuqpO0wgPjQ9usx6sR3t0Y_HTmAdRqjXkSjs3SBsmTc/edit?usp=sharing_eip&ts=5ed1642f).
 
-### Using changesets
+## Releasing
 
-Our official release path is to use automation to perform the actual publishing of our packages. The steps are to:
+We release with [changesets](https://github.com/changesets/changesets) and
+GitHub Actions ([`release.yml`](./.github/workflows/release.yml)). Nobody
+publishes from their machine: npm
+[trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC) lets
+only that workflow, running in the `npm-publish` environment, publish the
+package, with provenance.
 
-1. A human developer adds a changeset. Ideally this is as a part of a PR that will have a version impact on a package.
-2. On merge of a PR our automation system opens a "Version Packages" PR.
-3. On merging the "Version Packages" PR, the automation system publishes the packages.
-
-Here are more details:
+1. A PR that changes what users get adds a changeset.
+2. When it merges to `master`, the workflow opens (or updates) a
+   "Version Packages" PR.
+3. When that PR merges, the workflow publishes to npm and creates the
+   `v{version}` tag and GitHub release.
 
 ### Add a changeset
 
-When you would like to add a changeset (which creates a file indicating the type of change), in your branch/PR issue this command:
+In your branch, run:
 
 ```sh
 $ pnpm changeset
 ```
 
-to produce an interactive menu. Navigate the packages with arrow keys and hit `<space>` to select 1+ packages. Hit `<return>` when done. Select semver versions for packages and add appropriate messages. From there, you'll be prompted to enter a summary of the change. Some tips for this summary:
+Pick the semver bump and write a summary. Some tips for the summary:
 
 1. Aim for a single line, 1+ sentences as appropriate.
 2. Include issue links in GH format (e.g. `#123`).
-3. You don't need to reference the current pull request or whatnot, as that will be added later automatically.
+3. You don't need to reference the current pull request; the changelog adds it
+   automatically.
 
-After this, you'll see a new uncommitted file in `.changesets` like:
+This creates a file like `.changeset/flimsy-pandas-marry.md`. Review it and
+commit it with your PR.
+
+Changes that don't affect the published package (tests, tooling, CI, docs)
+don't need a changeset.
+
+### Versioning and publishing
+
+Changesets accumulate on `master`, and the "Version Packages" PR keeps up with
+them: it bumps `package.json` and writes `CHANGELOG.md`. If you're not ready to
+release, keep merging feature PRs and merge the "Version Packages" PR later.
+
+CI on that PR doesn't start on its own (it's opened with the default
+`GITHUB_TOKEN`). A maintainer clicks "Approve and run" after its latest update.
+
+Merging it runs the publish job, which waits for the `npm-publish`
+environment's rules (and approval, if it requires reviewers).
+
+### Canary releases
+
+To try unreleased changes from npm, a maintainer can publish a canary of any
+branch the `npm-publish` environment allows, to the `next` dist-tag:
 
 ```sh
-$ git status
-# ....
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	.changeset/flimsy-pandas-marry.md
+$ gh workflow run release.yml --ref <branch>
 ```
 
-Review the file, make any necessary adjustments, and commit it to source. When we eventually do a package release, the changeset notes and version will be incorporated!
+It publishes `X.Y.Z-canary-<datetime>`, where `X.Y.Z` is the version the
+pending changesets would release, so the branch needs at least one changeset.
+Install it with `npm install react-fast-compare@next`.
 
-### Creating versions
+### npm and GitHub setup
 
-On a merge of a feature PR, the changesets GitHub action will open a new PR titled `"Version Packages"`. This PR is automatically kept up to date with additional PRs with changesets. So, if you're not ready to publish yet, just keep merging feature PRs and then merge the version packages PR later.
-
-### Publishing packages
-
-On the merge of a version packages PR, the changesets GitHub action will publish the packages to npm.
+The trusted publisher on npm names the workflow file (`release.yml`) and the
+environment (`npm-publish`). Renaming either breaks publishing until the npm
+package settings are updated to match.
