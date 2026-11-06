@@ -16,8 +16,7 @@ test/typescript/*.js
 # Output of `npm pack` / `pnpm pack`
 *.tgz
 
-# Caches and local env
-.eslintcache
+# Local env
 .env
 
 # Editors and OS

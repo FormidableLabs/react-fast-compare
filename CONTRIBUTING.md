@@ -53,7 +53,8 @@ included. For an urgent security fix that's newer than that, add the package to
 **TL; DR:** － Everything you normally need to run is aggregated into:
 
 ```sh
-$ pnpm run test
+# Format, lint, then all tests
+$ pnpm run check
 $ pnpm run benchmark
 ```
 
@@ -113,9 +114,19 @@ $ pnpm run test-ts-usage
 
 ### Style
 
+We format with [oxfmt](https://oxc.rs/docs/guide/usage/formatter) and lint with [oxlint](https://oxc.rs/docs/guide/usage/linter). Their configs are `.oxfmtrc.json` and `.oxlintrc.json`.
+
 ```sh
-$ pnpm run eslint
+# Check formatting and lint
+$ pnpm run format
+$ pnpm run lint
+
+# Fix what can be fixed automatically
+$ pnpm run format:fix
+$ pnpm run lint:fix
 ```
+
+`index.js` stays ES5 in 3.x, so don't apply ES2015+ fixes (`let`/`const`, arrow functions) to it.
 
 ### Size
 
@@ -139,7 +150,7 @@ please flag to your reviewers and have a discussion about whether or not the siz
 1. Confirm that all checks are passing:
 
    ```sh
-   $ pnpm run test
+   $ pnpm run check
    $ pnpm run benchmark
    ```
 
