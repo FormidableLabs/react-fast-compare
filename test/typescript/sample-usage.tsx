@@ -31,6 +31,14 @@ class TestChild extends React.Component<IProps> {
   }
 }
 
+// `equal` must return a plain `boolean`, not a type guard (`a is B`): after a
+// `false` result, a guard narrows `prev` to `never`, so `prev.text` would not
+// compile (#130).
+export function changedText(prev: ITodo, next: ITodo): string | null {
+  if (equal(prev, next)) return null;
+  return prev.text;
+}
+
 class TestContainer extends React.Component {
   render() {
     return testArr.map((item) => <TestChild key={item.id} todo={item} />);
