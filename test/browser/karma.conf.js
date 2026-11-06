@@ -35,15 +35,13 @@ const webpack = require('webpack');
 //   }
 // }
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     basePath: '../..',
     frameworks: ['mocha'],
-    files: [
-      'test/browser/index.js'
-    ],
+    files: ['test/browser/index.js'],
     preprocessors: {
-      'test/browser/index.js': ['webpack']
+      'test/browser/index.js': ['webpack'],
     },
     webpack: {
       mode: 'development',
@@ -58,22 +56,20 @@ module.exports = function(config) {
             test: /\.js$/,
             enforce: 'pre',
             // Includes the vendored `fast-deep-equal` tests in `test/fixtures`.
-            include: [
-              path.resolve(__dirname, '..')
-            ],
+            include: [path.resolve(__dirname, '..')],
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
-            }
-          }
-        ]
+              presets: ['@babel/preset-env'],
+            },
+          },
+        ],
       },
       plugins: [
         new webpack.ProvidePlugin({
           assert: 'assert',
-          process: 'process'
-        })
-      ]
+          process: 'process',
+        }),
+      ],
     },
     exclude: [],
     port: 8080,
@@ -86,10 +82,10 @@ module.exports = function(config) {
       ChromeHeadlessCustom: {
         base: 'ChromeHeadless',
         // --no-sandbox: Chrome's sandbox can't start in some CI containers.
-        flags: ['--no-sandbox']
-      }
+        flags: ['--no-sandbox'],
+      },
     },
-    reporters: ['mocha'/* TODO, 'coverage'*/],
+    reporters: ['mocha' /* TODO, 'coverage'*/],
     browserNoActivityTimeout: 60000,
     plugins: [
       'karma-chrome-launcher',
@@ -98,17 +94,17 @@ module.exports = function(config) {
       //'karma-coverage',
       'karma-mocha',
       'karma-mocha-reporter',
-      'karma-webpack'
+      'karma-webpack',
     ],
     coverageReporter: {
-      type: 'text'
+      type: 'text',
     },
     browserConsoleLogOptions: {
       level: 'log',
       format: '%b %T: %m',
-      terminal: true
+      terminal: true,
     },
     captureTimeout: 100000,
-    singleRun: true
+    singleRun: true,
   });
 };
