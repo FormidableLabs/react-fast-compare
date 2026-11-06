@@ -32,7 +32,7 @@ jobs:
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
       - uses: actions/setup-node@v7
         with:
-          node-version-file: ".nvmrc"
+          node-version-file: '.nvmrc'
           package-manager-cache: false # avoid cache poisoning
       - run: pnpm install --frozen-lockfile
       - name: Select Changesets mode
@@ -57,7 +57,7 @@ jobs:
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
       - uses: actions/setup-node@v7
         with:
-          node-version-file: ".nvmrc"
+          node-version-file: '.nvmrc'
           package-manager-cache: false # avoid cache poisoning
       - run: pnpm install --frozen-lockfile
       - name: Version package
@@ -88,7 +88,7 @@ jobs:
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
       - uses: actions/setup-node@v7
         with:
-          node-version-file: ".nvmrc"
+          node-version-file: '.nvmrc'
           package-manager-cache: false # avoid cache poisoning
       - run: pnpm install --frozen-lockfile
       # No build step: `index.js` and `index.d.ts` are published as written.
@@ -116,8 +116,8 @@ jobs:
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
       - uses: actions/setup-node@v7
         with:
-          node-version-file: ".nvmrc"
-          registry-url: "https://registry.npmjs.org"
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
           package-manager-cache: false # avoid cache poisoning
       - run: pnpm install --frozen-lockfile
       - name: Publish package
@@ -158,8 +158,8 @@ jobs:
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
       - uses: actions/setup-node@v7
         with:
-          node-version-file: ".nvmrc"
-          registry-url: "https://registry.npmjs.org"
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
           package-manager-cache: false # avoid cache poisoning
       - run: pnpm install --frozen-lockfile
       # Versions like `3.2.3-canary-<datetime>` (snapshot.useCalculatedVersion).
