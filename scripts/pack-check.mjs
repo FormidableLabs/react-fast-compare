@@ -21,6 +21,16 @@ import { minify } from 'terser';
 
 const { log, error } = console;
 
+// Every field that makes consumers install another package. The package has
+// none, and this check doesn't install any.
+const DEPENDENCY_FIELDS = [
+  'dependencies',
+  'peerDependencies',
+  'optionalDependencies',
+  'bundleDependencies',
+  'bundledDependencies',
+];
+
 // Manifest fields that change how consumers resolve or install the package.
 const SNAPSHOT_FIELDS = [
   'name',
@@ -30,11 +40,16 @@ const SNAPSHOT_FIELDS = [
   'types',
   'typings',
   'exports',
+  'imports',
   'browser',
   'sideEffects',
   'files',
-  'dependencies',
-  'peerDependencies',
+  'bin',
+  'engines',
+  'os',
+  'cpu',
+  ...DEPENDENCY_FIELDS,
+  'peerDependenciesMeta',
 ];
 
 const args = process.argv.slice(2);
@@ -90,11 +105,13 @@ const manifest = JSON.parse(
 );
 const installed = path.join(modulesDir, manifest.name);
 fs.renameSync(path.join(installRoot, 'package'), installed);
-const deps = Object.keys({
-  ...manifest.dependencies,
-  ...manifest.peerDependencies,
-});
-if (deps.length) failures.push(`Unexpected dependencies: ${deps.join(', ')}`);
+for (const field of DEPENDENCY_FIELDS) {
+  const value = manifest[field];
+  // `bundleDependencies` is a list of names, or `true` for all of them.
+  const names = Array.isArray(value) ? value : Object.keys(value ?? {});
+  if (value === true || names.length)
+    failures.push(`Unexpected ${field}: ${JSON.stringify(value)}`);
+}
 const readPublished = (file) =>
   fs.readFileSync(path.join(installed, file), 'utf8');
 
@@ -123,7 +140,10 @@ try {
   } finally {
     fs.closeSync(attwFd);
   }
-  const { analysis } = JSON.parse(fs.readFileSync(attwJson, 'utf8'));
+  // No JSON means attw itself failed (its error is printed above).
+  const attwOutput = fs.readFileSync(attwJson, 'utf8');
+  if (!attwOutput.trim()) throw new Error('attw failed; see its output above');
+  const { analysis } = JSON.parse(attwOutput);
   const stripPkg = (fileName) =>
     fileName?.replace(`/node_modules/${manifest.name}/`, '');
   for (const p of analysis.problems) {
