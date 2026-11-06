@@ -20,7 +20,7 @@ const initialState: IState = {
   items: [],
 };
 
-const reducer = (state: IState, action: IAction) => {
+const reducer = (state: IState = initialState, action: IAction) => {
   return state;
 };
 
