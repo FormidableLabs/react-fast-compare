@@ -128,6 +128,16 @@ $ pnpm run lint:fix
 
 `index.js` stays ES5 in 3.x, so don't apply ES2015+ fixes (`let`/`const`, arrow functions) to it.
 
+### Published package
+
+`pnpm pack:check` (part of `pnpm check`) packs the package and checks what it publishes:
+
+- publint and [attw](https://github.com/arethetypeswrong/arethetypeswrong.github.io) find no problems.
+- Installed in a clean directory, `require('react-fast-compare')` and `import isEqual from 'react-fast-compare'` give the same working function.
+- The tarball matches `pack-snapshot.json`: manifest fields, file list, type resolution, `index.d.ts`, and `index.js` minified without comments.
+
+The snapshot was generated from the published 3.2.2 tarball. In 3.x, changes to `index.js` that only touch formatting or comments pass. Anything else fails until you run `pnpm pack:check --update` and commit the new snapshot, so every change to what users get shows up in review. To check another tarball, such as a published version, pass `--tarball <file>` (from `npm pack react-fast-compare@<version>`).
+
 ### Size
 
 You can check how we do with minification + compression with:

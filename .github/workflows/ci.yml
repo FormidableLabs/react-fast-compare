@@ -38,4 +38,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Check
+        if: matrix.os == 'ubuntu-latest'
         run: pnpm check
+      # Format, lint and the packed tarball don't depend on the OS, so Windows
+      # only runs the tests.
+      - name: Test
+        if: matrix.os == 'windows-latest'
+        run: pnpm test
