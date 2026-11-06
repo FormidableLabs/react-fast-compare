@@ -1,6 +1,5 @@
 'use strict';
 
-/* eslint-disable react/prop-types */
 /* eslint-disable react/no-children-prop */
 
 const assert = require('assert');

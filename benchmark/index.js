@@ -29,7 +29,7 @@ for (const equalName in equalPackages) {
       for (const test of testSuite.tests) {
         try {
           equalFunc(test.value1, test.value2);
-        } catch (error) {
+        } catch {
           // swallow errors during benchmarking. they are reported in the test section
         }
       }
@@ -42,7 +42,7 @@ for (const equalName in equalPackages) {
         for (const test of testSuite.tests) {
           try {
             equalFunc(test.value1, test.value2);
-          } catch (error) {
+          } catch {
             // swallow errors during benchmarking. they are reported in the test section
           }
         }
@@ -54,13 +54,14 @@ for (const equalName in equalPackages) {
       for (const test of testSuite.tests) {
         correctnessTests.push(() => {
           try {
-            if (equalFunc(test.value1, test.value2) !== test.equal)
+            if (equalFunc(test.value1, test.value2) !== test.equal) {
               console.error(
                 '- different result:',
                 equalName,
                 testSuite.description,
                 test.description
               );
+            }
           } catch (error) {
             console.error(
               '- error:',
