@@ -7,6 +7,11 @@ var hasArrayBuffer = typeof ArrayBuffer === 'function' && !!ArrayBuffer.isView;
 
 // Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
 
+/**
+ * @param {any} a
+ * @param {any} b
+ * @returns {boolean}
+ */
 function equal(a, b) {
   // START: fast-deep-equal es6/index.js 3.1.3
   if (a === b) return true;
@@ -61,7 +66,14 @@ function equal(a, b) {
     }
     // END: Modifications
 
-    if (hasArrayBuffer && ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
+    // Types: the casts stop `isView()` narrowing `a` and `b` to
+    // `ArrayBufferView`, which has no `length` or index signature (typed
+    // arrays have both, a `DataView` has neither).
+    if (
+      hasArrayBuffer &&
+      ArrayBuffer.isView(/** @type {unknown} */ (a)) &&
+      ArrayBuffer.isView(/** @type {unknown} */ (b))
+    ) {
       length = a.length;
       if (length != b.length) return false;
       for (i = length; i-- !== 0;) if (a[i] !== b[i]) return false;
@@ -130,10 +142,19 @@ function equal(a, b) {
 }
 // end fast-deep-equal
 
+/**
+ * Deep equality check, tuned for React elements.
+ *
+ * @template [A=any]
+ * @template [B=any]
+ * @param {A} a
+ * @param {B} b
+ * @returns {boolean}
+ */
 module.exports = function isEqual(a, b) {
   try {
     return equal(a, b);
-  } catch (error) {
+  } catch (/** @type {any} */ error) {
     if ((error.message || '').match(/stack|recursion/i)) {
       // warn on circular references, don't crash
       // browsers give this different errors name and messages:

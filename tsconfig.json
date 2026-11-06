@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true
+    "allowJs": true,
+    "checkJs": true,
+    "lib": ["ES2015", "DOM"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "strict": true,
+    "target": "ES2015",
+    "types": []
   },
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
-  },
-  "references": [{ "path": "test/typescript" }],
-  "parserOptions": {
-    "sourceType": "module"
-  }
+  "include": ["index.js"]
 }
