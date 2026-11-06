@@ -8,6 +8,7 @@
   "ignorePatterns": [
     ".changeset",
     "CHANGELOG.md",
+    "pack-snapshot.json",
     "pnpm-lock.yaml",
     "test/fixtures/fast-deep-equal/"
   ]
