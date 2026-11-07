@@ -1,0 +1,14 @@
+{
+  // Type probe settings. `pnpm pack:check` copies these files next to the
+  // installed tarball and compiles them with `paths` cleared, so the probe
+  // sees the published package. `paths` here only serves editors.
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM"],
+    "module": "nodenext",
+    "noEmit": true,
+    "paths": { "react-fast-compare": ["../../index.d.ts"] },
+    "strict": true,
+    "types": []
+  },
+  "include": ["*.ts", "*.cts", "*.mts"]
+}

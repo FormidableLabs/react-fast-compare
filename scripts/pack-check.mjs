@@ -6,13 +6,17 @@
 // 2. Runs publint and attw (`@arethetypeswrong/cli`) on it.
 // 3. Installs it outside the repo and loads it with `require()` and
 //    `import()`: both must give the same working `isEqual` function.
-// 4. Compares it against `pack-snapshot.json`: manifest fields, file list,
+// 4. Type probe: compiles `test/types/` against the installed package with
+//    TypeScript (`module: nodenext`), as a CommonJS (`.cts`) and an ES module
+//    (`.mts`) consumer.
+// 5. Compares it against `pack-snapshot.json`: manifest fields, file list,
 //    how attw resolves the types, `index.d.ts`, and `index.js` minified
 //    without comments. In 3.x only formatting and comments may change in
 //    `index.js` (see CONTRIBUTING). Pass `--update` to rewrite the snapshot
 //    after an intended change.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import os from 'node:os';
 import path from 'node:path';
 import { publint } from 'publint';
@@ -61,6 +65,7 @@ const rootDir = path.resolve(import.meta.dirname, '..');
 const workDir = path.join(rootDir, 'node_modules/.cache/pack-check');
 const snapshotPath = path.join(rootDir, 'pack-snapshot.json');
 const failures = [];
+const require = createRequire(import.meta.url);
 
 const run = (cmd, cmdArgs, opts = {}) =>
   execFileSync(cmd, cmdArgs, { encoding: 'utf8', ...opts });
@@ -196,6 +201,40 @@ console.log(JSON.stringify(errors));
     failures.push(
       `Loading ${manifest.name} failed: ${(err.stderr || err.message).trim()}`
     );
+  }
+
+  // Type probe. Copy the fixtures next to the installed package, with a
+  // tsconfig that clears the editor-only `paths`, and link in the React types.
+  const probeSrc = path.join(rootDir, 'test/types');
+  for (const file of fs.readdirSync(probeSrc)) {
+    if (file !== 'tsconfig.json')
+      fs.copyFileSync(path.join(probeSrc, file), path.join(installRoot, file));
+  }
+  fs.writeFileSync(
+    path.join(installRoot, 'tsconfig.json'),
+    JSON.stringify({
+      extends: path.join(probeSrc, 'tsconfig.json'),
+      compilerOptions: { paths: {} },
+      include: ['*.ts', '*.cts', '*.mts'],
+    })
+  );
+  fs.mkdirSync(path.join(modulesDir, '@types'));
+  fs.symlinkSync(
+    fs.realpathSync(path.join(rootDir, 'node_modules/@types/react')),
+    path.join(modulesDir, '@types/react'),
+    'junction'
+  );
+  const tsc = path.join(
+    path.dirname(require.resolve('typescript/package.json')),
+    'bin/tsc'
+  );
+  try {
+    run(process.execPath, [tsc, '--project', installRoot], {
+      cwd: installRoot,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+  } catch (err) {
+    failures.push(`Type probe (test/types) failed:\n${err.stdout.trim()}`);
   }
 
   // Published code. Minified without comments, so formatting and comments
