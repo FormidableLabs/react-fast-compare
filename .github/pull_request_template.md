@@ -14,5 +14,4 @@ Please include a summary of the change and which issue is fixed. Please also inc
 - [ ] All tests are passing
 - [ ] Type definitions, if updated, pass `types:check` and `pack:check`
 - [ ] Benchmark performance has not significantly decreased
-- [ ] Bundle size has not been significantly impacted
-- [ ] The bundle size badge has been updated to reflect the new size
+- [ ] Bundle size (`pnpm size`, CI job summary) has not been significantly impacted

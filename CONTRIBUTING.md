@@ -132,18 +132,18 @@ The snapshot was generated from the published 3.2.2 tarball. In 3.x, changes to 
 
 ### Size
 
-You can check how we do with minification + compression with:
+`pnpm size` reports the size of `index.js`: raw, minified (terser, with
+top-level mangling), and minified with gzip and brotli. Pass `--base <git ref>`
+to compare with another version:
 
 ```sh
-# Show minified output
-$ pnpm -s compress
-
-# Display minified + gzip'ed size in bytes.
-$ pnpm size-min-gz
+$ pnpm size
+$ pnpm size --base master
 ```
 
-**Note**: If the min+gz size increases, please note it in the README. If it is a significant increase,
-please flag to your reviewers and have a discussion about whether or not the size addition is justified.
+CI runs it against the base commit and adds the table to the job summary. It's
+a report, not a check: if the min+gz size grows significantly, flag it to your
+reviewers so you can discuss whether the addition is worth it.
 
 ## Before submitting a PR...
 
@@ -158,12 +158,7 @@ please flag to your reviewers and have a discussion about whether or not the siz
 
 2. Confirm we don't have any significant performance regressions (check out `master` for a baseline comparison on _your_ machine).
 
-3. Confirm you aren't impacting our bundle size.
-   If you _do_ affect the bundle size, please update the bundle badge in the Readme by
-   - Following the steps outlined in [size](#size):
-     `pnpm -s compress && pnpm size-min-gz`
-   - Grabbing that output and replacing the current size in the bundle_img: (`https://img.shields.io/badge/minzipped%20size-<NEW_SIZE>%20B-flatgreen.svg`)
-     For example, if the new size is `650`, the new bundle_img will be `https://img.shields.io/badge/minzipped%20size-650%20B-flatgreen.svg`
+3. Confirm you aren't significantly impacting our bundle size (see [size](#size)).
    - _Org members:_ Update the README's benchmark comparison png using this [internal Google Sheet template](https://docs.google.com/spreadsheets/d/1GuqpO0wgPjQ9usx6sR3t0Y_HTmAdRqjXkSjs3SBsmTc/edit?usp=sharing_eip&ts=5ed1642f).
 
 ## Releasing
