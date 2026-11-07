@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "composite": true,
-    "jsx": "react",
-    "target": "ES6",
-    "allowSyntheticDefaultImports": true
-  }
-}

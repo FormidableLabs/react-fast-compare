@@ -102,15 +102,7 @@ $ pnpm run test-browser --browsers Chrome,Firefox,Safari
 
 ### Types
 
-We validate our TypeScript `index.d.ts` with two steps:
-
-```sh
-# Runs the TypeScript compiler over our types
-$ pnpm run test-ts-defs
-
-# Runs our types through a sample TypeScript file
-$ pnpm run test-ts-usage
-```
+`pnpm types:check` type-checks `index.js` from its JSDoc and checks that the declarations it emits match `index.d.ts`. `pnpm pack:check` then compiles the type probe in `test/types/` against the packed package, as a CommonJS (`.cts`) and an ES module (`.mts`) consumer. Add a case there for any usage the types must keep supporting.
 
 ### Style
 
