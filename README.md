@@ -1,7 +1,6 @@
 [![React Fast Compare — Formidable, We build the modern web](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/react-fast-compare-Hero.png)](https://formidable.com/open-source/)
 
 [![Downloads][downloads_img]][npm_site]
-[![Bundle Size][bundle_img]](#bundle-size)
 [![GH Actions Status][actions_img]][actions_site]
 [![npm version][npm_img]][npm_site]
 [![Maintenance Status][maintenance_img]](#maintenance-status)
@@ -132,8 +131,9 @@ This version of `react-fast-compare` tracks `fast-deep-equal@3.1.1`.
 ## Bundle Size
 
 There are a variety of ways to calculate bundle size for JavaScript code.
-You can see our size test code in the `compress` script in
-[`package.json`](https://github.com/FormidableLabs/react-fast-compare/blob/master/package.json).
+`pnpm size` ([`scripts/size.mjs`](./scripts/size.mjs)) minifies `index.js` with
+terser, mangling top-level names, and reports the raw, minified, gzip and
+brotli sizes. CI adds the same report to each run's job summary.
 [Bundlephobia's calculation](https://bundlephobia.com/result?p=react-fast-compare) is slightly higher,
 as they [do not mangle during minification](https://github.com/pastelsky/package-build-stats/blob/v6.1.1/src/getDependencySizeTree.js#L139).
 
@@ -153,6 +153,5 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 [actions_site]: https://github.com/formidablelabs/react-fast-compare/actions/workflows/ci.yml
 [npm_img]: https://badge.fury.io/js/react-fast-compare.svg
 [npm_site]: http://badge.fury.io/js/react-fast-compare
-[bundle_img]: https://img.shields.io/badge/minzipped%20size-656%20B-flatgreen.svg
 [downloads_img]: https://img.shields.io/npm/dm/react-fast-compare.svg
 [maintenance_img]: https://img.shields.io/badge/maintenance-active-flatgreen.svg

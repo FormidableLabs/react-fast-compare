@@ -17,10 +17,9 @@
     "test-node": "mocha \"test/node/*.spec.js\"",
     "test-node-cov": "nyc mocha \"test/node/*.spec.js\"",
     "test": "builder concurrent --buffer test-node-cov test-browser",
-    "compress": "terser --compress --mangle=\"toplevel:true\" -- index.js",
-    "size-min-gz": "pnpm -s compress | gzip -9 | wc -c",
     "changeset": "changeset",
-    "pack:check": "node scripts/pack-check.mjs"
+    "pack:check": "node scripts/pack-check.mjs",
+    "size": "node scripts/size.mjs"
   },
   "repository": {
     "type": "git",
