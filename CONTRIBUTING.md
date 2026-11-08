@@ -53,52 +53,51 @@ included. For an urgent security fix that's newer than that, add the package to
 **TL; DR:** － Everything you normally need to run is aggregated into:
 
 ```sh
-# Format, lint, then all tests
+# Format, lint, types, all tests, then the packed package
 $ pnpm run check
 $ pnpm run benchmark
 ```
 
-(We use `builder` to parallelize things, so tasks may output in different
-orders)
-
 ### Testing
 
-We write one set of tests located in:
+We test with [Vitest](https://vitest.dev/). One set of specs, `test/*.spec.mjs`,
+runs in two projects (`vitest.config.mts`):
 
-- `test/node/**.spec.js`
+- `node`: Node, with [jsdom](https://github.com/jsdom/jsdom) for the specs
+  that need a DOM.
+- `browser`: [Vitest browser mode](https://vitest.dev/guide/browser/) in
+  headless Chromium, Firefox and WebKit, through Playwright.
 
-that run in two very different scenarios (below). Most generic test cases come
-from `fast-deep-equal`, vendored unchanged in `test/fixtures/fast-deep-equal/`
-(see its README).
+Most generic test cases come from `fast-deep-equal`, vendored unchanged in
+`test/fixtures/fast-deep-equal/` (see its README). Our own cases (React
+elements, custom behavior) are in `test/fixtures/index.mjs`, and
+`test/react.spec.mjs` renders real React and Preact (`preact/compat`)
+components.
 
-#### Node
-
-The tests are natively run in `node` (hence why they are located in `tests/node`
-to begin with) without any transpilation or "build". You can run them with:
-
-```sh
-# Single run
-$ pnpm run test-node
-
-# Persistent watch
-$ pnpm run test-node --watch
-```
-
-#### Browsers
-
-The same tests are then imported and built with `webpack` to a test bundle that
-can be run in arbitrary browsers. CI runs them in headless Chrome on Linux and
-Windows (GitHub Actions).
-
-To run the browser tests on your machine (note: you must already have the
-browser you're running installed):
+Install the browsers once (and again when Playwright is updated):
 
 ```sh
-# Default: headless chrome
-$ pnpm run test-browser
-# Example: real Chrome + Firefox + Safari
-$ pnpm run test-browser --browsers Chrome,Firefox,Safari
+$ pnpm exec playwright install --only-shell chromium firefox webkit
 ```
+
+```sh
+# All projects
+$ pnpm test
+
+# Node only, or one browser
+$ pnpm test --project node
+$ pnpm test --project "browser (firefox)"
+
+# Watch mode
+$ pnpm vitest --project node
+
+# Coverage (Node only; v8 coverage doesn't work in Firefox or WebKit)
+$ pnpm test --project node --coverage
+```
+
+CI runs every project on Linux and adds the coverage summary to the job
+summary. It runs the Node project on Windows, and on React 18.0.0 with Preact
+10 (the lockfile has React 19 and Preact 11).
 
 ### Types
 

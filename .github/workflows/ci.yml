@@ -40,15 +40,66 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      # For the `browser` test project (Vitest browser mode).
+      - name: Install browsers
+        if: matrix.os == 'ubuntu-latest'
+        run: pnpm exec playwright install --with-deps --only-shell chromium firefox webkit
       - name: Check
         if: matrix.os == 'ubuntu-latest'
         run: pnpm check
+      # Node project only (v8 coverage doesn't work in Firefox or WebKit).
+      # Reported in the job summary, not gated: Check gates on the tests.
+      - name: Coverage
+        if: matrix.os == 'ubuntu-latest'
+        continue-on-error: true
+        run: pnpm test --project node --coverage
+      - name: Coverage summary
+        if: always() && matrix.os == 'ubuntu-latest'
+        run: |
+          {
+            echo '### Coverage'
+            if [ -f coverage/summary.txt ]; then
+              echo '```'
+              cat coverage/summary.txt
+              echo '```'
+            else
+              echo 'No coverage summary (the Coverage step failed or was skipped).'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
       # Report only: adds the size table to the job summary, never fails.
       - name: Size
         if: always() && matrix.os == 'ubuntu-latest'
         run: pnpm size --base HEAD^1
-      # Format, lint and the packed tarball don't depend on the OS, so Windows
-      # only runs the tests.
+      # Format, lint, the packed tarball and the browsers don't depend on the
+      # OS, so Windows only runs the Node tests.
       - name: Test
         if: matrix.os == 'windows-latest'
-        run: pnpm test
+        run: pnpm test --project node
+
+  # The lockfile has React 19 and Preact 11, which the test job covers. This
+  # job runs the Node tests on the oldest versions we check: exactly React
+  # 18.0.0, and the newest Preact 10 (`preact/compat`). The library doesn't
+  # depend on either; this guards its `$$typeof` / `_owner` handling.
+  older-renderers:
+    name: Test (React 18.0.0, Preact 10)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # to check out repo (actions/checkout)
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      # Changes the working tree only; nothing is committed.
+      - name: Install React 18.0.0 and Preact 10
+        run: |
+          pnpm add --save-dev react@18.0.0 react-dom@18.0.0 preact@^10
+          node -e 'for (const [p, v] of [["react", "18.0.0"], ["react-dom", "18.0.0"], ["preact", "10."]]) { const got = require(`${p}/package.json`).version; console.log(`${p} ${got}`); if (!got.startsWith(v)) throw new Error(`${p} is ${got}, expected ${v}`); }'
+      - name: Test
+        run: pnpm test --project node
