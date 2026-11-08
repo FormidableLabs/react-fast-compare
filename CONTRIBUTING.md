@@ -119,6 +119,33 @@ $ pnpm run lint:fix
 
 `index.js` stays ES5 in 3.x, so don't apply ES2015+ fixes (`let`/`const`, arrow functions) to it.
 
+### GitHub Actions
+
+Workflows reference GitHub's own actions (`actions/*`, `github/*`) by major
+version tag, such as `actions/checkout@v7`. Third-party actions are pinned to a
+commit SHA with the version in a comment, such as
+`pnpm/action-setup@<sha> # v6.1.0`, because a tag can be moved to different
+code. [zizmor](https://docs.zizmor.sh) enforces this (`.github/zizmor.yml`)
+along with its other security checks.
+
+CI runs zizmor in the `lint-gha` job, at the `version` pinned there.
+`pnpm lint:gha` (part of `pnpm check`) runs it locally if it's installed, and
+skips otherwise. Newer zizmor releases add audits, so a different version
+locally can report findings that CI doesn't. To match CI, install that version,
+e.g. `uv tool install zizmor==1.31.1` (or `brew install zizmor` for the
+latest). Set `GH_TOKEN` to include zizmor's online audits.
+
+To update actions:
+
+- Third-party actions: run `pinact run --update`
+  ([pinact](https://github.com/suzuki-shunsuke/pinact), `brew install pinact`).
+  It updates SHAs and their version comments, skipping versions published in
+  the last week (`.github/pinact.yml`). Review each action's release notes.
+- GitHub's actions: check each one's releases page for a new major and read its
+  breaking changes.
+- zizmor itself: bump `version` on the zizmor step in
+  `.github/workflows/ci.yml`.
+
 ### Published package
 
 `pnpm pack:check` (part of `pnpm check`) packs the package and checks what it publishes:
