@@ -12,6 +12,27 @@ on:
 permissions: {}
 
 jobs:
+  # Security audit of the workflows (.github/zizmor.yml), including that
+  # third-party actions are pinned to a commit SHA. Same config as
+  # `pnpm lint:gha`.
+  lint-gha:
+    name: Lint GitHub Actions
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # to check out repo (actions/checkout)
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: zizmorcore/zizmor-action@53290badfa369cb0bf7ad16342cb62c2fa47ac7b # v0.8.0
+        with:
+          version: 1.31.1
+          # The default, set explicitly: online audits include impostor-commit,
+          # which checks that each SHA pin is a commit in the action's own repo.
+          online-audits: true
+          advanced-security: false
+          annotations: true
+
   test:
     name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -96,9 +117,11 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      # Changes the working tree only; nothing is committed.
+      # Changes the working tree only; nothing is committed. Outside the
+      # lockfile on purpose, but still under `minimumReleaseAge`, and the job
+      # has no secrets and read-only permissions.
       - name: Install React 18.0.0 and Preact 10
-        run: |
+        run: | # zizmor: ignore[adhoc-packages]
           pnpm add --save-dev react@18.0.0 react-dom@18.0.0 preact@^10
           node -e 'for (const [p, v] of [["react", "18.0.0"], ["react-dom", "18.0.0"], ["preact", "10."]]) { const got = require(`${p}/package.json`).version; console.log(`${p} ${got}`); if (!got.startsWith(v)) throw new Error(`${p} is ${got}, expected ${v}`); }'
       - name: Test
