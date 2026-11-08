@@ -1,6 +1,5 @@
-'use strict';
-const generic = require('../fixtures/fast-deep-equal/tests.js');
-const es6 = require('../fixtures/fast-deep-equal/es6tests.js');
+import generic from './fast-deep-equal/tests.js';
+import es6 from './fast-deep-equal/es6tests.js';
 
 const reactElementA = {
   $$typeof: 'react.element',
@@ -111,10 +110,5 @@ const custom = [
   },
 ];
 
-module.exports = {
-  generic,
-  es6,
-  react,
-  custom,
-  all: [].concat(generic, es6, react, custom),
-};
+export { generic, es6, react, custom };
+export const all = [].concat(generic, es6, react, custom);

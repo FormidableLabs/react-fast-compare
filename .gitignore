@@ -10,8 +10,6 @@ yarn.lock
 
 # Test output
 coverage/
-.nyc_output/
-test/typescript/*.js
 
 # Output of `npm pack` / `pnpm pack`
 *.tgz

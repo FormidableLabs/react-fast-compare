@@ -7,8 +7,3 @@
 # `minimumReleaseAgeExclude` is for urgent security fixes only (see
 # CONTRIBUTING).
 minimumReleaseAge: 10080
-
-# Dependencies allowed to run install scripts (pnpm 11+ requires a decision).
-allowBuilds:
-  # postinstall only prints a funding message.
-  core-js: false

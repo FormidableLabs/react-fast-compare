@@ -27,9 +27,6 @@
   "overrides": [
     {
       "files": ["test/**"],
-      "env": {
-        "mocha": true
-      },
       "globals": {
         "document": "readonly",
         "Element": "readonly"

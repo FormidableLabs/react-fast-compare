@@ -1,6 +1,6 @@
 'use strict';
 
-const tests = require('../test/node/tests');
+const tests = require('../test/fixtures/index.mjs');
 const Benchmark = require('benchmark');
 
 const correctnessTests = [];
