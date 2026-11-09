@@ -16,7 +16,7 @@
     "changeset": "changeset",
     "pack:check": "node scripts/pack-check.mjs",
     "size": "node scripts/size.mjs",
-    "bench": "vitest bench --run --project 'node (bench)' --reporter=default --reporter=./bench/summary-reporter.mjs"
+    "bench": "vitest bench --run --project \"node (bench)\" --reporter=default --reporter=./bench/summary-reporter.mjs"
   },
   "repository": {
     "type": "git",
