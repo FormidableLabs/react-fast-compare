@@ -1,0 +1,15 @@
+// knip config for the dependency audit (`pnpm dlx knip`; see CONTRIBUTING.md).
+// knip isn't a devDependency: we run it at the end of each change to tooling.
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    // npm-check-updates config for `pnpm dep:check`.
+    ".ncurc.cjs",
+    // Type probe: `pack:check` compiles these against the packed tarball.
+    "test/types/*.{cts,mts,ts}",
+  ],
+  // `pack:check` runs its `attw` binary through a helper knip can't follow.
+  "ignoreDependencies": ["@arethetypeswrong/cli"],
+  // Not a Node tool; `lint:gha` skips it when it isn't installed.
+  "ignoreBinaries": ["zizmor"],
+}

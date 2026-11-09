@@ -50,6 +50,42 @@ pnpm only installs versions published at least 7 days ago
 included. For an urgent security fix that's newer than that, add the package to
 `minimumReleaseAgeExclude` with a comment and a date to remove it.
 
+### Updating dependencies
+
+We don't use Renovate or Dependabot version-update PRs. Instead, run this
+before each release, and when a Dependabot security alert comes in:
+
+```sh
+$ pnpm dep:check
+```
+
+It runs [npm-check-updates](https://github.com/raineorshine/npm-check-updates)
+and lists newer versions of the devDependencies and pnpm (`packageManager`). It
+doesn't change any files. Versions published in the last week are left out
+(`.ncurc.cjs`). To apply them, run `pnpm exec ncu -u` (or pick packages with
+`pnpm exec ncu -u <name> ...`), then `pnpm install` and `pnpm check`. Make the
+updates in one PR, and read the release notes of anything that runs in
+`pnpm check`. The package has no `dependencies`, so updates don't change what
+users install and need no changeset.
+
+Version ranges:
+
+- `^` by default.
+- Exact versions for tools whose upgrade needs its own PR: oxfmt and oxlint (a
+  new version can reformat the repo or fail CI), and the tools `pack:check`
+  and `types:check` rely on to compare with 3.2.2 (TypeScript, terser, publint,
+  attw).
+- Exact versions for the comparison baselines: `fast-deep-equal` (the upstream
+  version we track) and `react-fast-compare-published` (see
+  [Benchmarks](#benchmarks)).
+
+When you add or remove a tool, check that every devDependency is still used
+with [knip](https://knip.dev) (`knip.jsonc` lists what it can't see on its own):
+
+```sh
+$ pnpm dlx knip
+```
+
 **TL; DR:** － Everything you normally need to run is aggregated into:
 
 ```sh
