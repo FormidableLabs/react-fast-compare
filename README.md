@@ -12,10 +12,6 @@ This is a fork of the brilliant
 [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) with some
 extra handling for React.
 
-![benchmark chart](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/assets/benchmarking.png 'benchmarking chart')
-
-(Check out the [benchmarking details](#benchmarking-this-library).)
-
 ## Install
 
 ```sh
@@ -74,50 +70,20 @@ be for you!
 
 ## Benchmarking this Library
 
-The absolute values are much less important than the relative differences
-between packages.
-
-Benchmarking source can be found
-[here](https://github.com/FormidableLabs/react-fast-compare/blob/master/benchmark/index.js).
-Each "operation" consists of running all relevant tests. The React benchmark
-uses both the generic tests and the react tests; these runs will be slower
-simply because there are more tests in each operation.
-
-The results below are from a local test on a laptop _(stats last updated 6/2/2020)_:
-
-### Generic Data
-
-```
-react-fast-compare x 177,600 ops/sec ±1.73% (92 runs sampled)
-fast-deep-equal x 184,211 ops/sec ±0.65% (87 runs sampled)
-lodash.isEqual x 39,826 ops/sec ±1.32% (86 runs sampled)
-nano-equal x 176,023 ops/sec ±0.89% (92 runs sampled)
-shallow-equal-fuzzy x 146,355 ops/sec ±0.64% (89 runs sampled)
-  fastest: fast-deep-equal
-```
-
-`react-fast-compare` and `fast-deep-equal` should be the same speed for these
-tests; any difference is just noise. `react-fast-compare` won't be faster than
-`fast-deep-equal`, because it's based on it.
-
-### React and Generic Data
-
-```
-react-fast-compare x 86,392 ops/sec ±0.70% (93 runs sampled)
-fast-deep-equal x 85,567 ops/sec ±0.95% (92 runs sampled)
-lodash.isEqual x 7,369 ops/sec ±1.78% (84 runs sampled)
-  fastest: react-fast-compare,fast-deep-equal
-```
-
-Two of these packages cannot handle comparing React elements, because they
-contain circular reference: `nano-equal` and `shallow-equal-fuzzy`.
-
-### Running Benchmarks
+`react-fast-compare` is based on `fast-deep-equal`, and aims to be as fast on
+generic data while also handling React elements. The benchmark
+([`bench/`](./bench/compare.bench.mjs), Vitest's
+[benchmarking](https://vitest.dev/guide/benchmarking)) compares this code with
+the last published version and with `fast-deep-equal`, over the same test cases
+the tests use:
 
 ```sh
 $ pnpm install
-$ pnpm run benchmark
+$ pnpm bench
 ```
+
+Absolute numbers depend on the machine; compare rows from the same run. CI adds
+the results to the job summary of each run.
 
 ## Differences between this library and `fast-deep-equal`
 

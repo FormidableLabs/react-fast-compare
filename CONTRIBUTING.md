@@ -13,8 +13,8 @@ We encourage pull requests concerning:
 - Integrating updates from `fast-deep-equal` － This, unfortunately, now requires more manual work. Use the comment blocks in `index.js`
   to figure out what to paste and where.
 - Integrating tests from `fast-deep-equal` － Copy its `spec/` test files into `test/fixtures/fast-deep-equal/`
-  and update the version in that directory's README. The `fast-deep-equal` npm package in `devDependencies` is the
-  benchmark baseline.
+  and update the version in that directory's README. The `fast-deep-equal` npm package in `devDependencies` is one of
+  the [benchmark](#benchmarks) baselines.
 - Bugs in this library
 - New tests for React
 - Documentation
@@ -55,7 +55,7 @@ included. For an urgent security fix that's newer than that, add the package to
 ```sh
 # Format, lint, types, all tests, then the packed package
 $ pnpm run check
-$ pnpm run benchmark
+$ pnpm run bench
 ```
 
 ### Testing
@@ -171,6 +171,45 @@ CI runs it against the base commit and adds the table to the job summary. It's
 a report, not a check: if the min+gz size grows significantly, flag it to your
 reviewers so you can discuss whether the addition is worth it.
 
+### Benchmarks
+
+`pnpm bench` runs `bench/compare.bench.mjs` with Vitest's
+[benchmarking](https://vitest.dev/guide/benchmarking) in Node. For each group
+of test fixtures (`generic`, `es6`, `react`, `custom`), it compares:
+
+- `this tree`: `index.js` in your working tree,
+- `published`: the last release (`react-fast-compare-published`, an aliased
+  devDependency), and
+- `fast-deep-equal`: the upstream version we forked from.
+
+A candidate that throws on a group's cases (`fast-deep-equal` on
+`Object.create(null)` objects) is left out of that group, and the test title
+says so.
+
+```sh
+$ pnpm bench
+# One fixture group
+$ pnpm bench -t react
+# In a browser instead of Node (coarser timers)
+$ pnpm exec vitest bench --run --project 'browser (chromium) (bench)'
+```
+
+CI runs it in its own job and adds the tables, with each candidate's
+difference from `published`, to the job summary. It's a report, not a check:
+shared runners are too noisy to gate on. If your change touches the comparison
+code, run it locally before and after, and mention any difference beyond a few
+percent in your PR.
+
+Differences under about 3–5% in a single run are noise. As a calibration:
+`this tree` and `published` run the same code until a source change lands, yet
+they differ by up to ~2% from run to run, more than the ±RME column suggests
+(it only measures variation within a run). Re-run before reading anything into
+a small gap.
+
+After a release, bump `react-fast-compare-published` to it
+(`pnpm add -D react-fast-compare-published@npm:react-fast-compare@<version>`)
+once it's a week old (`minimumReleaseAge`).
+
 ## Before submitting a PR...
 
 ... please make sure that you have done the following:
@@ -179,13 +218,12 @@ reviewers so you can discuss whether the addition is worth it.
 
    ```sh
    $ pnpm run check
-   $ pnpm run benchmark
+   $ pnpm run bench
    ```
 
-2. Confirm we don't have any significant performance regressions (check out `master` for a baseline comparison on _your_ machine).
+2. Confirm we don't have any significant performance regressions (see [benchmarks](#benchmarks)).
 
 3. Confirm you aren't significantly impacting our bundle size (see [size](#size)).
-   - _Org members:_ Update the README's benchmark comparison png using this [internal Google Sheet template](https://docs.google.com/spreadsheets/d/1GuqpO0wgPjQ9usx6sR3t0Y_HTmAdRqjXkSjs3SBsmTc/edit?usp=sharing_eip&ts=5ed1642f).
 
 ## Releasing
 

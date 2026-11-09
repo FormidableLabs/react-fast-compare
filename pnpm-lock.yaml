@@ -184,21 +184,12 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^5.0.5
         version: 5.0.5(@vitest/browser@5.0.5)(vitest@5.0.5)
-      benchmark:
-        specifier: ^2.1.4
-        version: 2.1.4
       fast-deep-equal:
         specifier: 3.1.3
         version: 3.1.3
       jsdom:
         specifier: ^30.1.3
         version: 30.1.3
-      lodash:
-        specifier: ^4.17.10
-        version: 4.17.21
-      nano-equal:
-        specifier: ^2.0.2
-        version: 2.0.2
       oxfmt:
         specifier: 0.75.0
         version: 0.75.0
@@ -220,9 +211,9 @@ importers:
       react-dom:
         specifier: ^19.3.1
         version: 19.3.1(react@19.3.1)
-      shallow-equal-fuzzy:
-        specifier: 0.0.2
-        version: 0.0.2
+      react-fast-compare-published:
+        specifier: npm:react-fast-compare@3.2.2
+        version: react-fast-compare@3.2.2
       terser:
         specifier: 5.51.2
         version: 5.51.2
@@ -1026,9 +1017,6 @@ packages:
   ast-v8-to-istanbul@1.0.7:
     resolution: {integrity: sha512-kFL68AG6ajd8fg248zwM9GQrUWEp79gsmjum34OEXjs4yHuUMZfYKwOLW9GMmB4oNvVrj+EAGxsP7ye2UR9UlA==}
 
-  benchmark@2.1.4:
-    resolution: {integrity: sha512-l9MlfN4M1K/H2fbhfMy3B7vJd6AGKJVQn2h6Sg/Yx+KckoUA7ewS5Vv6TjSq18ooE1kS9hhAlQRH3AkXIh/aOQ==}
-
   bidi-js@1.1.0:
     resolution: {integrity: sha512-fX1Onk0tdVPC7obPWB5EbJ1z7NVhLq4m2xZLq2YXBkxzMXIGRpNMU88n0EPgWseKl12J7zXs7qrDxPK4sRs2fg==}
 
@@ -1292,9 +1280,6 @@ packages:
     resolution: {integrity: sha512-WkUDrojuJs0xkgGf2udWxa3yGBRxPtxUkB79i6aCZLRgc7PM8fZe9TosfPDcvEpQZbuFASnHYmRLBLUbmLOIIA==}
     engines: {node: '>= 12.0.0'}
 
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-
   lru-cache@11.5.3:
     resolution: {integrity: sha512-U4N8FgzmWxc8k1VH8Kr6lQg18U7Fjvby6wXHVRX/ZZ7IwWbRMgrRbP0Wrb5q5NVinryp4SQampHKdvtecItxUg==}
     engines: {node: 20 || >=22}
@@ -1329,9 +1314,6 @@ packages:
 
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
-
-  nano-equal@2.0.2:
-    resolution: {integrity: sha512-RtAioZtSSppEWRruYU8oz2AKPJWTW74TpzcqP79n7Kh4nHW+gmrJGcTuELmid9tvGR4Xp2cCoTtYIIDy9iWO4g==}
 
   nanoid@3.3.20:
     resolution: {integrity: sha512-uKdg2G3GNCKQn9byYOpxbGqrT2fGO5KRt5J/8b3pok8rT6qxGWF6hxMyJiEYtAf+FVyYuD9hRaDqX5uPFYJ4ZQ==}
@@ -1404,9 +1386,6 @@ packages:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
 
-  platform@1.3.5:
-    resolution: {integrity: sha512-TuvHS8AOIZNAlE77WUDiR4rySV/VMptyMfcfeoMgs4P8apaZM3JrnbzBiixKUv+XR6i+BXrQh8WAnjaSPFO65Q==}
-
   playwright-core@1.64.1:
     resolution: {integrity: sha512-BC4s8y6SEVA6Q1rSxZTto8hI1KUI3xXlHGZgvGqP4IqPdI/a6FX9H29IDNz7vKo9l21b6LfYosScPL6M3xxyDQ==}
     engines: {node: '>=20'}
@@ -1447,6 +1426,9 @@ packages:
     peerDependencies:
       react: ^19.3.1
 
+  react-fast-compare@3.2.2:
+    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
+
   react@19.3.1:
     resolution: {integrity: sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==}
     engines: {node: '>=0.10.0'}
@@ -1479,10 +1461,6 @@ packages:
     resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
     engines: {node: '>=10'}
     hasBin: true
-
-  shallow-equal-fuzzy@0.0.2:
-    resolution: {integrity: sha512-HKGvWaQ6fuFhNH2k1krxxmhKYxyPSbPzwCkM94qYVoLKCGCqg0r9bdCoX4A37UJvAfyLje9zHS5F/SsrYgrqgA==}
-    engines: {node: '>=0.12.0'}
 
   shell-quote@1.12.0:
     resolution: {integrity: sha512-PcByqNyT/38F2kDNi006HAMRJaULuBzq/FOsw3qdZvX/GA9W/jamDaRskgHjubHiftXK5sIFxLNkvrXUwcof6Q==}
@@ -2359,11 +2337,6 @@ snapshots:
       estree-walker: 3.0.3
       js-tokens: 10.0.0
 
-  benchmark@2.1.4:
-    dependencies:
-      lodash: 4.17.21
-      platform: 1.3.5
-
   bidi-js@1.1.0:
     dependencies:
       require-from-string: 2.0.2
@@ -2584,8 +2557,6 @@ snapshots:
       lightningcss-win32-arm64-msvc: 1.33.0
       lightningcss-win32-x64-msvc: 1.33.0
 
-  lodash@4.17.21: {}
-
   lru-cache@11.5.3: {}
 
   magic-string@1.4.5:
@@ -2622,8 +2593,6 @@ snapshots:
       any-promise: 1.3.0
       object-assign: 4.1.1
       thenify-all: 1.6.0
-
-  nano-equal@2.0.2: {}
 
   nanoid@3.3.20: {}
 
@@ -2704,8 +2673,6 @@ snapshots:
 
   picomatch@4.0.7: {}
 
-  platform@1.3.5: {}
-
   playwright-core@1.64.1: {}
 
   playwright@1.64.1:
@@ -2735,6 +2702,8 @@ snapshots:
     dependencies:
       react: 19.3.1
       scheduler: 0.28.0
+
+  react-fast-compare@3.2.2: {}
 
   react@19.3.1: {}
 
@@ -2774,8 +2743,6 @@ snapshots:
   scheduler@0.28.0: {}
 
   semver@7.8.5: {}
-
-  shallow-equal-fuzzy@0.0.2: {}
 
   shell-quote@1.12.0: {}
 
