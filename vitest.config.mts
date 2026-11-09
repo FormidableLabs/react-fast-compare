@@ -61,6 +61,12 @@ export default defineConfig({
         },
       },
     ],
+    // `pnpm bench`: `bench/*.bench.mjs` run only under `vitest bench`, which
+    // adds a "<project> (bench)" project for each project above. The script
+    // picks `node (bench)`.
+    benchmark: {
+      include: ['bench/*.bench.mjs'],
+    },
     // `pnpm test --project node --coverage` (CI's Coverage step). v8 coverage
     // only works in Node and Chromium, so the browser project doesn't run it.
     coverage: {

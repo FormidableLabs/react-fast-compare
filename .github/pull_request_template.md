@@ -13,5 +13,5 @@ Please include a summary of the change and which issue is fixed. Please also inc
 
 - [ ] All tests are passing
 - [ ] Type definitions, if updated, pass `types:check` and `pack:check`
-- [ ] Benchmark performance has not significantly decreased
+- [ ] Benchmark performance (`pnpm bench`, CI job summary) has not significantly decreased
 - [ ] Bundle size (`pnpm size`, CI job summary) has not been significantly impacted
