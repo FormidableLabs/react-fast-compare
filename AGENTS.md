@@ -6,7 +6,7 @@ Guidance for AI coding agents (and humans) working in this repo. Keep it short a
 
 Tracking issue: https://github.com/FormidableLabs/react-fast-compare/issues/140. Read it before starting uplift work; its **Decision log** is the source of truth for settled choices. Don't re-open a logged decision without saying why.
 
-- **Branch:** uplift PRs target the integration branch `chore/2026-uplift`, which merges to `master` with a merge commit at the end. Source fixes after the uplift (#139 Temporal, ...) go straight to `master`.
+- **Branch:** `master`. The uplift landed from the integration branch `chore/2026-uplift` with a merge commit; PRs now target `master` directly, starting with the source fixes (#139 Temporal, ...).
 - **The uplift doesn't change what users get.** Same files, same `module.exports = isEqual`, same ES5 code, same `index.d.ts` as 3.2.2. In `index.js`, only formatting and comments may change; `pnpm pack:check` proves it. ESM, an `exports` map and a modern target wait for 4.0.0.
 - **Infra first, source last.** Mechanical churn (formatting, lint autofixes) goes in its own PR with no behavior change, and its commit is added to `.git-blame-ignore-revs` after it merges (PRs are squash-merged).
 - **Tasks are plain `package.json` scripts.** No task runner.

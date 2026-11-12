@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - chore/2026-uplift*
   pull_request:
     types: [opened, synchronize, reopened]
 
