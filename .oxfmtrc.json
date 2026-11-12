@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "arrowParens": "always",
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    ".changeset",
+    "CHANGELOG.md",
+    "pack-snapshot.json",
+    "pnpm-lock.yaml",
+    "test/fixtures/fast-deep-equal/"
+  ]
+}

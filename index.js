@@ -7,6 +7,11 @@ var hasArrayBuffer = typeof ArrayBuffer === 'function' && !!ArrayBuffer.isView;
 
 // Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
 
+/**
+ * @param {any} a
+ * @param {any} b
+ * @returns {boolean}
+ */
 function equal(a, b) {
   // START: fast-deep-equal es6/index.js 3.1.3
   if (a === b) return true;
@@ -18,8 +23,7 @@ function equal(a, b) {
     if (Array.isArray(a)) {
       length = a.length;
       if (length != b.length) return false;
-      for (i = length; i-- !== 0;)
-        if (!equal(a[i], b[i])) return false;
+      for (i = length; i-- !== 0;) if (!equal(a[i], b[i])) return false;
       return true;
     }
 
@@ -44,41 +48,56 @@ function equal(a, b) {
     //
     //    **Note**: `i` access switches to `i.value`.
     var it;
-    if (hasMap && (a instanceof Map) && (b instanceof Map)) {
+    if (hasMap && a instanceof Map && b instanceof Map) {
       if (a.size !== b.size) return false;
       it = a.entries();
-      while (!(i = it.next()).done)
-        if (!b.has(i.value[0])) return false;
+      while (!(i = it.next()).done) if (!b.has(i.value[0])) return false;
       it = a.entries();
       while (!(i = it.next()).done)
         if (!equal(i.value[1], b.get(i.value[0]))) return false;
       return true;
     }
 
-    if (hasSet && (a instanceof Set) && (b instanceof Set)) {
+    if (hasSet && a instanceof Set && b instanceof Set) {
       if (a.size !== b.size) return false;
       it = a.entries();
-      while (!(i = it.next()).done)
-        if (!b.has(i.value[0])) return false;
+      while (!(i = it.next()).done) if (!b.has(i.value[0])) return false;
       return true;
     }
     // END: Modifications
 
-    if (hasArrayBuffer && ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
+    // Types: the casts stop `isView()` narrowing `a` and `b` to
+    // `ArrayBufferView`, which has no `length` or index signature (typed
+    // arrays have both, a `DataView` has neither).
+    if (
+      hasArrayBuffer &&
+      ArrayBuffer.isView(/** @type {unknown} */ (a)) &&
+      ArrayBuffer.isView(/** @type {unknown} */ (b))
+    ) {
       length = a.length;
       if (length != b.length) return false;
-      for (i = length; i-- !== 0;)
-        if (a[i] !== b[i]) return false;
+      for (i = length; i-- !== 0;) if (a[i] !== b[i]) return false;
       return true;
     }
 
-    if (a.constructor === RegExp) return a.source === b.source && a.flags === b.flags;
+    if (a.constructor === RegExp)
+      return a.source === b.source && a.flags === b.flags;
     // START: Modifications:
     // Apply guards for `Object.create(null)` handling. See:
     // - https://github.com/FormidableLabs/react-fast-compare/issues/64
     // - https://github.com/epoberezkin/fast-deep-equal/issues/49
-    if (a.valueOf !== Object.prototype.valueOf && typeof a.valueOf === 'function' && typeof b.valueOf === 'function') return a.valueOf() === b.valueOf();
-    if (a.toString !== Object.prototype.toString && typeof a.toString === 'function' && typeof b.toString === 'function') return a.toString() === b.toString();
+    if (
+      a.valueOf !== Object.prototype.valueOf &&
+      typeof a.valueOf === 'function' &&
+      typeof b.valueOf === 'function'
+    )
+      return a.valueOf() === b.valueOf();
+    if (
+      a.toString !== Object.prototype.toString &&
+      typeof a.toString === 'function' &&
+      typeof b.toString === 'function'
+    )
+      return a.toString() === b.toString();
     // END: Modifications
 
     keys = Object.keys(a);
@@ -95,7 +114,10 @@ function equal(a, b) {
 
     // custom handling for React/Preact
     for (i = length; i-- !== 0;) {
-      if ((keys[i] === '_owner' || keys[i] === '__v' || keys[i] === '__o') && a.$$typeof) {
+      if (
+        (keys[i] === '_owner' || keys[i] === '__v' || keys[i] === '__o') &&
+        a.$$typeof
+      ) {
         // React-specific: avoid traversing React elements' _owner
         // Preact-specific: avoid traversing Preact elements' __v and __o
         //    __v = $_original / $_vnode
@@ -120,11 +142,20 @@ function equal(a, b) {
 }
 // end fast-deep-equal
 
+/**
+ * Deep equality check, tuned for React elements.
+ *
+ * @template [A=any]
+ * @template [B=any]
+ * @param {A} a
+ * @param {B} b
+ * @returns {boolean}
+ */
 module.exports = function isEqual(a, b) {
   try {
     return equal(a, b);
-  } catch (error) {
-    if (((error.message || '').match(/stack|recursion/i))) {
+  } catch (/** @type {any} */ error) {
+    if ((error.message || '').match(/stack|recursion/i)) {
       // warn on circular references, don't crash
       // browsers give this different errors name and messages:
       // chrome/safari: "RangeError", "Maximum call stack size exceeded"
