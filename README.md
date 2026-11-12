@@ -1,4 +1,4 @@
-[![React Fast Compare — Formidable, We build the modern web](https://raw.githubusercontent.com/FormidableLabs/react-fast-compare/master/react-fast-compare-Hero.png)](https://formidable.com/open-source/)
+[![React Fast Compare — Nearform](https://oss.nearform.com/api/banner.svg?badge=react-fast-compare&bg=2f8f83)](https://nearform.com/open-source/)
 
 [![Downloads][downloads_img]][npm_site]
 [![GH Actions Status][actions_img]][actions_site]
@@ -23,7 +23,7 @@ $ npm install react-fast-compare
 - ES5 compatible; works in node.js (0.10+) and browsers (IE9+)
 - deeply compares any value (besides objects with circular references)
 - handles React-specific circular references, like elements
-- checks equality Date and RegExp objects
+- checks equality of Date and RegExp objects
 - should be as fast as [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) via a single unified library, and with added guardrails for circular references.
 - small: under 660 bytes minified+gzipped
 
@@ -59,11 +59,11 @@ class AnotherExpensiveComponent extends React.Component {
 
 Deep checks in `React.memo` or a `shouldComponentUpdate` should not be used blindly.
 First, see if the default
-[React.memo](https://reactjs.org/docs/react-api.html#reactmemo) or
-[PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
+[React.memo](https://react.dev/reference/react/memo) or
+[PureComponent](https://react.dev/reference/react/PureComponent)
 will work for you. If it won't (if you need deep checks), it's wise to make
-sure you've correctly indentified the bottleneck in your application by
-[profiling the performance](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab).
+sure you've correctly identified the bottleneck in your application by
+[profiling the performance](https://react.dev/reference/react/Profiler).
 After you've determined that you _do_ need deep equality checks and you've
 identified the minimum number of places to apply them, then this library may
 be for you!
@@ -92,7 +92,7 @@ the results to the job summary of each run.
 - `react-fast-compare` has `try`/`catch` guardrails for stack overflows from undetected (non-React) circular references.
 - `react-fast-compare` has a _single_ unified entry point for all uses. No matter what your target application is, `import equal from 'react-fast-compare'` just works. `fast-deep-equal` has multiple entry points for different use cases.
 
-This version of `react-fast-compare` tracks `fast-deep-equal@3.1.1`.
+This version of `react-fast-compare` tracks `fast-deep-equal@3.1.3`.
 
 ## Bundle Size
 
@@ -105,7 +105,7 @@ as they [do not mangle during minification](https://github.com/pastelsky/package
 
 ## License
 
-[MIT](https://github.com/FormidableLabs/react-fast-compare/blob/readme/LICENSE)
+[MIT](./LICENSE)
 
 ## Contributing
 
@@ -113,11 +113,11 @@ Please see our [contributions guide](./CONTRIBUTING.md).
 
 ## Maintenance Status
 
-**Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
+**Active:** Nearform is actively working on this project, and we expect to continue work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
 
 [actions_img]: https://github.com/FormidableLabs/react-fast-compare/actions/workflows/ci.yml/badge.svg
-[actions_site]: https://github.com/formidablelabs/react-fast-compare/actions/workflows/ci.yml
-[npm_img]: https://badge.fury.io/js/react-fast-compare.svg
-[npm_site]: http://badge.fury.io/js/react-fast-compare
+[actions_site]: https://github.com/FormidableLabs/react-fast-compare/actions/workflows/ci.yml
+[npm_img]: https://img.shields.io/npm/v/react-fast-compare.svg
+[npm_site]: https://www.npmjs.com/package/react-fast-compare
 [downloads_img]: https://img.shields.io/npm/dm/react-fast-compare.svg
-[maintenance_img]: https://img.shields.io/badge/maintenance-active-flatgreen.svg
+[maintenance_img]: https://img.shields.io/badge/maintenance-active-green.svg
