@@ -12,6 +12,7 @@ Please include a summary of the change and which issue is fixed. Please also inc
 ## Checklist:
 
 - [ ] All tests are passing
+- [ ] Changeset added (`pnpm changeset`) if this changes what users get (code, types, published files)
 - [ ] Type definitions, if updated, pass `types:check` and `pack:check`
 - [ ] Benchmark performance (`pnpm bench`, CI job summary) has not significantly decreased
 - [ ] Bundle size (`pnpm size`, CI job summary) has not been significantly impacted

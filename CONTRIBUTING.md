@@ -10,9 +10,9 @@ Before contributing, _please make sure the issue relates directly to this librar
 We encourage pull requests concerning:
 
 - React features not handled in this library
-- Integrating updates from `fast-deep-equal` － This, unfortunately, now requires more manual work. Use the comment blocks in `index.js`
+- Integrating updates from `fast-deep-equal`: this, unfortunately, now requires more manual work. Use the comment blocks in `index.js`
   to figure out what to paste and where.
-- Integrating tests from `fast-deep-equal` － Copy its `spec/` test files into `test/fixtures/fast-deep-equal/`
+- Integrating tests from `fast-deep-equal`: copy its `spec/` test files into `test/fixtures/fast-deep-equal/`
   and update the version in that directory's README. The `fast-deep-equal` npm package in `devDependencies` is one of
   the [benchmark](#benchmarks) baselines.
 - Bugs in this library
@@ -26,6 +26,18 @@ Pull requests that should be for [fast-deep-equal](https://github.com/epoberezki
 - Tests for non-react comparisons
 
 ## Development
+
+**TL;DR:** after [setup](#setup), everything CI checks runs with:
+
+```sh
+# Format, lint, types, all tests, then the packed package
+$ pnpm run check
+# Benchmarks (a report, not a check)
+$ pnpm run bench
+```
+
+The repo's conventions in brief (3.x rules, types, upstream comment blocks,
+changesets) are in [`AGENTS.md`](./AGENTS.md), which AI coding agents read too.
 
 ### Setup
 
@@ -84,14 +96,6 @@ with [knip](https://knip.dev) (`knip.jsonc` lists what it can't see on its own):
 
 ```sh
 $ pnpm dlx knip
-```
-
-**TL; DR:** － Everything you normally need to run is aggregated into:
-
-```sh
-# Format, lint, types, all tests, then the packed package
-$ pnpm run check
-$ pnpm run bench
 ```
 
 ### Testing
