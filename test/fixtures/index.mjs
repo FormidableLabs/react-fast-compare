@@ -110,5 +110,63 @@ const custom = [
   },
 ];
 
-export { generic, es6, react, custom };
-export const all = [].concat(generic, es6, react, custom);
+// A `DataView` over the given bytes. Comparing it through the typed-array loop
+// (#150) reads `view[NaN]` forever. The trap turns that hang into a throw, so a
+// regression fails the tests instead of stalling them (a synchronous loop can't
+// be timed out), and `pnpm bench` skips versions that still have the bug.
+const dataView = (bytes) => {
+  const view = new DataView(new Uint8Array(bytes).buffer);
+  Object.defineProperty(view, 'NaN', {
+    get() {
+      throw new Error('DataView compared as a typed array (#150)');
+    },
+  });
+  return view;
+};
+
+const dataViews = [
+  {
+    description: 'DataView',
+    tests: [
+      {
+        description: 'empty DataViews are equal',
+        value1: dataView([]),
+        value2: dataView([]),
+        equal: true,
+      },
+      {
+        description: 'DataViews with the same bytes are equal',
+        value1: dataView([1, 2, 3, 4]),
+        value2: dataView([1, 2, 3, 4]),
+        equal: true,
+      },
+      {
+        description: 'DataViews with different bytes are not equal',
+        value1: dataView([1, 2, 3, 4]),
+        value2: dataView([1, 2, 3, 5]),
+        equal: false,
+      },
+      {
+        description: 'DataViews with different lengths are not equal',
+        value1: dataView([1, 2, 3, 4]),
+        value2: dataView([1, 2, 3]),
+        equal: false,
+      },
+      {
+        description: 'objects with equal DataViews are equal',
+        value1: { a: 1, view: dataView([1, 2, 3, 4]) },
+        value2: { a: 1, view: dataView([1, 2, 3, 4]) },
+        equal: true,
+      },
+      {
+        description: 'objects with different DataViews are not equal',
+        value1: { a: 1, view: dataView([1, 2, 3, 4]) },
+        value2: { a: 1, view: dataView([4, 3, 2, 1]) },
+        equal: false,
+      },
+    ],
+  },
+];
+
+export { generic, es6, react, custom, dataViews };
+export const all = [].concat(generic, es6, react, custom, dataViews);

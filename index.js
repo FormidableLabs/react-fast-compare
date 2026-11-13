@@ -1,9 +1,10 @@
-/* global Map:readonly, Set:readonly, ArrayBuffer:readonly */
+/* global Map:readonly, Set:readonly, ArrayBuffer:readonly, DataView:readonly */
 
 var hasElementType = typeof Element !== 'undefined';
 var hasMap = typeof Map === 'function';
 var hasSet = typeof Set === 'function';
 var hasArrayBuffer = typeof ArrayBuffer === 'function' && !!ArrayBuffer.isView;
+var hasDataView = typeof DataView === 'function';
 
 // Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
 
@@ -62,6 +63,19 @@ function equal(a, b) {
       if (a.size !== b.size) return false;
       it = a.entries();
       while (!(i = it.next()).done) if (!b.has(i.value[0])) return false;
+      return true;
+    }
+    // END: Modifications
+
+    // START: Modifications:
+    // `DataView` passes `ArrayBuffer.isView()` below but has no `length` or
+    // indexes, so the typed-array loop would never end. Compare its bytes.
+    // See: https://github.com/FormidableLabs/react-fast-compare/issues/150
+    if (hasDataView && a instanceof DataView && b instanceof DataView) {
+      length = a.byteLength;
+      if (length !== b.byteLength) return false;
+      for (i = length; i-- !== 0;)
+        if (a.getUint8(i) !== b.getUint8(i)) return false;
       return true;
     }
     // END: Modifications
