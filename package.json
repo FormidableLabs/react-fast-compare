@@ -4,6 +4,7 @@
   "description": "Fastest deep equal comparison for React. Great for React.memo & shouldComponentUpdate. Also really fast general-purpose deep comparison.",
   "main": "index.js",
   "typings": "index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "check": "pnpm format && pnpm lint && pnpm lint:gha && pnpm types:check && pnpm test && pnpm pack:check",
     "format": "oxfmt --check",
