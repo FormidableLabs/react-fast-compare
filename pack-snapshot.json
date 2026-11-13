@@ -4,6 +4,7 @@
     "main": "index.js",
     "types": "index.d.ts",
     "typings": "index.d.ts",
+    "sideEffects": false,
     "files": [
       "index.js",
       "index.d.ts"
