@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.2.3
+
+### Patch Changes
+
+- [#159](https://github.com/FormidableLabs/react-fast-compare/pull/159) [`af48b1e`](https://github.com/FormidableLabs/react-fast-compare/commit/af48b1e8250d778b27190a95bab78f47839785ad) - Fix `isEqual` hanging forever when comparing two `DataView`s. They're now compared byte by byte.
+
+- [#157](https://github.com/FormidableLabs/react-fast-compare/pull/157) [`2b76164`](https://github.com/FormidableLabs/react-fast-compare/commit/2b76164859b7c3aa345a60379050dae52657a627) - Add `"sideEffects": false` to `package.json` so bundlers can drop the module when it's imported but unused.
+
 ## 3.2.2
 
 ### Patch Changes
