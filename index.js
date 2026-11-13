@@ -116,8 +116,7 @@ function equal(a, b) {
     return true;
   }
 
-
-  // NaN verify
+  // Both NaN: NaN is the only value that isn't equal to itself
   return a !== a && b !== b;
 }
 // end fast-deep-equal
