@@ -250,6 +250,20 @@ const temporal = [
         () => Temporal.PlainMonthDay.from('11-13'),
         true
       ),
+      // The ISO reference day/year isn't in the default `toString()`, but
+      // `equals()` compares it.
+      temporalCase(
+        'PlainYearMonths with different reference days are not equal',
+        () => new Temporal.PlainYearMonth(2026, 11, 'iso8601', 1),
+        () => new Temporal.PlainYearMonth(2026, 11, 'iso8601', 2),
+        false
+      ),
+      temporalCase(
+        'PlainMonthDays with different reference years are not equal',
+        () => new Temporal.PlainMonthDay(11, 13, 'iso8601', 1972),
+        () => new Temporal.PlainMonthDay(11, 13, 'iso8601', 2000),
+        false
+      ),
       temporalCase(
         'equal Instants are equal',
         () => Temporal.Instant.fromEpochNanoseconds(1n),
@@ -273,6 +287,12 @@ const temporal = [
         () => Temporal.ZonedDateTime.from('2026-11-13T07:00[UTC]'),
         () => Temporal.ZonedDateTime.from('2026-11-13T07:00[Europe/London]'),
         false
+      ),
+      temporalCase(
+        'ZonedDateTimes in time zone aliases are equal',
+        () => Temporal.ZonedDateTime.from('2026-11-13T07:00[Asia/Kolkata]'),
+        () => Temporal.ZonedDateTime.from('2026-11-13T07:00[Asia/Calcutta]'),
+        true
       ),
       temporalCase(
         'equal Durations are equal',
