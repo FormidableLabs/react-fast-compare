@@ -100,10 +100,16 @@ function equal(a, b) {
     // Apply guards for `Object.create(null)` handling. See:
     // - https://github.com/FormidableLabs/react-fast-compare/issues/64
     // - https://github.com/epoberezkin/fast-deep-equal/issues/49
+    // Temporal values throw from `valueOf()` by design, so skip it and let the
+    // `toString()` check below compare them (ISO string with calendar and time
+    // zone). `Symbol.toStringTag` detection works across realms and with
+    // polyfills, and only runs for objects that override `valueOf`. See:
+    // - https://github.com/FormidableLabs/react-fast-compare/issues/139
     if (
       a.valueOf !== Object.prototype.valueOf &&
       typeof a.valueOf === 'function' &&
-      typeof b.valueOf === 'function'
+      typeof b.valueOf === 'function' &&
+      Object.prototype.toString.call(a).indexOf('[object Temporal.') !== 0
     )
       return a.valueOf() === b.valueOf();
     if (
