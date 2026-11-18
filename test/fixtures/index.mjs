@@ -306,6 +306,25 @@ const temporal = [
         () => Temporal.Duration.from('PT90M'),
         false
       ),
+      // `toString()` balances sub-second units, so both of these are `PT1S`.
+      temporalCase(
+        'Durations of 1000 ms and 1 s are not equal',
+        () => Temporal.Duration.from({ milliseconds: 1000 }),
+        () => Temporal.Duration.from({ seconds: 1 }),
+        false
+      ),
+      temporalCase(
+        'Durations of 1000 ns and 1 µs are not equal',
+        () => Temporal.Duration.from({ nanoseconds: 1000 }),
+        () => Temporal.Duration.from({ microseconds: 1 }),
+        false
+      ),
+      temporalCase(
+        'equal Durations with sub-second fields are equal',
+        () => Temporal.Duration.from({ seconds: 1, milliseconds: 500 }),
+        () => Temporal.Duration.from({ seconds: 1, milliseconds: 500 }),
+        true
+      ),
       temporalCase(
         'a PlainDate and a PlainDateTime are not equal',
         () => Temporal.PlainDate.from('2026-11-13'),

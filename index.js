@@ -5,6 +5,18 @@ var hasMap = typeof Map === 'function';
 var hasSet = typeof Set === 'function';
 var hasArrayBuffer = typeof ArrayBuffer === 'function' && !!ArrayBuffer.isView;
 var hasDataView = typeof DataView === 'function';
+var durationFields = [
+  'years',
+  'months',
+  'weeks',
+  'days',
+  'hours',
+  'minutes',
+  'seconds',
+  'milliseconds',
+  'microseconds',
+  'nanoseconds',
+];
 
 // Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
 
@@ -101,9 +113,10 @@ function equal(a, b) {
     // - https://github.com/FormidableLabs/react-fast-compare/issues/64
     // - https://github.com/epoberezkin/fast-deep-equal/issues/49
     // Temporal values throw from `valueOf()` by design, so compare them with
-    // `equals()`. `Duration` has none and falls through to the `toString()`
-    // check below. `Symbol.toStringTag` detection works across realms and with
-    // polyfills, and only runs for objects that override `valueOf`. See:
+    // `equals()`. `Duration` is the only type without one, and its `toString()`
+    // balances units (1000 ms and 1 s are both `PT1S`), so compare its fields.
+    // `Symbol.toStringTag` detection works across realms and with polyfills,
+    // and only runs for objects that override `valueOf`. See:
     // - https://github.com/FormidableLabs/react-fast-compare/issues/139
     if (
       a.valueOf !== Object.prototype.valueOf &&
@@ -113,6 +126,9 @@ function equal(a, b) {
       if (Object.prototype.toString.call(a).indexOf('[object Temporal.') !== 0)
         return a.valueOf() === b.valueOf();
       if (typeof a.equals === 'function') return a.equals(b);
+      for (i = durationFields.length; i-- !== 0;)
+        if (a[durationFields[i]] !== b[durationFields[i]]) return false;
+      return true;
     }
     if (
       a.toString !== Object.prototype.toString &&
