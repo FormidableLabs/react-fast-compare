@@ -116,19 +116,25 @@ function equal(a, b) {
     // `equals()`. `Duration` is the only type without one, and its `toString()`
     // balances units (1000 ms and 1 s are both `PT1S`), so compare its fields.
     // `Symbol.toStringTag` detection works across realms and with polyfills,
-    // and only runs for objects that override `valueOf`. See:
+    // and only runs for objects that override `valueOf`. Any other `Temporal.*`
+    // tag without `equals()` falls through to the `toString()` check below.
+    // See:
     // - https://github.com/FormidableLabs/react-fast-compare/issues/139
+    var tag;
     if (
       a.valueOf !== Object.prototype.valueOf &&
       typeof a.valueOf === 'function' &&
       typeof b.valueOf === 'function'
     ) {
-      if (Object.prototype.toString.call(a).indexOf('[object Temporal.') !== 0)
+      tag = Object.prototype.toString.call(a);
+      if (tag.indexOf('[object Temporal.') !== 0)
         return a.valueOf() === b.valueOf();
       if (typeof a.equals === 'function') return a.equals(b);
-      for (i = durationFields.length; i-- !== 0;)
-        if (a[durationFields[i]] !== b[durationFields[i]]) return false;
-      return true;
+      if (tag === '[object Temporal.Duration]') {
+        for (i = durationFields.length; i-- !== 0;)
+          if (a[durationFields[i]] !== b[durationFields[i]]) return false;
+        return true;
+      }
     }
     if (
       a.toString !== Object.prototype.toString &&

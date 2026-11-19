@@ -62,6 +62,19 @@ const react = [
   },
 ];
 
+// Tagged like a Temporal type, overrides `valueOf`, has no `equals()`.
+class FakeTemporal {
+  constructor(value) {
+    this.value = value;
+  }
+  get [Symbol.toStringTag]() {
+    return 'Temporal.Fake';
+  }
+  valueOf() {
+    return this.value;
+  }
+}
+
 // Additional customized behavior.
 const custom = [
   {
@@ -126,6 +139,20 @@ const custom = [
         value1: new String('a'),
         value2: new String('b'),
         equal: false,
+      },
+      // Only a real `Temporal.Duration` tag gets the duration field compare
+      // (#139); other `Temporal.*` tags without `equals()` compare as objects.
+      {
+        description: 'objects with a non-Duration Temporal tag compare by keys',
+        value1: new FakeTemporal(1),
+        value2: new FakeTemporal(2),
+        equal: false,
+      },
+      {
+        description: 'equal objects with a non-Duration Temporal tag are equal',
+        value1: new FakeTemporal(1),
+        value2: new FakeTemporal(1),
+        equal: true,
       },
     ],
   },
