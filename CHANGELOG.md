@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.4
+
+### Patch Changes
+
+- [#160](https://github.com/FormidableLabs/react-fast-compare/pull/160) [`46180a6`](https://github.com/FormidableLabs/react-fast-compare/commit/46180a69fa73ba306ff2703bdb3ce01dfb9084b1) - Fix `isEqual` throwing when comparing two different `Temporal` values (e.g. `Temporal.PlainTime`), including ones nested in objects or arrays. They're now compared with their `equals()` method, and `Temporal.Duration`, which has none, field by field.
+
 ## 3.2.3
 
 ### Patch Changes
