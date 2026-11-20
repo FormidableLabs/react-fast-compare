@@ -62,6 +62,19 @@ const react = [
   },
 ];
 
+// Tagged like a Temporal type, overrides `valueOf`, has no `equals()`.
+class FakeTemporal {
+  constructor(value) {
+    this.value = value;
+  }
+  get [Symbol.toStringTag]() {
+    return 'Temporal.Fake';
+  }
+  valueOf() {
+    return this.value;
+  }
+}
+
 // Additional customized behavior.
 const custom = [
   {
@@ -104,6 +117,41 @@ const custom = [
         description: 'Object.create(null) equal for deep objects',
         value1: Object.assign(Object.create(null), { a: 1, b: { c: true } }),
         value2: Object.assign(Object.create(null), { b: { c: true }, a: 1 }),
+        equal: true,
+      },
+      // `valueOf` overrides still compare by `valueOf()` after the Temporal
+      // check (#139). `Date#toString()` drops milliseconds, so a `toString()`
+      // comparison would make these equal.
+      {
+        description: 'Dates 1 ms apart are not equal',
+        value1: new Date(0),
+        value2: new Date(1),
+        equal: false,
+      },
+      {
+        description: 'equal boxed Numbers are equal',
+        value1: new Number(1),
+        value2: new Number(1),
+        equal: true,
+      },
+      {
+        description: 'different boxed Strings are not equal',
+        value1: new String('a'),
+        value2: new String('b'),
+        equal: false,
+      },
+      // Only a real `Temporal.Duration` tag gets the duration field compare
+      // (#139); other `Temporal.*` tags without `equals()` compare as objects.
+      {
+        description: 'objects with a non-Duration Temporal tag compare by keys',
+        value1: new FakeTemporal(1),
+        value2: new FakeTemporal(2),
+        equal: false,
+      },
+      {
+        description: 'equal objects with a non-Duration Temporal tag are equal',
+        value1: new FakeTemporal(1),
+        value2: new FakeTemporal(1),
         equal: true,
       },
     ],
@@ -168,5 +216,175 @@ const dataViews = [
   },
 ];
 
-export { generic, es6, react, custom, dataViews };
-export const all = [].concat(generic, es6, react, custom, dataViews);
+// Temporal (#139). Its `valueOf()` throws by design, so these throw in 3.2.2
+// and fast-deep-equal. Every engine we test has it built in; where it's
+// missing, the cases are skipped instead of polyfilled.
+const { Temporal } = globalThis;
+const temporalCase = (description, value1, value2, equal) =>
+  Temporal
+    ? { description, value1: value1(), value2: value2(), equal }
+    : { description, equal, skip: true };
+
+const temporal = [
+  {
+    description: 'Temporal',
+    tests: [
+      temporalCase(
+        'equal PlainDates are equal',
+        () => Temporal.PlainDate.from('2026-11-13'),
+        () => Temporal.PlainDate.from('2026-11-13'),
+        true
+      ),
+      temporalCase(
+        'different PlainDates are not equal',
+        () => Temporal.PlainDate.from('2026-11-13'),
+        () => Temporal.PlainDate.from('2026-11-14'),
+        false
+      ),
+      temporalCase(
+        'PlainDates with different calendars are not equal',
+        () => Temporal.PlainDate.from('2026-11-13'),
+        () => Temporal.PlainDate.from('2026-11-13[u-ca=hebrew]'),
+        false
+      ),
+      temporalCase(
+        'equal PlainTimes are equal',
+        () => Temporal.PlainTime.from('07:00'),
+        () => Temporal.PlainTime.from('07:00'),
+        true
+      ),
+      temporalCase(
+        'different PlainTimes are not equal',
+        () => Temporal.PlainTime.from('07:00'),
+        () => Temporal.PlainTime.from('08:00'),
+        false
+      ),
+      temporalCase(
+        'equal PlainDateTimes are equal',
+        () => Temporal.PlainDateTime.from('2026-11-13T07:00'),
+        () => Temporal.PlainDateTime.from('2026-11-13T07:00'),
+        true
+      ),
+      temporalCase(
+        'equal PlainYearMonths are equal',
+        () => Temporal.PlainYearMonth.from('2026-11'),
+        () => Temporal.PlainYearMonth.from('2026-11'),
+        true
+      ),
+      temporalCase(
+        'equal PlainMonthDays are equal',
+        () => Temporal.PlainMonthDay.from('11-13'),
+        () => Temporal.PlainMonthDay.from('11-13'),
+        true
+      ),
+      // The ISO reference day/year isn't in the default `toString()`, but
+      // `equals()` compares it.
+      temporalCase(
+        'PlainYearMonths with different reference days are not equal',
+        () => new Temporal.PlainYearMonth(2026, 11, 'iso8601', 1),
+        () => new Temporal.PlainYearMonth(2026, 11, 'iso8601', 2),
+        false
+      ),
+      temporalCase(
+        'PlainMonthDays with different reference years are not equal',
+        () => new Temporal.PlainMonthDay(11, 13, 'iso8601', 1972),
+        () => new Temporal.PlainMonthDay(11, 13, 'iso8601', 2000),
+        false
+      ),
+      temporalCase(
+        'equal Instants are equal',
+        () => Temporal.Instant.fromEpochNanoseconds(1n),
+        () => Temporal.Instant.fromEpochNanoseconds(1n),
+        true
+      ),
+      temporalCase(
+        'Instants 1 ns apart are not equal',
+        () => Temporal.Instant.fromEpochNanoseconds(1n),
+        () => Temporal.Instant.fromEpochNanoseconds(2n),
+        false
+      ),
+      temporalCase(
+        'equal ZonedDateTimes are equal',
+        () => Temporal.ZonedDateTime.from('2026-11-13T07:00[Europe/Dublin]'),
+        () => Temporal.ZonedDateTime.from('2026-11-13T07:00[Europe/Dublin]'),
+        true
+      ),
+      temporalCase(
+        'ZonedDateTimes at the same instant in different zones are not equal',
+        () => Temporal.ZonedDateTime.from('2026-11-13T07:00[UTC]'),
+        () => Temporal.ZonedDateTime.from('2026-11-13T07:00[Europe/London]'),
+        false
+      ),
+      temporalCase(
+        'ZonedDateTimes in time zone aliases are equal',
+        () => Temporal.ZonedDateTime.from('2026-11-13T07:00[Asia/Kolkata]'),
+        () => Temporal.ZonedDateTime.from('2026-11-13T07:00[Asia/Calcutta]'),
+        true
+      ),
+      temporalCase(
+        'equal Durations are equal',
+        () => Temporal.Duration.from('PT1H30M'),
+        () => Temporal.Duration.from('PT1H30M'),
+        true
+      ),
+      temporalCase(
+        'different Durations are not equal',
+        () => Temporal.Duration.from('PT1H30M'),
+        () => Temporal.Duration.from('PT90M'),
+        false
+      ),
+      // `toString()` balances sub-second units, so both of these are `PT1S`.
+      temporalCase(
+        'Durations of 1000 ms and 1 s are not equal',
+        () => Temporal.Duration.from({ milliseconds: 1000 }),
+        () => Temporal.Duration.from({ seconds: 1 }),
+        false
+      ),
+      temporalCase(
+        'Durations of 1000 ns and 1 µs are not equal',
+        () => Temporal.Duration.from({ nanoseconds: 1000 }),
+        () => Temporal.Duration.from({ microseconds: 1 }),
+        false
+      ),
+      temporalCase(
+        'equal Durations with sub-second fields are equal',
+        () => Temporal.Duration.from({ seconds: 1, milliseconds: 500 }),
+        () => Temporal.Duration.from({ seconds: 1, milliseconds: 500 }),
+        true
+      ),
+      temporalCase(
+        'a PlainDate and a PlainDateTime are not equal',
+        () => Temporal.PlainDate.from('2026-11-13'),
+        () => Temporal.PlainDateTime.from('2026-11-13'),
+        false
+      ),
+      temporalCase(
+        'a Temporal value and its string are not equal',
+        () => Temporal.PlainTime.from('07:00'),
+        () => '07:00:00',
+        false
+      ),
+      temporalCase(
+        'objects with equal Temporal values are equal',
+        () => ({ time: Temporal.PlainTime.from('07:00') }),
+        () => ({ time: Temporal.PlainTime.from('07:00') }),
+        true
+      ),
+      temporalCase(
+        'objects with different Temporal values are not equal',
+        () => ({ time: Temporal.PlainTime.from('07:00') }),
+        () => ({ time: Temporal.PlainTime.from('08:00') }),
+        false
+      ),
+      temporalCase(
+        'arrays of equal Temporal values are equal',
+        () => [Temporal.PlainDate.from('2026-11-13')],
+        () => [Temporal.PlainDate.from('2026-11-13')],
+        true
+      ),
+    ],
+  },
+];
+
+export { generic, es6, react, custom, dataViews, temporal };
+export const all = [].concat(generic, es6, react, custom, dataViews, temporal);
